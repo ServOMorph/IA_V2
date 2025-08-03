@@ -27,6 +27,10 @@ main.py
 
         Lance l’interface ChatInterface depuis interface.py.
 
+        Redirige les impressions dans debug.log.
+
+        Supprime les logs Kivy dans la console.
+
 interface.py
 
     But : définit l’interface utilisateur graphique avec Kivy.
@@ -39,6 +43,10 @@ interface.py
 
         Ajout automatique à l’historique (historique.txt).
 
+        Impression des échanges utilisateur/IA dans debug.log.
+
+        Affichage des erreurs critiques dans la console.
+
 ollama_api.py
 
     But : gérer les requêtes HTTP vers le serveur local d’Ollama.
@@ -46,6 +54,10 @@ ollama_api.py
     Contenu :
 
         Fonction query_ollama(prompt) : envoie un prompt et retourne la réponse.
+
+        Impression de la réponse dans debug.log.
+
+        Impression des erreurs API dans la console (stderr).
 
 config.py
 
@@ -64,6 +76,16 @@ historique.py
     Contenu :
 
         Fonction enregistrer_echange(prompt, reponse) : écrit dans historique.txt.
+
+debug.log
+
+    But : journalisation des impressions de debug de l'application.
+
+    Contenu :
+
+        Entrées utilisateur, réponses IA, logs d'exécution utiles.
+
+        Écrasé à chaque lancement de l’application.
 
 instructions_chatgpt.txt
 

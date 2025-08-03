@@ -3,7 +3,27 @@ OLLAMA_URL = "http://localhost:11434/api/chat"
 OLLAMA_MODEL = "mistral"
 
 # Configuration fenêtre
-WINDOW_WIDTH = 500
+WINDOW_WIDTH = 700
 WINDOW_HEIGHT = 700
 WINDOW_LEFT = 100
 WINDOW_TOP = 200
+
+# Couleurs de l'interface (mode sombre)
+BACKGROUND_COLOR = (0, 0, 0, 1)
+TEXTINPUT_BACKGROUND_COLOR = (0.15, 0.15, 0.15, 1)
+TEXT_COLOR = (1, 1, 1, 1)
+HINT_TEXT_COLOR = (0.6, 0.6, 0.6, 1)
+BUTTON_SEND_COLOR = (0.2, 0.6, 1, 1)
+BUTTON_QUIT_COLOR = (0.5, 0.1, 0.1, 1)
+BUBBLE_USER_COLOR = (0.2, 0.4, 0.8, 1)
+BUBBLE_IA_COLOR = (0.3, 0.3, 0.3, 1)
+
+# Apparence
+FONT_SIZE = 16
+BORDER_RADIUS = [12]
+BUBBLE_PADDING = (12, 8)
+
+# Layout
+SCROLLVIEW_SIZE_HINT_Y = 0.8
+INPUT_SIZE_HINT_Y = 0.1
+BUTTONS_SIZE_HINT_Y = 0.1

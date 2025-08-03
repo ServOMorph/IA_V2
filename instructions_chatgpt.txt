@@ -1,5 +1,3 @@
-📄 instructions_chatgpt.txt
-
 1. Tous les échanges doivent se faire uniquement dans le **chat**.
    - ❌ Ne pas utiliser "Canvas" ou l’interface de modification de fichiers.
    - ✅ Toutes les modifications doivent être visibles ici dans le chat.

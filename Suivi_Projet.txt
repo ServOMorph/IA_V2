@@ -102,3 +102,111 @@ Réduire les messages affichés dans la console pour ne garder que les informati
     La fenêtre ne se ferme plus de manière inattendue.
 
     L'application est plus robuste et traçable.
+
+
+
+    🧩 Étape 5 – Nettoyage complet de la console + journalisation dans un fichier
+
+🎯 Objectifs
+
+    Supprimer tous les logs techniques de Kivy dans la console.
+
+    Rediriger les impressions utiles (entrées utilisateur, réponses IA) vers un fichier debug.log.
+
+    Conserver uniquement les erreurs critiques visibles dans la console.
+
+🔧 Modifications réalisées
+
+    Ajout d’un debug.log généré à chaque exécution.
+
+    Suppression des logs Kivy via variables d’environnement KIVY_NO_CONSOLELOG et KIVY_NO_FILELOG.
+
+    Remplacement de tous les print() par des appels explicites avec flush=True pour assurer l’écriture immédiate dans le fichier.
+
+    Les erreurs critiques (Exception) restent affichées dans la console via sys.stderr.
+
+✅ Résultat
+
+    La console est propre (aucun [INFO], [Kivy], etc.).
+
+    Tous les échanges utiles sont enregistrés dans debug.log.
+
+    Les erreurs importantes sont visibles sans perturber l’utilisateur.
+
+    🧩 Étape 6 – Refonte visuelle type "chat classique"
+
+🎯 Objectifs
+
+    Moderniser l’affichage des messages avec des bulles séparées.
+
+    Rendre la conversation plus lisible et agréable (type messagerie).
+
+    Corriger les problèmes de mise en forme et d’encombrement.
+
+🔧 Modifications réalisées
+
+    Refonte complète de l’interface des messages :
+
+        Fond noir (mode sombre).
+
+        Messages utilisateur alignés à gauche.
+
+        Réponses IA alignées à droite.
+
+        Bulles de couleur avec coins arrondis.
+
+        Taille dynamique des bulles (s’adaptent parfaitement au texte).
+
+    Mise à jour du layout pour :
+
+        Scroll automatique vers le bas.
+
+        Espacements harmonieux.
+
+        Texte lisible (blanc sur fond sombre).
+
+✅ Résultat
+
+    L’interface est visuellement propre, ergonomique, agréable.
+
+    Les messages sont bien différenciés.
+
+    Plus de débordements ou d’espaces inutiles.
+
+    🧩 Étape 7 – Uniformisation visuelle des boutons + effets de survol
+
+🎯 Objectifs
+
+    Harmoniser l'apparence des boutons Envoyer, Quitter et Copier.
+
+    Supprimer les styles natifs des boutons Kivy (fond brut).
+
+    Appliquer un fond personnalisé avec coins arrondis.
+
+    Ajouter un effet de survol visuel (éclaircissement léger au passage de la souris).
+
+🔧 Modifications réalisées
+
+    Création d’une classe HoverButton :
+
+        Hérite de Button.
+
+        Dessine un RoundedRectangle personnalisé dans canvas.before.
+
+        Gère dynamiquement l’effet de survol avec Window.bind(mouse_pos=...).
+
+    Tous les boutons sont désormais des instances de HoverButton.
+
+    Couleurs des boutons centralisées dans config.py (BUTTON_SEND_COLOR, BUTTON_QUIT_COLOR, etc.).
+
+    Suppression des anciens background_color directs.
+
+    Le bouton Copier est désormais cohérent visuellement avec Envoyer et Quitter.
+
+✅ Résultat
+
+    Interface visuellement homogène et professionnelle.
+
+    Boutons stylisés sur mesure avec coins arrondis.
+
+    Survol fluide qui améliore l'expérience utilisateur.

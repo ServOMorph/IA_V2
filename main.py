@@ -1,12 +1,17 @@
 import os
+import sys
+
+# Supprimer tous les logs Kivy dans la console et dans un fichier
+os.environ["KIVY_NO_FILELOG"] = "1"
+os.environ["KIVY_NO_CONSOLELOG"] = "1"
+
+# Rediriger les print() vers un fichier log
+sys.stdout = open("debug.log", "w", encoding="utf-8")
+
 from kivy.config import Config
 from config import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_LEFT, WINDOW_TOP
 
-# Supprimer les logs de Kivy dans la console
-os.environ["KIVY_NO_CONSOLELOG"] = "1"
-Config.set('kivy', 'log_level', 'warning')
-
-# Définir la taille et la position de la fenêtre à partir de config.py
+# Définir la taille et la position de la fenêtre
 Config.set('graphics', 'width', str(WINDOW_WIDTH))
 Config.set('graphics', 'height', str(WINDOW_HEIGHT))
 Config.set('graphics', 'position', 'custom')
@@ -21,4 +26,5 @@ class OllamaKivyApp(App):
         return ChatInterface()
 
 if __name__ == '__main__':
+    print("Lancement de l'application", flush=True)
     OllamaKivyApp().run()
