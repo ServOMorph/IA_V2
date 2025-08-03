@@ -210,3 +210,52 @@ Réduire les messages affichés dans la console pour ne garder que les informati
     Boutons stylisés sur mesure avec coins arrondis.
 
     Survol fluide qui améliore l'expérience utilisateur.
+
+
+  🧩 Étape 8 – Définition d’un protocole de benchmark pour l’IA locale
+
+🎯 Objectif
+
+Élaborer un protocole de test complet et reproductible pour évaluer les performances de l’IA Mistral exécutée localement via Ollama, avec ou sans interface Kivy.
+
+🔧 Travail réalisé
+
+✅ Création du fichier protocole_test_IA.txt contenant les éléments suivants :
+
+    Objectifs clairs (temps de réponse, robustesse, qualité, limites).
+
+    Structure de fichiers dédiée (questions_IA.txt, test_performance.py, etc.).
+
+    Déroulé détaillé de 5 types de tests :
+
+        Temps de réponse
+
+        Qualité des réponses
+
+        Robustesse face aux entrées problématiques
+
+        Limites intellectuelles et créatives du modèle
+
+        Génération automatique d’un rapport synthétique
+
+✅ Génération du fichier questions_IA.txt :
+
+    Prompts classés par catégorie : simples, complexes, longs, piégeux, logiques/creatifs.
+
+    Format prêt à être utilisé à la fois manuellement et automatiquement.
+
+📁 Fichiers produits
+
+    Test_IA/protocole_test_IA.txt
+
+    Test_IA/questions_IA.txt
+
+✅ Résultat
+
+Le protocole de benchmark est prêt à être lancé à tout moment, de manière :
+
+    manuelle (via l’interface Kivy pour inspection directe des réponses),
+
+    ou automatisée (via un futur script test_performance.py en Python).
+
+Cette base permettra d’évaluer objectivement la qualité et la robustesse du modèle local Mistral dans le cadre du projet.  

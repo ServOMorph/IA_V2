@@ -1,0 +1,87 @@
+🧪 PROTOCOLE DE TEST – IA Locale Mistral via Ollama
+
+🎯 OBJECTIFS DU PROTOCOLE
+----------------------------
+1. Mesurer les TEMPS DE RÉPONSE à différents types de prompts.
+2. Évaluer la QUALITÉ DES RÉPONSES (cohérence, pertinence, style).
+3. Tester la STABILITÉ de l'application face à des cas extrêmes.
+4. Identifier les LIMITES du modèle (raisonnement, génération).
+5. Générer un RAPPORT SYNTHÉTIQUE des performances.
+
+
+📁 STRUCTURE DES FICHIERS ASSOCIÉS
+-------------------------------------
+- questions_IA.txt → prompts classés par type
+- test_performance.py → script de test automatisé
+- resultats_test.csv → journal des temps et réponses
+- notes_subjectives.txt (optionnel) → appréciations manuelles
+- debug.log & historique.txt → suivis techniques internes
+
+
+🧩 ÉTAPES DU TEST
+====================
+
+1. ⚡ TEST TEMPS DE RÉPONSE
+--------------------------------
+- Mesurer le délai entre envoi et réception pour chaque prompt.
+- Utiliser `time.perf_counter()` pour une précision milliseconde.
+- Calculer : moyenne, minimum, maximum, écart-type.
+- Tester sur :
+    • 10 prompts simples
+    • 10 prompts complexes
+    • 5 prompts très longs
+    • 5 prompts en rafale (envoyés rapidement)
+
+2. 🧠 TEST QUALITÉ DES RÉPONSES
+-----------------------------------
+Évaluer manuellement ou automatiquement selon les critères :
+- Prompts simples → réponse claire, syntaxe correcte
+- Prompts techniques → exactitude des faits
+- Prompts rédactionnels → fluidité du texte
+- Prompts piégeux → capacité de raisonnement/logique
+
+Notation suggérée : sur 5 (Clarté, Pertinence, Fluidité)
+
+3. 🔄 TEST DE ROBUSTESSE
+-------------------------------
+Soumettre des entrées inhabituelles ou invalides :
+- Chaînes vides
+- Texte uniquement composé de symboles ou emojis
+- JSON malformé ou code incomplet
+- Envoi rapide de plusieurs prompts simultanément
+Objectif : repérer des crashs, erreurs API, blocages ou lenteurs.
+
+4. 🧱 TEST DES LIMITES DU MODÈLE
+------------------------------------
+Tester les capacités d’abstraction et de créativité :
+- Génération de code
+- Résolution d’énigmes
+- Résumés complexes
+- Création d’histoires longues avec structure
+
+5. 🧾 GÉNÉRATION D’UN RAPPORT
+----------------------------------
+À la fin des tests :
+- Créer le fichier `resultats_test.csv` avec colonnes :
+    [Horodatage, Type, Prompt, Durée(ms), Longueur réponse, Réponse tronquée]
+- Calculer :
+    • Temps moyen par type de prompt
+    • Taux d’erreurs (échecs API, délais excessifs)
+    • Taille moyenne des réponses
+- Résumer manuellement les observations dans `notes_subjectives.txt` :
+    - Forces du modèle
+    - Faiblesses détectées
+    - Cas particuliers
+
+
+📌 CONSEILS POUR L’UTILISATION
+----------------------------------
+- Utiliser un CPU/GPU constant pour tous les tests
+- Fermer les autres applications pour limiter le bruit
+- Nettoyer `debug.log` et `historique.txt` avant chaque test complet
+- Lancer les tests au calme pour éviter des biais réseau ou mémoire
+
+📝 REMARQUES FINALES
+------------------------
+- Ce protocole est générique et peut être réutilisé avec d'autres modèles.
+- Il est extensible pour des tests NLP, vision, ou multi-modaux.

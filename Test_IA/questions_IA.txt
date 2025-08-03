@@ -1,0 +1,49 @@
+# =========================
+# PROMPTS SIMPLES (TEST 1)
+# =========================
+
+Quel est le plus grand océan du monde ?
+Quelle est la capitale de l’Italie ?
+Donne-moi un synonyme du mot "rapide".
+Combien y a-t-il de jours dans une semaine ?
+Explique-moi ce qu’est une pomme.
+
+# =========================
+# PROMPTS COMPLEXES (TEST 1 / TEST 2)
+# =========================
+
+Explique-moi le fonctionnement d’un moteur à combustion interne.
+Compare la Révolution française et la Révolution américaine.
+Donne-moi les causes et conséquences du réchauffement climatique.
+Quels sont les avantages et inconvénients de l’intelligence artificielle ?
+Rédige un mini-essai sur l’impact des réseaux sociaux sur les adolescents.
+
+# =========================
+# PROMPTS TRÈS LONGS (TEST 1 / TEST 4)
+# =========================
+
+Rédige un article de blog d’environ 300 mots sur les bienfaits de la lecture quotidienne pour le développement personnel, en incluant une introduction, des arguments étayés, et une conclusion motivante.
+
+Écris une histoire courte mettant en scène deux personnages opposés qui doivent coopérer pour survivre dans un environnement hostile. L’histoire doit comporter un début, un conflit central, une évolution des personnages, et une résolution.
+
+# =========================
+# PROMPTS PIÉGEUX / ROBUSTESSE (TEST 3)
+# =========================
+
+😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉
+{"question": "Quel est le résultat de 1 + ", "réponse":
+Donne-moi le code Python pour faire une requête HTTP, mais coupe la ligne après "import".
+
+# Prompt vide :
+
+
+
+
+# =========================
+# TEST LOGIQUE / CRÉATIVITÉ (TEST 4)
+# =========================
+
+Résous ce problème : “Un train part de Paris à 9h à 80 km/h. Un autre part de Lyon à 10h à 100 km/h. À quelle heure se croisent-ils ?”
+Peux-tu créer une énigme logique originale avec sa solution ?
+Donne-moi une fonction Python qui trie une liste de chaînes par ordre alphabétique inversé.
+Invente une fable courte avec une morale inspirante à la manière de La Fontaine.
