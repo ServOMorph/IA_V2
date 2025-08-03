@@ -1,0 +1,104 @@
+🧩 Étape 1 – Interface de base avec Ollama et Mistral via Kivy
+🎯 Objectif
+
+Créer une interface graphique simple permettant à l'utilisateur de communiquer avec un modèle Ollama local (Mistral) via une application Kivy.
+🔨 Fonctionnalités réalisées
+
+    Interface utilisateur avec :
+
+        ✅ Zone de sortie (affichage de la conversation)
+
+        ✅ Champ de saisie de texte
+
+        ✅ Bouton d’envoi
+
+    Envoi des messages à l’API locale d’Ollama (http://localhost:11434/api/chat)
+
+    Traitement des réponses et affichage dans l’interface
+
+    Prise en charge correcte du multithreading avec Clock.schedule_once() pour respecter les contraintes de Kivy
+
+✅ Résultat
+
+Tu disposes maintenant d’une fenêtre interactive qui te permet de :
+
+    taper un prompt,
+
+    l’envoyer à Mistral,
+
+    afficher la réponse dans un champ de discussion.
+
+    🧩 Étape 2 – Refactorisation du projet et amélioration de l’interface
+🎯 Objectifs
+
+    Rendre l’interface plus ergonomique pour saisir des messages multilignes.
+
+    Structurer le code en plusieurs modules pour faciliter le développement futur.
+
+🔧 Modifications réalisées
+
+    ✅ Entrée clavier permet maintenant de passer à la ligne (plus d’envoi automatique).
+
+    ✅ Ajout d’un bouton "Quitter" dans l’interface.
+
+    ✅ Découpage du fichier principal en 4 modules :
+
+        main.py → point d’entrée de l’application.
+
+        interface.py → interface Kivy.
+
+        ollama_api.py → gestion de l’appel API à Ollama.
+
+        config.py → centralisation des paramètres.
+
+✅ Résultat
+
+L’application est maintenant :
+
+    Plus confortable pour rédiger des messages lisibles.
+
+    Mieux organisée, ce qui facilite les évolutions futures (historique, logs, etc.).
+
+    🧩 Étape 3 – Nettoyage de la console et impressions utiles
+🎯 Objectif
+
+Réduire les messages affichés dans la console pour ne garder que les informations essentielles au développement :
+
+    Entrées utilisateur.
+
+    Réponses de l’IA.
+
+    Erreurs critiques (ex. connexion à l’API).
+
+    🧩 Étape 4 – Ajout de l’historique + correction d’un crash
+🎯 Objectifs
+
+    Enregistrer chaque échange (utilisateur / IA) dans un fichier texte.
+
+    Corriger un crash silencieux lié à un attribut non initialisé dans un thread Kivy.
+
+🔧 Modifications réalisées
+✅ interface.py
+
+    Initialisation de self.last_prompt pour éviter une AttributeError.
+
+    Ajout d’un bloc try/except autour de la requête à l’API dans _query_and_display().
+
+    Enregistrement de chaque échange dans historique.txt via enregistrer_echange().
+
+✅ Nouveau fichier : historique.py
+
+    Fonction simple pour enregistrer les messages dans un fichier :
+
+    def enregistrer_echange(prompt, reponse, fichier='historique.txt'):
+        with open(fichier, 'a', encoding='utf-8') as f:
+            f.write(f"Utilisateur : {prompt.strip()}\\n")
+            f.write(f"IA         : {reponse.strip()}\\n\\n")
+
+✅ Résultat
+
+    Tous les échanges sont sauvegardés dans historique.txt.
+
+    La fenêtre ne se ferme plus de manière inattendue.
+
+    L'application est plus robuste et traçable.

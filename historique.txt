@@ -1,0 +1,21 @@
+Utilisateur : Quelle est  la capitale de la France ?
+Quelle est la capitale de la Russie ?
+IA         : La capitale de la France est Paris, et la capitale de la Russie est Moscou.
+
+Utilisateur : Ecris un poème en 100 caractères
+IA         : Dans la lumière du jour, fleurs au cœur brisé,
+
+Le vent souffle sur mes vies éclatées.
+
+Dans l'ombre de l'aube, sous le ciel bleu,
+
+Je cherche mon amour perdu à jamais.
+
+Seul en ce monde, je chante ma tristesse,
+
+Un poème de vie et de souffrance.
+
+Cette nuit-là, un espoir me parut,
+
+Et j'ai trouvé mon aube dans le soir.
+

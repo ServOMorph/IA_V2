@@ -1,0 +1,25 @@
+📄 instructions_chatgpt.txt
+
+1. Tous les échanges doivent se faire uniquement dans le **chat**.
+   - ❌ Ne pas utiliser "Canvas" ou l’interface de modification de fichiers.
+   - ✅ Toutes les modifications doivent être visibles ici dans le chat.
+
+2. Lorsqu’un fichier est modifié ou créé :
+   - Tu dois afficher le **contenu entier du fichier**, prêt à **copier-coller**.
+   - Le format doit être clair, structuré, et sans abréviation ou ellipse.
+
+3. Si plusieurs fichiers sont concernés, tu dois tous les lister avec :
+   - Le **nom exact du fichier**.
+   - Le contenu complet, clairement délimité pour chaque fichier.
+
+4. Si une variable ou un paramètre est déplacé d’un fichier à un autre (ex : vers `config.py`), tu dois :
+   - Mettre à jour **tous les fichiers impactés**.
+   - Réafficher **chaque fichier modifié** en entier, même s’il ne change que très légèrement.
+
+5. Tu dois toujours attendre ma **validation explicite** avant d’effectuer l’étape suivante.
+
+6. Tu ne dois jamais résumer ou tronquer un fichier. Toujours afficher la version **complète** et **finale** à jour.
+
+7. Pas de ZIP, pas de téléchargement automatique. L’utilisateur gère lui-même ses fichiers localement.
+
+Ces règles s’appliquent à toutes nos futures interactions.
