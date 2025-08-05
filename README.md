@@ -28,3 +28,9 @@ Interface graphique simple en Python (Kivy) pour interagir avec un modèle d’i
    ```bash
    git clone https://github.com/votre-utilisateur/IA_V2.git
    cd IA_V2
+
+
+## ▶️ Lancement du programme
+- Lancer le script batch pour démarrer Ollama avec le modèle : - lancement_Mistral_Ollama.bat
+- Exécuter le programme principal : python main.py
+

@@ -13,3 +13,40 @@ IA         : Le plus grand océan du monde est l'océan Pacifique. Il couvre une
 Utilisateur : Quel est le plus grand océan du monde ?
 IA         : Le plus grand océan du monde est l'Océan Pacifique. Il couvre environ un tiers de la surface terrestre et s'étend sur une superficie de plus de 165,2 millions de kilomètres carrés.
 
+Utilisateur : quelle est la capitale de l'espagne ?
+IA         : [Erreur de connexion à Ollama]
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'océan Pacifique. Il couvre une superficie de près de 165 millions de kilomètres carrés, soit environ un tiers de la surface totale des océans.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il couvre environ 63 millions de milles carrés (163,7 millions de kilomètres carrés) et s'étend du pôle nord à l'Antarctique. L'océan Pacifique est ainsi le plus vaste des océans de la Terre.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il couvre une surface d'environ 165 millions de km2, soit environ deux tiers des océans mondiaux.
+
+Utilisateur : Quell est la capitale de l'allemagne
+IA         : La capitale de l'Allemagne est Berlin.
+
+Utilisateur : Quelle est la cpaitale de la Pologne ?
+IA         : La capitale de la Pologne est Varsovie (en polonais : Warszawa).
+
+Utilisateur : Quelle est la capitale de la Finlande ?
+IA         : La capitale de la Finlande est Helsinki.
+
+Utilisateur : Quelle est la capitale du Portugal ?
+IA         : La capitale du Portugal est Lisbonne.
+
+Utilisateur : Quelle es la cp$apitale des ussa ?
+IA         : La capital de Estados Unidos es Washington D.C., aunque no es un estado y, por lo tanto, no tiene código postal como tal. En los estados, cada uno tiene su propio código postal único.
+
+Utilisateur : Donne-moi un synonyme du mot "rapide".
+IA         : Un synonyme pour "rapide" est "vite".
+
+Utilisateur : Explique-moi ce qu’est une pomme.
+IA         : Une pomme est un fruit de la famille des Rosacées, plus précisément du genre Malus, dont le plus communément cultivé pour ses fruits est Malus domestica. Les pommes sont originaires d'Asie centrale et ont été domestiquées à partir de M. sieversii qui pousse dans les montagnes de l'Himalaya. Les pommes sont devenues courantes en Europe occidentale au XIIe siècle et en Amérique du Nord au XVIIe siècle. Elles sont maintenant cultivées dans presque tout le monde, avec plus de 7500 variétés différentes connues.
+
+Dans leur forme la plus commune, les pommes sont des fruits sphériques d'une taille moyenne d'environ sept centimètres de diamètre et pèsent entre 120 et 200 grammes. Elles ont une peau dur et lisse qui peut être rouge, jaune ou vert, selon la variété, tandis que leur chair est blanche et sucrée, avec des saveurs acides, douces ou aromatiques en fonction de la variété. Les pommes sont riches en fibres, en vitamines C et B, ainsi qu'en minéraux tels que le potassium et le calcium.
+
+Les pommes sont généralement consommées crues ou cuites. Elles peuvent être utilisées dans de nombreuses recettes, notamment comme fruit de dessert, en jus de fruit, pour préparer des confitures, des tartelettes ou des crèmes glacées, ou encore pour la cuisine savoureuse, par exemple pour poêler des pommes d'Ormont. Elles sont également l'un des ingrédients principaux de nombreuses boissons alcoolisées, telles que du cidre et du vin de glace.
+

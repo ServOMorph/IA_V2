@@ -259,3 +259,47 @@ Le protocole de benchmark est prêt à être lancé à tout moment, de manière 
     ou automatisée (via un futur script test_performance.py en Python).
 
 Cette base permettra d’évaluer objectivement la qualité et la robustesse du modèle local Mistral dans le cadre du projet.  
+
+
+
+🧩 Étape 9 – Ajustement visuel des bulles et du bouton "Quitter"
+
+🎯 Objectifs
+
+    Uniformiser et moderniser l'apparence des bulles de conversation.
+
+    Harmoniser le bouton "Quitter" avec le style général.
+
+    Corriger l'attribution incorrecte des couleurs entre utilisateur et IA.
+
+🔧 Modifications réalisées
+
+    🎨 Refonte de la palette de couleurs :
+
+        Bulle utilisateur : fond #292930 → (0.16, 0.16, 0.19, 1)
+
+        Bulle IA : fond #1f3454 → (0.12, 0.20, 0.33, 1)
+
+        ✅ Mise à jour des constantes BUBBLE_USER_COLOR et BUBBLE_IA_COLOR dans config.py.
+
+    🧠 Correction de la logique dans la classe Bubble :
+
+        Utilisation correcte du booléen is_user pour déterminer la couleur de la bulle.
+
+        Suppression de la détection par texte (startswith("Utilisateur")), non fiable.
+
+    🔘 Amélioration du bouton "Quitter" :
+
+        Calcul automatique de la largeur exacte du texte via CoreLabel.
+
+        Ajustement de la taille pour que le fond épouse parfaitement le mot.
+
+        Couleur alignée avec la bulle utilisateur.
+
+✅ Résultat
+
+    Interface visuellement harmonieuse, sobre et cohérente.
+
+    Les bulles sont désormais bien différenciées, avec un fond élégant.
+
+    Le bouton "Quitter" est discret, lisible et cohérent avec l'identité visuelle.

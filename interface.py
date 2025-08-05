@@ -67,19 +67,27 @@ class Bubble(Label):
         self.font_size = FONT_SIZE
         self.color = TEXT_COLOR
         self.markup = True
-        self.size_hint = (None, None)
-        self.padding = BUBBLE_PADDING
+        self.size_hint_x = None
+        self.size_hint_y = None
         self.halign = 'left'
-        self.valign = 'middle'
-        self.text_size = (None, None)
+        self.valign = 'top'
+        self.padding = BUBBLE_PADDING
+        self.text_size = (Window.width * 0.7, None)
         self.shorten = False
+        self.is_user = is_user  # 🔁 correction ici
 
-        self.texture_update()
-        self.width = self.texture_size[0] + self.padding[0] * 2
-        self.height = self.texture_size[1] + self.padding[1] * 2
+        self.bind(texture_size=self.update_size)
+        Clock.schedule_once(self.init_background)
+
+    def update_size(self, instance, value):
+        self.size = (value[0] + self.padding[0] * 2, value[1] + self.padding[1] * 2)
+
+    def init_background(self, *args):
+        from config import BUBBLE_USER_COLOR, BUBBLE_IA_COLOR
+        color = BUBBLE_USER_COLOR if self.is_user else BUBBLE_IA_COLOR
 
         with self.canvas.before:
-            Color(*BUBBLE_USER_COLOR if is_user else BUBBLE_IA_COLOR)
+            Color(*color)
             self.bg = RoundedRectangle(pos=self.pos, size=self.size, radius=BORDER_RADIUS)
 
         self.bind(pos=self.update_bg, size=self.update_bg)
@@ -114,12 +122,29 @@ class ChatInterface(BoxLayout):
         input_layout.add_widget(self.input)
         input_layout.add_widget(send_button)
 
-        quit_button = HoverButton(text="Quitter", size_hint_y=BUTTONS_SIZE_HINT_Y, base_color=BUTTON_QUIT_COLOR)
+        # Layout réduit pour le bouton Quitter
+        from kivy.core.text import Label as CoreLabel
+        label = CoreLabel(text="Quitter", font_size=FONT_SIZE)
+        label.refresh()
+        text_width = label.texture.size[0]
+
+        quit_layout = BoxLayout(size_hint_y=BUTTONS_SIZE_HINT_Y, padding=10)
+        quit_layout.add_widget(Widget())
+
+        quit_button = HoverButton(
+            text="Quitter",
+            size_hint=(None, None),
+            size=(text_width + 30, 40),  # largeur = texte + marge
+            base_color=TEXTINPUT_BACKGROUND_COLOR
+        )
         quit_button.bind(on_press=self.quit_app)
+
+        quit_layout.add_widget(quit_button)
+        quit_layout.add_widget(Widget())
 
         self.add_widget(self.scroll)
         self.add_widget(input_layout)
-        self.add_widget(quit_button)
+        self.add_widget(quit_layout)
 
         self.last_prompt = ""
 
@@ -147,13 +172,13 @@ class ChatInterface(BoxLayout):
         message_layout = BoxLayout(orientation='vertical', size_hint_y=None)
         message_layout.padding = (10, 0, 10, 0)
 
-        bubble_container = BoxLayout(size_hint_y=None, height=bubble.height)
+        bubble_container = BoxLayout(size_hint_y=None)
+        bubble_container.bind(minimum_height=bubble_container.setter('height'))
 
         if is_user:
             bubble_container.add_widget(bubble)
             bubble_container.add_widget(Widget())
             message_layout.add_widget(bubble_container)
-            message_layout.height = bubble.height
         else:
             bubble_container.add_widget(Widget())
             bubble_container.add_widget(bubble)
@@ -174,8 +199,8 @@ class ChatInterface(BoxLayout):
             copy_container.add_widget(copy_button)
 
             message_layout.add_widget(copy_container)
-            message_layout.height = bubble.height + 2 + copy_button_height
 
+        message_layout.height = bubble.height + 35
         self.chat_layout.add_widget(message_layout)
         Clock.schedule_once(lambda dt: self.scroll.scroll_to(message_layout))
 
