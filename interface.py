@@ -6,16 +6,19 @@ from kivy.uix.label import Label
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
+from kivy.uix.relativelayout import RelativeLayout
 from kivy.graphics import Color, RoundedRectangle
 from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
+from kivy.uix.image import Image
+from kivy.uix.behaviors import ButtonBehavior
 import threading
 import sys
 
 from config import (
     BACKGROUND_COLOR, TEXTINPUT_BACKGROUND_COLOR, TEXT_COLOR, HINT_TEXT_COLOR,
     BUTTON_SEND_COLOR, BUTTON_QUIT_COLOR, BUBBLE_USER_COLOR, BUBBLE_IA_COLOR,
-    FONT_SIZE, BORDER_RADIUS, BUBBLE_PADDING,
+    FONT_SIZE, BORDER_RADIUS, BUBBLE_PADDING, BUBBLE_WIDTH_RATIO,
     SCROLLVIEW_SIZE_HINT_Y, INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y,
     DEV_MODE, DEV_SHORTCUTS
 )
@@ -61,6 +64,18 @@ class HoverButton(Button):
             Color(*new_color)
             self.bg = RoundedRectangle(pos=self.pos, size=self.size, radius=self.radius)
 
+class ImageHoverButton(ButtonBehavior, Image):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.opacity = 1.0
+        Window.bind(mouse_pos=self.on_mouse_pos)
+
+    def on_mouse_pos(self, window, pos):
+        if not self.get_root_window():
+            return
+        inside = self.collide_point(*self.to_widget(*pos))
+        self.opacity = 0.6 if inside else 1.0
+
 class Bubble(Label):
     def __init__(self, text, is_user, **kwargs):
         super().__init__(**kwargs)
@@ -68,20 +83,15 @@ class Bubble(Label):
         self.font_size = FONT_SIZE
         self.color = TEXT_COLOR
         self.markup = True
-        self.size_hint_x = None
-        self.size_hint_y = None
         self.halign = 'left'
         self.valign = 'top'
         self.padding = BUBBLE_PADDING
-        self.text_size = (Window.width * 0.7, None)
-        self.shorten = False
         self.is_user = is_user
+        self.size_hint = (None, None)
+        self.text_size = (Window.width * BUBBLE_WIDTH_RATIO, None)
+        self.bind(texture_size=self.setter('size'))
 
-        self.bind(texture_size=self.update_size)
         Clock.schedule_once(self.init_background)
-
-    def update_size(self, instance, value):
-        self.size = (value[0] + self.padding[0] * 2, value[1] + self.padding[1] * 2)
 
     def init_background(self, *args):
         from config import BUBBLE_USER_COLOR, BUBBLE_IA_COLOR
@@ -209,7 +219,8 @@ class ChatInterface(BoxLayout):
     def display_message(self, text, is_user):
         bubble = Bubble(text=text, is_user=is_user)
 
-        message_layout = BoxLayout(orientation='vertical', size_hint_y=None)
+        message_layout = BoxLayout(orientation='vertical', size_hint_y=None, spacing=5)
+        message_layout.bind(minimum_height=message_layout.setter('height'))
         message_layout.padding = (10, 0, 10, 0)
 
         bubble_container = BoxLayout(size_hint_y=None)
@@ -224,23 +235,21 @@ class ChatInterface(BoxLayout):
             bubble_container.add_widget(bubble)
             message_layout.add_widget(bubble_container)
 
-            spacer = Widget(size_hint_y=None, height=2)
-            message_layout.add_widget(spacer)
-
-            copy_button_height = 25
-            copy_button = HoverButton(
-                text="Copier", font_size=12, size_hint=(None, None), size=(80, copy_button_height),
-                base_color=(0.4, 0.4, 0.4, 1)
+            # Empiètement + hover
+            icon_button = ImageHoverButton(
+                source="Assets/Ico_Copiercoller.png",
+                size_hint=(None, None),
+                size=(25, 25),
+                pos_hint={'right': 1}
             )
-            copy_button.bind(on_press=lambda instance: self.copier_texte(text))
+            icon_button.bind(on_press=lambda instance: self.copier_texte(text))
 
-            copy_container = BoxLayout(size_hint_y=None, height=copy_button_height)
-            copy_container.add_widget(Widget())
-            copy_container.add_widget(copy_button)
+            relative_container = RelativeLayout(size_hint_y=None, height=20)
+            relative_container.add_widget(icon_button)
+            icon_button.y = -5  # empiètement vers le haut
 
-            message_layout.add_widget(copy_container)
+            message_layout.add_widget(relative_container)
 
-        message_layout.height = bubble.height + 35
         self.chat_layout.add_widget(message_layout)
         Clock.schedule_once(lambda dt: self.scroll.scroll_to(message_layout))
 

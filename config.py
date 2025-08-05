@@ -19,6 +19,7 @@ BUTTON_QUIT_COLOR = (0.4, 0.2, 0.2, 1)
 # 🎨 Bulles de discussion personnalisées
 BUBBLE_USER_COLOR = (0.16, 0.16, 0.19, 1)       # #292930 : utilisateur
 BUBBLE_IA_COLOR = (0.12, 0.20, 0.33, 1)         # #1f3454 : IA
+BUBBLE_WIDTH_RATIO = 0.7                        # Largeur max des bulles (70% de la fenêtre)
 
 # Apparence
 FONT_SIZE = 16
@@ -38,4 +39,3 @@ DEV_SHORTCUTS = {
     "f3": ("Msg moyen", "Quel est le plus grand océan du monde ?"),
     "f4": ("Msg long", "Explique-moi le fonctionnement d’un moteur à combustion interne.")
 }
-
