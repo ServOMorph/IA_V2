@@ -50,3 +50,75 @@ Dans leur forme la plus commune, les pommes sont des fruits sphériques d'une ta
 
 Les pommes sont généralement consommées crues ou cuites. Elles peuvent être utilisées dans de nombreuses recettes, notamment comme fruit de dessert, en jus de fruit, pour préparer des confitures, des tartelettes ou des crèmes glacées, ou encore pour la cuisine savoureuse, par exemple pour poêler des pommes d'Ormont. Elles sont également l'un des ingrédients principaux de nombreuses boissons alcoolisées, telles que du cidre et du vin de glace.
 
+Utilisateur : Quelle est  la capitale de la France ?
+IA         : La capitale de la France est Paris.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid. C'est une ville située au centre du pays et elle abrite le siège du gouvernement espagnol, ainsi que la résidence officielle de son roi Felipe VI.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan au monde est l'Océan Pacifique. Il représente environ 63,8 millions de kilomètres carrés, soit un peu plus de la moitié de la surface totale des océans mondiaux. L'Océan Atlantique est le deuxième plus grand avec une superficie de 85,2 millions de kilomètres carrés, suivi par l'Indien avec 73,4 millions de kilomètres carrés.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : Un moteur à combustion interne, communément appelé moteur thermique, est un appareil mécanique qui transforme l'énergie chimique des combustibles liquides ou gazeux en énergie mecanique. Il y a deux types de moteurs à combustion interne : le moteur à explosion et le moteur à allumage commandé. Voici comment fonctionnent les deux types :
+
+1. Moteur à explosion (moteur à essence ou moteur à benzine) :
+   - Les moteurs à explosion sont divisés en quatre temps, qui correspondent aux phases de l'allumage et du fonctionnement du moteur : allumage (compression), combustion, surcharge d'air et expulsion des gaz.
+   - Lors de l'allumage (compression), les soupapes d'admission ouvertes permettent la circulation de carburant et d'air dans le cylindre du moteur, qui est compressé par un piston au fur et à mesure que la bielle du moteur tourne.
+   - L'allumage est ensuite initié par un allumeur électrique ou un allumeur magnétique lorsque l'écart entre le piston et la culasse atteint son point critique.
+   - Lors de la combustion, les gaz explosifs produits lors de l'allumage poussent le piston vers l'extérieur du cylindre, qui entraîne la rotation de la bielle, et donc du moteur.
+   - La surcharge d'air est la phase où le carburant n'est pas injecté dans le cylindre pour permettre une phase de ralentissement de la bielle avant que les gaz ne soient expulsés vers l'extérieur par les soupapes d'échappement.
+
+2. Moteur à allumage commandé (moteur diesel) :
+   - Les moteurs Diesel fonctionnent par un processus différent où il n'y a pas d'allumage électrique.
+   - Lors de la phase d'admission, l'air est comprimé dans le cylindre du moteur jusqu'à une pression suffisante pour injecter du carburant qui se décompose en combustible liquide lorsque sa température est élevée.
+   - La combustion commence alors spontanément à cause de la haute température due à la compression.
+   - Lors de la phase de fuite, le piston et la bielle sont poussés vers l'extérieur par les gaz issus de la combustion.
+   - Lors de la phase d'échappement, les soupapes d'échappement ouvrent pour permettre aux gaz d'être expulsés vers l'extérieur du moteur.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Madrid est la capitale de l'Espagne. La ville est située au centre du pays, à environ 350 mètres d'altitude dans une région appelée la Meseta Central. Elle est fondée en 1086 sous le nom de Mayrit par les rois chrétiens Alphonse VI et Henri IV. Madrid devient officiellement capitale de l'Espagne en 1561, sous les règnes des rois Philippe II et Charles Quint. Aujourd'hui, la ville est connue pour sa vie culturelle et ses infrastructures modernes.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il couvre environ 165,2 millions de kilomètres carrés, soit près de 30 % de la superficie totale des océans de la Terre.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : Un moteur à combustion interne est un type de moteur thermique qui produit de l'énergie mécanique en convertissant l'énergie libérée par la combustion d'une substance combustible à l'intérieur de son propre espace de combustion. Il y a deux types principaux de moteurs à combustion interne : les moteurs à explosion (dits aussi moteurs à allumage) et les moteurs à distribution continuelle, ou moteurs Diesel.
+
+1. Moteur à explosion : Ce type de moteur fonctionne en quatre étapes :
+   - L'étape 1 : L'air est aspiré dans la chambre de combustion grâce à l'aspiration naturelle créée par le mouvement du moteur.
+   - L'étape 2 : Au moment opportun, un mélange d'essence et d'air est introduit dans la chambre de combustion grâce à l'allumage (par électro aimant ou spark plug).
+   - L'étape 3 : La combustion de l'essence provoque une explosion qui déplace les pistons vers l'extérieur, faisant tourner l'arbre à cames. Cette force est transmise au volant et à la roue avant du moteur.
+   - L'étape 4 : Les pistons retournent ensuite vers l'intérieur pour le cycle suivant.
+
+2. Moteur Diesel (moteur à distribution continue) : Ce type de moteur fonctionne en trois étapes :
+   - L'étape 1 : L'air est aspiré dans la chambre de combustion grâce à l'aspiration naturelle créée par le mouvement du moteur.
+   - L'étape 2 : La compression de l'air chaud et dense dans la chambre de combustion provoque une température élevée qui permet la combustion du Diesel sans nécessiter d'allumage.
+   - L'étape 3 : La combustion de Diesel déplace les pistons vers l'extérieur, faisant tourner l'arbre à cames. Cette force est transmise au volant et à la roue avant du moteur.
+
+Les moteurs à combustion interne ont été développés pour une utilisation automobile et industrielle. Ils sont également utilisés dans les avions, les bateaux, les engins de construction, les pompes à eau, etc. Ils sont connus pour leur rendement élevé, leur puissance, leur fiabilité et leur efficacité comparativement aux autres technologies de moteur.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : Le plus grand océan du monde est l'océan Pacifique. Il représente près de 30 % de la surface océanique totale et se trouve entre les continents américain, asiatique et africain.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan au monde est l'Océan Pacifique. Il couvre près de 165,2 millions de kilomètres carrés et s'étend sur la majorité des côtes d'Asie et d'Amérique du Nord et du Sud.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il représente environ 30 % de la surface marine terrestre et s'étend entre les continents d'Asie, d'Amérique du Nord et d'Amérique du Sud. Il a une superficie d'environ 165 millions de kilomètres carrés.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : La capitale de l'Espagne est Madrid.
+

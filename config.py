@@ -29,3 +29,13 @@ BUBBLE_PADDING = (12, 8)
 SCROLLVIEW_SIZE_HINT_Y = 0.8
 INPUT_SIZE_HINT_Y = 0.1
 BUTTONS_SIZE_HINT_Y = 0.1
+
+# Mode développeur
+DEV_MODE = True
+
+DEV_SHORTCUTS = {
+    "f2": ("Msg court", "Quelle est la capitale de l'Espagne"),
+    "f3": ("Msg moyen", "Quel est le plus grand océan du monde ?"),
+    "f4": ("Msg long", "Explique-moi le fonctionnement d’un moteur à combustion interne.")
+}
+

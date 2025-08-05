@@ -16,7 +16,8 @@ from config import (
     BACKGROUND_COLOR, TEXTINPUT_BACKGROUND_COLOR, TEXT_COLOR, HINT_TEXT_COLOR,
     BUTTON_SEND_COLOR, BUTTON_QUIT_COLOR, BUBBLE_USER_COLOR, BUBBLE_IA_COLOR,
     FONT_SIZE, BORDER_RADIUS, BUBBLE_PADDING,
-    SCROLLVIEW_SIZE_HINT_Y, INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y
+    SCROLLVIEW_SIZE_HINT_Y, INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y,
+    DEV_MODE, DEV_SHORTCUTS
 )
 from ollama_api import query_ollama
 from historique import enregistrer_echange
@@ -74,7 +75,7 @@ class Bubble(Label):
         self.padding = BUBBLE_PADDING
         self.text_size = (Window.width * 0.7, None)
         self.shorten = False
-        self.is_user = is_user  # 🔁 correction ici
+        self.is_user = is_user
 
         self.bind(texture_size=self.update_size)
         Clock.schedule_once(self.init_background)
@@ -122,23 +123,39 @@ class ChatInterface(BoxLayout):
         input_layout.add_widget(self.input)
         input_layout.add_widget(send_button)
 
-        # Layout réduit pour le bouton Quitter
         from kivy.core.text import Label as CoreLabel
         label = CoreLabel(text="Quitter", font_size=FONT_SIZE)
         label.refresh()
         text_width = label.texture.size[0]
 
         quit_layout = BoxLayout(size_hint_y=BUTTONS_SIZE_HINT_Y, padding=10)
-        quit_layout.add_widget(Widget())
+
+        if DEV_MODE:
+            shortcut_text = "   |   ".join(
+                f"{key.upper()} : {label}" for key, (label, _) in DEV_SHORTCUTS.items()
+            )
+            shortcut_label = Label(
+                text=shortcut_text,
+                font_size=10,
+                color=(0.6, 0.6, 0.6, 1),
+                size_hint=(None, 1),
+                halign='left',
+                valign='middle'
+            )
+            shortcut_label.bind(texture_size=shortcut_label.setter('size'))
+            quit_layout.add_widget(shortcut_label)
+        else:
+            quit_layout.add_widget(Widget())
 
         quit_button = HoverButton(
             text="Quitter",
             size_hint=(None, None),
-            size=(text_width + 30, 40),  # largeur = texte + marge
+            size=(text_width + 30, 40),
             base_color=TEXTINPUT_BACKGROUND_COLOR
         )
         quit_button.bind(on_press=self.quit_app)
 
+        quit_layout.add_widget(Widget())
         quit_layout.add_widget(quit_button)
         quit_layout.add_widget(Widget())
 
@@ -147,6 +164,29 @@ class ChatInterface(BoxLayout):
         self.add_widget(quit_layout)
 
         self.last_prompt = ""
+
+        if DEV_MODE:
+            Window.bind(on_key_down=self._handle_dev_shortcuts)
+
+    def _handle_dev_shortcuts(self, window, key, scancode, codepoint, modifier):
+        if key == 27:  # ESC
+            self.quit_app(None)
+            return
+
+        keymap = {
+            283: "f2",
+            284: "f3",
+            285: "f4"
+        }
+        key_name = keymap.get(key)
+        if key_name and key_name in DEV_SHORTCUTS:
+            _, message = DEV_SHORTCUTS[key_name]
+            self._send_dev_message(message)
+
+    def _send_dev_message(self, message):
+        self.display_message(message, is_user=True)
+        self.last_prompt = message
+        threading.Thread(target=self._query_and_display, args=(message,), daemon=True).start()
 
     def send_message(self, instance):
         user_input = self.input.text.strip()

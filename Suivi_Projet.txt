@@ -303,3 +303,40 @@ Cette base permettra d’évaluer objectivement la qualité et la robustesse du 
     Les bulles sont désormais bien différenciées, avec un fond élégant.
 
     Le bouton "Quitter" est discret, lisible et cohérent avec l'identité visuelle.
+
+
+🧩 Étape 10 – Mode développeur et raccourcis clavier dynamiques
+
+🎯 Objectifs
+
+- Ajouter un mode développeur activable via config.py.
+- Afficher dans l’interface les raccourcis clavier disponibles (en tout petit, à gauche du bouton Quitter).
+- Permettre l’envoi de messages prédéfinis à l’IA avec les touches F2, F3 et F4.
+- Centraliser tous les raccourcis dans un dictionnaire unique et maintenable.
+
+🔧 Modifications réalisées
+
+✅ config.py :
+- Ajout d’un booléen : DEV_MODE = True
+- Ajout d’un dictionnaire de raccourcis clavier :
+
+  DEV_SHORTCUTS = {
+      "f2": ("Msg court", "Quelle est la capitale de l'Espagne"),
+      "f3": ("Msg moyen", "Quel est le plus grand océan du monde ?"),
+      "f4": ("Msg long", "Explique-moi le fonctionnement d’un moteur à combustion interne.")
+  }
+
+✅ interface.py :
+- Affichage automatique des raccourcis dans la ligne du bas, à gauche du bouton Quitter, uniquement en DEV_MODE.
+  Exemple : F2 : Msg court   |   F3 : Msg moyen   |   F4 : Msg long
+- Envoi du message associé à chaque touche via un bind clavier.
+  F2 → court, F3 → moyen, F4 → long.
+- Touche ESC gérée pour quitter directement l'application.
+- Aucun texte codé en dur : l’interface s’adapte dynamiquement au contenu de DEV_SHORTCUTS.
+
+✅ Résultat
+
+- En mode développeur, les tests manuels sont accélérés grâce à des raccourcis clavier clairs.
+- Les messages sont simulés comme des saisies utilisateur classiques.
+- L’interface reste propre, désactivable à tout moment.
+- L’ajout de nouveaux raccourcis est immédiat, sans modification du code.
