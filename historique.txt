@@ -469,3 +469,43 @@ IA         : Le plus grand océan au monde est l'Océan Pacifique. C'est l'océa
 Utilisateur : 2+3 =
 IA         : 5
 
+Utilisateur : Quelle est la capitale de la France
+IA         : La capitale de la France est Paris.
+
+Utilisateur : capitale de l'espagne
+IA         : La capital de España es Madrid. Es la ciudad más poblada del país y está situada en el centro de la Península Ibérica. Fue fundada en el siglo X, aunque ha crecido y cambiado su forma a lo largo de los siglos. Madrid se convirtió en la capital del Reino de España en 1561 bajo el reinado de Felipe II. Es famosa por sus museos, monumentos y arquitectura moderna.
+
+Utilisateur : Capitale de l'angleterre
+IA         : Londres est la capitale de l'Angleterre. En effet, Londres est la plus grande ville de l'Angleterre, ainsi que le siège du gouvernement britannique et du Parlement britannique. L'Angleterre fait partie du Royaume-Uni, qui comprend également l'Écosse, le Pays de Galles et l'Irlande du Nord. Londres est aussi la capitale du Royaume-Uni depuis 1801, date à laquelle le Parlement a été transféré à Londres après être basé à Westminster entre les années 1265 et 1649.
+
+Utilisateur : Raconte moi une histoire
+IA         : Bien sûr, je vous raconte une petite histoire inspirée de la mythologie grecque.
+
+Il y a des siècles, sur l'île de Crète, vivaient les minotaure et les Athéniens. Le minotaure était un monstre à mi-homme, mi-taureau créé par le dieu Poseidon pour punir la ville de Knossos. Son labyrinthe était si complexe qu'il était impossible de s'y échapper après y être entré. Les Athéniens devaient périodiquement offrir des jeunes filles et des garçons virils en sacrifice au minotaure, pour apaiser sa colère.
+
+Un jour, le roi Minos d'Athènes envoya une nouvelle délégation à Crète pour demander des taureaux aux dieux en offrande. Mais Poseidon se vengea de son fils et fit que la reine Pasiphaé tomba amoureuse du premier taureau qu'elle vit, le taureau du labyrinthe. Elle demanda à l'astrologue Arès de trouver une solution pour son désir. Arès lui conseilla d'utiliser un artefact magique appelé la "vache sacrée" pour prendre l'apparence d'une vache et s'approcher du taureau sans être détectée.
+
+La reine Pasiphaé fit exactement comme Arès avait dit, et elle eut une relation sexuelle avec le minotaure. De cette union naquit un enfant appelé Icarus. Pour éviter la colère de Poseidon, le roi Minos les cacha dans un labyrinthe secret sur l'île de Crète, loin du labyrinthe du minotaure.
+
+Mais Icarus, bien que doué d'ailes artificielles, se fît une idée trop grande de ses capacités et décida de s'envoler vers le soleil. Il ne savait pas qu'il était interdit de voler trop près du soleil, car l'or et la cire avec lesquels avaient été fabriquées ses ailes étaient susceptibles de fondre.
+
+Icarus se précipita dans l'air en direction du soleil, qui brillait avec une intensité inouïe. Ses ailes commencèrent à fondre et Icarus tomba dans la mer, où il mourut noyé. Son corps fut trouvé sur une île déserte nommée Icaria, en son honneur.
+
+C'est ainsi que l'histoire d'Icarus raconte comment un jeune homme tenta de s'envoler trop haut et tomba dans la folie de sa propre ambition.
+
+Utilisateur : coucou
+IA         : Bonjour! Comment ça va? J'espère que tu as une belle journée.
+
+Je suis un assistant intelligent conçu pour vous aider avec diverses tâches et répondre à vos questions sur différents sujets. Si tu as besoin d'aide ou si tu veux savoir quelque chose, n'hésite pas à me demander!
+
+Pour la suite, comment peux-je vous aider ?
+
+Utilisateur : Quelle est la capitale de l'Irlande ?
+IA         : Dublin est
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : 
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+

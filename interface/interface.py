@@ -21,6 +21,9 @@ from .events import EventManager
 
 Window.clearcolor = BACKGROUND_COLOR
 
+from ollama_api import query_ollama_stream
+from historique import enregistrer_echange
+
 class ChatInterface(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -132,15 +135,49 @@ class ChatInterface(FloatLayout):
 
         self.last_prompt = ""
         self.event_manager = EventManager(self)
+        self.stop_stream = False
+        self.stop_button = None
 
         if DEV_MODE:
-            Window.bind(on_key_down=self.event_manager.handle_dev_shortcuts)
+            Window.bind(on_key_down=self.handle_dev_shortcuts)
+
+    def handle_dev_shortcuts(self, window, key, scancode, codepoint, modifier):
+        if key == 27:
+            self.quit_app(None)
+            return True
+
+        for shortcut_key, (label, message) in DEV_SHORTCUTS.items():
+            if f"f{key - 281}" == shortcut_key.lower():
+                self.input.text = message
+                Clock.schedule_once(lambda dt: self.lancer_generation(message))
+                return True
+        return False
+
+    def show_stop_button(self):
+        if self.stop_button is not None:
+            return
+
+        self.stop_button = ImageHoverButton(
+            source="Assets/stop.png",
+            size_hint=(None, None),
+            size=(30, 30),
+            pos_hint={"right": 0.915, "y": 0.21}
+        )
+        self.stop_button.bind(on_press=self.stop_action)
+        self.add_widget(self.stop_button)
+
+    def hide_stop_button(self):
+        if self.stop_button and self.stop_button in self.children:
+            self.remove_widget(self.stop_button)
+        self.stop_button = None
 
     def mettre_a_jour_fleche(self, *args):
-        if self.chat_layout.height > self.scroll.height:
-            self.fleche_bas.opacity = 1
-        else:
-            self.fleche_bas.opacity = 0
+        def verifier_scroll(dt):
+            if self.chat_layout.height > self.scroll.height:
+                self.fleche_bas.opacity = 1
+            else:
+                self.fleche_bas.opacity = 0
+        Clock.schedule_once(verifier_scroll, 0.05)
 
     def scroll_to_bottom(self, instance):
         Clock.schedule_once(lambda dt: self.scroll.scroll_to(self.chat_layout))
@@ -148,60 +185,35 @@ class ChatInterface(FloatLayout):
     def send_message(self, instance):
         user_input = self.input.text.strip()
         if user_input:
-            self.display_message(user_input, is_user=True)
             self.input.text = ""
-            self.last_prompt = user_input
-            self.thinking_label.text = "Je réfléchis..."
+            Clock.schedule_once(lambda dt: self.lancer_generation(user_input))
 
-            # Verrouillage du bouton Envoyer
-            self.send_button.disabled = True
-            self.send_button.source = "Assets/Ico_Envoyer_Verouiller.png"
+    def lancer_generation(self, prompt):
+        self.display_message(prompt, is_user=True)
+        self.last_prompt = prompt
+        self.thinking_label.text = "Je réfléchis..."
+        self.send_button.disabled = True
+        self.send_button.source = "Assets/Ico_Envoyer_Verouiller.png"
+        self.confirmer_envoi()
+        self.stop_stream = False
+        Clock.schedule_once(lambda dt: self.show_stop_button())
 
-            self.confirmer_envoi()
-
-            import threading
-            threading.Thread(target=self.event_manager.query_and_display, args=(user_input,), daemon=True).start()
+        import threading
+        threading.Thread(target=self.start_streaming_response, args=(prompt,), daemon=True).start()
 
     def confirmer_envoi(self):
-        coche = Image(
-            source="Assets/coche.png",
-            size_hint=(None, None),
-            size=(20, 20)
-        )
+        coche = Image(source="Assets/coche.png", size_hint=(None, None), size=(20, 20))
         self.send_container.add_widget(coche)
-
-        def retirer_coche(dt):
-            if coche in self.send_container.children:
-                self.send_container.remove_widget(coche)
-
-        Clock.schedule_once(retirer_coche, 1.5)
+        Clock.schedule_once(lambda dt: self.send_container.remove_widget(coche), 1.5)
 
     def copier_texte(self, texte, container):
         Clipboard.copy(texte)
-
-        coche = Image(
-            source="Assets/coche.png",
-            size_hint=(None, None),
-            size=(20, 20)
-        )
+        coche = Image(source="Assets/coche.png", size_hint=(None, None), size=(20, 20))
         container.add_widget(coche)
-
-        def retirer_coche(dt):
-            if coche in container.children:
-                container.remove_widget(coche)
-
-        Clock.schedule_once(retirer_coche, 1.5)
+        Clock.schedule_once(lambda dt: container.remove_widget(coche), 1.5)
 
     def display_message(self, text, is_user):
-        if not is_user:
-            self.thinking_label.text = ""
-
-            # Réactivation du bouton Envoyer
-            self.send_button.disabled = False
-            self.send_button.source = "Assets/Ico_Envoyer.png"
-
         bubble = Bubble(text=text, is_user=is_user)
-
         message_layout = BoxLayout(orientation='vertical', size_hint_y=None, spacing=5)
         message_layout.bind(minimum_height=message_layout.setter('height'))
         message_layout.padding = (10, 0, 10, 0)
@@ -213,42 +225,59 @@ class ChatInterface(FloatLayout):
             bubble_container.add_widget(bubble)
             bubble_container.add_widget(Widget())
         else:
-            logo = Image(
-                source="Assets/Logo_IA.png",
-                size_hint=(None, None),
-                size=(40, 40),
-                allow_stretch=True
-            )
-
+            logo = Image(source="Assets/Logo_IA.png", size_hint=(None, None), size=(40, 40), allow_stretch=True)
             icon_container = BoxLayout(orientation='horizontal', spacing=5, size_hint=(None, None), size=(60, 25))
-
-            icon_button = ImageHoverButton(
+            self.copy_button = ImageHoverButton(
                 source="Assets/Ico_Copiercoller.png",
                 size_hint=(None, None),
                 size=(25, 25)
             )
-            icon_button.bind(on_press=lambda instance: self.copier_texte(text, icon_container))
-
-            icon_container.add_widget(icon_button)
+            self.copy_button.bind(on_press=lambda instance: self.copier_texte(bubble.text, icon_container))
+            icon_container.add_widget(self.copy_button)
 
             message_row = BoxLayout(orientation='horizontal', size_hint_y=None, spacing=5)
             message_row.bind(minimum_height=message_row.setter('height'))
-
             message_row.add_widget(logo)
             message_row.add_widget(bubble)
             message_row.add_widget(icon_container)
-
             bubble_container.add_widget(message_row)
 
         message_layout.add_widget(bubble_container)
         self.chat_layout.add_widget(message_layout)
-
-        from historique import enregistrer_echange
-        if not is_user:
-            enregistrer_echange(self.last_prompt, text)
-
         Clock.schedule_once(lambda dt: self.scroll.scroll_to(message_layout))
         self.mettre_a_jour_fleche()
+        return bubble
+
+    def start_streaming_response(self, prompt):
+        self.partial_response = ""
+
+        def on_token(token):
+            if self.stop_stream:
+                return
+            self.partial_response += token
+            Clock.schedule_once(lambda dt: self.update_bubble_text(self.partial_response))
+
+        Clock.schedule_once(lambda dt: self.prepare_stream_bubble())
+        query_ollama_stream(prompt, on_token)
+        enregistrer_echange(prompt, self.partial_response)
+        Clock.schedule_once(lambda dt: self.on_stream_end())
+
+    def prepare_stream_bubble(self):
+        self.current_bubble = self.display_message("", is_user=False)
+
+    def update_bubble_text(self, text):
+        if hasattr(self, "current_bubble"):
+            self.current_bubble.text = text
+
+    def on_stream_end(self):
+        self.thinking_label.text = ""
+        self.send_button.disabled = False
+        self.send_button.source = "Assets/Ico_Envoyer.png"
+        self.hide_stop_button()
+
+    def stop_action(self, instance):
+        self.stop_stream = True
+        self.on_stream_end()
 
     def quit_app(self, instance):
         from kivy.app import App
