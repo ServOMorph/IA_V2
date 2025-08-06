@@ -580,3 +580,34 @@ IA         : The result of multiplying 50 by 3 is 150.
 Utilisateur : quelle est la capitale de la France ?
 IA         : La capitale de la France est Paris.
 
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid. C'est une ville située au centre de l'Espagne et elle est la plus grande ville du pays. Madrid est aussi la capitale de la communauté autonome de Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Cette réponse a été créée par Mistral AI en utilisant des données disponibles sur internet et elle peut éventuellement être modifiée si l'information initiale change.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Vous pouvez trouver d'autres informations sur le site officiel de l'État espagnol : www.gobierno.es
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : Madrid est la capitale de l'Espagne.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid. C'est également sa plus grande ville.
+

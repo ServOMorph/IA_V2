@@ -1,4 +1,3 @@
-# ... (imports et setup inchangés)
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
@@ -16,7 +15,7 @@ from config import (
     INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS
 )
 
-from interface.widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
+from interface.custom_widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
 from interface.events import EventManager
 from interface.chat.chat_events import ChatEventsMixin
 from interface.chat.chat_stream import ChatStreamMixin
@@ -159,7 +158,7 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         contenu = read_conversation(chemin)
 
         self.clear_chat()
-        self.conversation_filepath = chemin  # ✅ ACTIVER LA SAUVEGARDE SUR LE BON FICHIER
+        self.conversation_filepath = chemin
 
         lignes = contenu.strip().split("\n")
         for ligne in lignes:

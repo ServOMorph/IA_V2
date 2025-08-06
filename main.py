@@ -5,7 +5,7 @@ os.environ["KIVY_NO_FILELOG"] = "1"
 os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 sys.stdout = open("debug.log", "w", encoding="utf-8")
-sys.stderr = sys.stdout  # ✅ Pour capturer aussi les erreurs visibles
+sys.stderr = sys.stdout  # Pour capturer aussi les erreurs visibles
 
 from kivy.config import Config
 from config import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_LEFT, WINDOW_TOP
