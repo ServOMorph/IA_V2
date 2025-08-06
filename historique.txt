@@ -509,3 +509,18 @@ IA         :
 Utilisateur : Quelle est la capitale de l'Espagne
 IA         : La capitale de l'Espagne est Madrid.
 
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de la Fracnce ?
+IA         : La capitale de la France est Paris.
+
+Utilisateur : Bonjour
+IA         : Bonjour! Comment vas-tu ? Comment ça va aujourd'hui pour toi ? (How are you? How is it going today for you?)
+
+Utilisateur : Capitale de la Finlande ?
+IA         : La capitale de la Finlande est Helsinki.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : 
+

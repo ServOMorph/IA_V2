@@ -9,8 +9,14 @@
     📄 ollama_api.py
     📄 questions_IA.txt
     📁 Assets/
+        📄 coche.png
+        📄 fleche_bas.png
         📄 Ico_Copiercoller.png
         📄 Ico_Envoyer.png
+        📄 Ico_Envoyer_Verouiller.png
+        📄 Logo_IA.png
+        📄 Logo_SerenIATech.png
+        📄 stop.png
     📁 Fichiers_Partages_Chatgpt/
         📄 arborescence.txt
         📄 README.md
@@ -24,6 +30,11 @@
         📄 utils.py
         📄 widgets.py
         📄 __init__.py
+        📁 chat/
+            📄 chat_events.py
+            📄 chat_interface.py
+            📄 chat_stream.py
+            📄 chat_utils.py
     📁 Test_IA/
         📄 protocole_test_IA.tx
         📄 questions_IA.txt
