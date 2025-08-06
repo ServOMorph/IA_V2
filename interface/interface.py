@@ -11,7 +11,7 @@ from kivy.core.clipboard import Clipboard
 from config import (
     BACKGROUND_COLOR, TEXTINPUT_BACKGROUND_COLOR, TEXT_COLOR, HINT_TEXT_COLOR,
     BUTTON_SEND_COLOR, FONT_SIZE, BORDER_RADIUS, SCROLLVIEW_SIZE_HINT_Y,
-    INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE
+    INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS
 )
 
 from .widgets import HoverButton, ImageHoverButton, Bubble
@@ -47,11 +47,26 @@ class ChatInterface(BoxLayout):
 
         quit_layout = BoxLayout(size_hint_y=BUTTONS_SIZE_HINT_Y, padding=10)
 
+        if DEV_MODE:
+            shortcut_text = "   |   ".join(
+                f"{key.upper()} : {label}" for key, (label, _) in DEV_SHORTCUTS.items()
+            )
+            shortcut_label = Label(
+                text=shortcut_text,
+                font_size=10,
+                color=(0.6, 0.6, 0.6, 1),
+                size_hint=(None, 1),
+                halign='left',
+                valign='middle'
+            )
+            shortcut_label.bind(texture_size=shortcut_label.setter('size'))
+            quit_layout.add_widget(shortcut_label)
+        else:
+            quit_layout.add_widget(Widget())
+
         label = CoreLabel(text="Quitter", font_size=FONT_SIZE)
         label.refresh()
         text_width = label.texture.size[0]
-
-        quit_layout.add_widget(Widget())
 
         quit_button = HoverButton(
             text="Quitter",
@@ -61,6 +76,7 @@ class ChatInterface(BoxLayout):
         )
         quit_button.bind(on_press=self.quit_app)
 
+        quit_layout.add_widget(Widget())
         quit_layout.add_widget(quit_button)
         quit_layout.add_widget(Widget())
 
@@ -80,7 +96,8 @@ class ChatInterface(BoxLayout):
             self.display_message(user_input, is_user=True)
             self.input.text = ""
             self.last_prompt = user_input
-            self.event_manager.send_dev_message(user_input)
+            import threading
+            threading.Thread(target=self.event_manager.query_and_display, args=(user_input,), daemon=True).start()
 
     def copier_texte(self, texte):
         Clipboard.copy(texte)
