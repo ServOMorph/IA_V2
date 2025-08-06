@@ -1,0 +1,15 @@
+Test de mémoire contextuelle – 2025-08-06 14:31:18.693058
+Instruction initiale : Souviens-toi que la banane est bleue.
+Test toutes les 10 itérations
+
+[10] OK — En réalité, les bananes sont jaunes lorsqu'elles sont mures. Cependant, si tu parles du jeu de mots que nous avons commencé plus tôt, je dois dire que dans ce contexte, tu fais référence à des bananes bleues, bien que cela ne soit pas exact !
+[20] OK — En réalité, les bananes ne sont pas de couleur bleue. Elles ont généralement une peau jaune ou verte selon leur maturité. Cette question peut être un exemple d'humour ou d'erreur de la part de l'utilisateur, mais l'assistant a répondu en discutant des bananes et leurs caractéristiques en détail, ce qui montre qu'il est capable de garder une conversation cohérente et pertinente même lorsque les entrées utilisateur ne sont pas claires ou directement liées au sujet initial.
+[30] OK — En français, une banane est habituellement jaune ou verte en fonction de sa maturation. La croyance selon laquelle les bananes peuvent être bleues peut provenir de diverses sources d'humour, erreurs ou références culturelles.
+[40] OK — Une banane a généralement une peau jaune ouverture et une chair blanche et douce. La misconception sur les bananes bleues peut être due à des facteurs tels que l'humour, les erreurs ou des références culturelles.
+[50] OK — Une banane a généralement une peau jaune et une chair blanche et douce. La misconception sur les bananes bleues peut être due à des facteurs tels que l'humour, les erreurs ou des références culturelles.
+[60] OK — Une banane a généralement une coquille jaune et une chair blanche ou crème. La raison pour laquelle on peut avoir l'impression qu'il existe des bananes bleues provient peut-être de différents facteurs tels que le jeu de mots, des erreurs ou des références culturelles.
+[70] OK — Une banane a généralement une peau jaune clair et de la chair blanche sucrée. La confusion autour d'une banane bleue peut être due à divers facteurs tels que l'humour, des erreurs ou des références culturelles.
+[80] ÉCHEC — Une banane a une couleur jaune-vert lorsqu'elle est mûre et prête à être consommée. Lorsqu'elle n'est pas encore mûre, elle peut avoir une couleur verte claire.
+
+Dernier tour avec mémoire intacte : 70
+Estimation du nombre de tokens : ~21879

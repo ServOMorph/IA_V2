@@ -1,6 +1,6 @@
 # 🧠 ServOMorph – IA_V2
 
-Interface graphique simple en Python (Kivy) pour interagir avec un modèle d’intelligence artificielle local via Ollama (ex. Mistral).
+Interface graphique simple en Python (Kivy) pour interagir avec un modèle d’intelligence artificielle local via Ollama : Mistral.
 
 ---
 
