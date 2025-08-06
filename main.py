@@ -4,9 +4,7 @@ import sys
 os.environ["KIVY_NO_FILELOG"] = "1"
 os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
-log_file = open("debug.log", "w", encoding="utf-8")
-sys.stdout = log_file
-sys.stderr = log_file
+sys.stdout = open("debug.log", "w", encoding="utf-8")
 
 from kivy.config import Config
 from config import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_LEFT, WINDOW_TOP

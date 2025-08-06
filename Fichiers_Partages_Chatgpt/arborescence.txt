@@ -1,0 +1,29 @@
+📁 IA_V2/
+    📄 config.py
+    📄 debug.log
+    📄 historique.py
+    📄 historique.txt
+    📄 instructions_chatgpt.txt
+    📄 lancement_Mistral_Ollama.bat
+    📄 main.py
+    📄 ollama_api.py
+    📄 questions_IA.txt
+    📁 Assets/
+        📄 Ico_Copiercoller.png
+        📄 Ico_Envoyer.png
+    📁 Fichiers_Partages_Chatgpt/
+        📄 arborescence.txt
+        📄 README.md
+        📄 structure.md
+        📁 Synthèses/
+            📄 syntheses_chatgpt 1 - MS OK.txt
+            📄 syntheses_chatgpt 2.txt
+    📁 interface/
+        📄 events.py
+        📄 interface.py
+        📄 utils.py
+        📄 widgets.py
+        📄 __init__.py
+    📁 Test_IA/
+        📄 protocole_test_IA.tx
+        📄 questions_IA.txt

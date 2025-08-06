@@ -3,7 +3,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
-from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.image import Image
 from kivy.core.text import Label as CoreLabel
 from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
@@ -39,11 +39,27 @@ class ChatInterface(BoxLayout):
             size_hint_x=0.85
         )
 
-        send_button = HoverButton(text="Envoyer", size_hint_x=0.15, base_color=BUTTON_SEND_COLOR)
+        send_button = ImageHoverButton(
+            source="Assets/Ico_Envoyer.png",
+            size_hint=(None, None),
+            size=(40, 40)
+        )
         send_button.bind(on_press=self.send_message)
 
         input_layout.add_widget(self.input)
         input_layout.add_widget(send_button)
+
+        # Label "Je réfléchis..." (invisible au démarrage)
+        self.thinking_label = Label(
+            text='',
+            size_hint_y=None,
+            height=20,
+            font_size=14,
+            color=(0.8, 0.8, 0.8, 1),
+            halign='center',
+            valign='middle'
+        )
+        self.thinking_label.bind(size=self.thinking_label.setter('text_size'))
 
         quit_layout = BoxLayout(size_hint_y=BUTTONS_SIZE_HINT_Y, padding=10)
 
@@ -53,7 +69,7 @@ class ChatInterface(BoxLayout):
             )
             shortcut_label = Label(
                 text=shortcut_text,
-                font_size=10,
+                font_size=14,
                 color=(0.6, 0.6, 0.6, 1),
                 size_hint=(None, 1),
                 halign='left',
@@ -80,7 +96,9 @@ class ChatInterface(BoxLayout):
         quit_layout.add_widget(quit_button)
         quit_layout.add_widget(Widget())
 
+        # Construction finale
         self.add_widget(self.scroll)
+        self.add_widget(self.thinking_label)  # ← maintenant au-dessus du champ
         self.add_widget(input_layout)
         self.add_widget(quit_layout)
 
@@ -96,6 +114,10 @@ class ChatInterface(BoxLayout):
             self.display_message(user_input, is_user=True)
             self.input.text = ""
             self.last_prompt = user_input
+
+            # Affiche "Je réfléchis..."
+            self.thinking_label.text = "Je réfléchis..."
+
             import threading
             threading.Thread(target=self.event_manager.query_and_display, args=(user_input,), daemon=True).start()
 
@@ -103,35 +125,45 @@ class ChatInterface(BoxLayout):
         Clipboard.copy(texte)
 
     def display_message(self, text, is_user):
+        # Masque "Je réfléchis..." quand la réponse IA commence à s’afficher
+        if not is_user:
+            self.thinking_label.text = ""
+
         bubble = Bubble(text=text, is_user=is_user)
 
         message_layout = BoxLayout(orientation='vertical', size_hint_y=None, spacing=5)
         message_layout.bind(minimum_height=message_layout.setter('height'))
         message_layout.padding = (10, 0, 10, 0)
 
-        bubble_container = BoxLayout(size_hint_y=None)
+        bubble_container = BoxLayout(size_hint_y=None, spacing=5)
         bubble_container.bind(minimum_height=bubble_container.setter('height'))
 
         if is_user:
             bubble_container.add_widget(bubble)
             bubble_container.add_widget(Widget())
         else:
-            bubble_container.add_widget(Widget())
-            bubble_container.add_widget(bubble)
+            logo = Image(
+                source="Assets/Logo_IA.png",
+                size_hint=(None, None),
+                size=(40, 40),
+                allow_stretch=True
+            )
 
             icon_button = ImageHoverButton(
                 source="Assets/Ico_Copiercoller.png",
                 size_hint=(None, None),
-                size=(25, 25),
-                pos_hint={'right': 1}
+                size=(25, 25)
             )
             icon_button.bind(on_press=lambda instance: self.copier_texte(text))
 
-            relative_container = RelativeLayout(size_hint_y=None, height=20)
-            relative_container.add_widget(icon_button)
-            icon_button.y = -5
+            message_row = BoxLayout(orientation='horizontal', size_hint_y=None, spacing=5)
+            message_row.bind(minimum_height=message_row.setter('height'))
 
-            message_layout.add_widget(relative_container)
+            message_row.add_widget(logo)
+            message_row.add_widget(bubble)
+            message_row.add_widget(icon_button)
+
+            bubble_container.add_widget(message_row)
 
         message_layout.add_widget(bubble_container)
         self.chat_layout.add_widget(message_layout)
