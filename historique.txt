@@ -211,3 +211,12 @@ Madrid abrite également de nombreux monuments historiques importants tels que l
 Utilisateur : Quelle est la capitale de l'Espagne
 IA         : La capitale de l'Espagne est Madrid.
 
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il occupe environ la moitié de la surface terrestre visible depuis la Lune et recouvre une superficie d'environ 165 millions de kilomètres carrés (environ 64 millions de miles carrés). Il s'étend de l'Antarctique à l'Arctique, et il est séparé en deux par l'Amérique du Sud et le Nord.
+
