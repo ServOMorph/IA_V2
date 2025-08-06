@@ -611,3 +611,22 @@ IA         : Madrid est la capitale de l'Espagne.
 Utilisateur : Quelle est la capitale de l'Espagne
 IA         : La capitale de l'Espagne est Madrid. C'est également sa plus grande ville.
 
+Utilisateur : donne moi un mot
+IA         : Liberté (liberté en français)
+
+C'est la traduction de la liberté en anglais. C'est l'un des mots français les plus utilisés dans le monde, et il signifie littéralement "libre". Il est associé à l'idée d'indépendance et de non-contrôle extérieur.
+
+Utilisateur : donne moi un mots
+IA         : Une flamme.
+
+Utilisateur : donne moi un mot
+IA         : Amour (amour en français)
+
+Ce mot signifie "l'amour" et est utilisé pour exprimer les sentiments affectifs intensifs entre deux personnes. Il est souvent associé à la passion, l'attirance et le désir amoureux. Dans certaines cultures, ce terme peut également être utilisé pour décrire une grande admiration ou affection envers quelque chose ou quelqu'un, comme un objet cher ou un animal domestique.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan au monde est l'océan Pacifique. Il occupe près de 62 % de la superficie totale des océans, avec une surface de plus de 165 millions de kilomètres carrés.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+

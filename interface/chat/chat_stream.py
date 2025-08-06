@@ -5,7 +5,6 @@ from ollama_api import query_ollama_stream
 from historique import enregistrer_echange
 import threading
 
-# ✅ Ajout pour sauvegarde des conversations
 from conversations.conversation_manager import append_message
 
 class ChatStreamMixin:
@@ -14,15 +13,17 @@ class ChatStreamMixin:
             self.display_message(prompt, is_user=True)
             self.last_prompt = prompt
             self.thinking_label.text = "Je réfléchis..."
+
+            # ✅ Cacher le bouton Envoyer
+            self.send_button.opacity = 0
             self.send_button.disabled = True
-            self.send_button.source = "Assets/Ico_Envoyer_Verouiller.png"
-            self.confirmer_envoi()
+
             self.stop_stream = False
             Clock.schedule_once(lambda dt: self.show_stop_button())
 
             threading.Thread(
-                target=self.start_streaming_response, 
-                args=(prompt,), 
+                target=self.start_streaming_response,
+                args=(prompt,),
                 daemon=True
             ).start()
         except Exception as e:
@@ -40,12 +41,13 @@ class ChatStreamMixin:
         Clock.schedule_once(lambda dt: self.prepare_stream_bubble())
         query_ollama_stream(prompt, on_token)
 
-        # ✅ À la fin du stream, on sauvegarde dans historique global (facultatif)
         enregistrer_echange(prompt, self.partial_response)
 
-        # ✅ Et on enregistre dans le fichier de conversation actif (si actif)
         if self.conversation_filepath:
             append_message(self.conversation_filepath, "assistant", self.partial_response)
+
+        # ✅ Mémoriser la réponse complète à afficher
+        self.response_complete = self.partial_response
 
         Clock.schedule_once(lambda dt: self.on_stream_end())
 
@@ -56,11 +58,16 @@ class ChatStreamMixin:
         if hasattr(self, "current_bubble"):
             self.current_bubble.text = text
 
+            # ✅ Réactiver le bouton seulement quand tout est affiché
+            if hasattr(self, "response_complete") and text == self.response_complete:
+                self.send_button.opacity = 1
+                self.send_button.disabled = False
+                self.hide_stop_button()
+
     def on_stream_end(self):
         self.thinking_label.text = ""
-        self.send_button.disabled = False
-        self.send_button.source = "Assets/Ico_Envoyer.png"
-        self.hide_stop_button()
+        # ❌ Ne pas réactiver ici le bouton
+        # ✅ La réactivation est faite dans update_bubble_text() uniquement
 
     def show_stop_button(self):
         if self.stop_button is not None:

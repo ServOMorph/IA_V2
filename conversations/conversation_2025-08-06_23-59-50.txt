@@ -1,0 +1,5 @@
+# Nouvelle conversation – 2025-08-06_23-59-50
+
+[23:59:50] USER: donne moi un mots
+
+[23:59:53] ASSISTANT:  Une flamme.

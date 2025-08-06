@@ -17,24 +17,39 @@
         📄 Logo_IA.png
         📄 Logo_SerenIATech.png
         📄 stop.png
+    📁 conversations/
+        📄 conversation_2025-08-06_18-44-34.txt
+        📄 conversation_2025-08-06_18-46-51.txt
+        📄 conversation_2025-08-06_18-50-59.txt
+        📄 conversation_2025-08-06_18-57-11.txt
+        📄 conversation_manager.py
     📁 Fichiers_Partages_Chatgpt/
         📄 arborescence.txt
         📄 README.md
-        📄 structure.md
-        📁 Synthèses/
-            📄 syntheses_chatgpt 1 - MS OK.txt
-            📄 syntheses_chatgpt 2.txt
+        📄 syntheses_chatgpt 1 - MS OK.txt
+        📄 syntheses_chatgpt 2.txt
     📁 interface/
         📄 events.py
-        📄 interface.py
         📄 utils.py
-        📄 widgets.py
         📄 __init__.py
         📁 chat/
             📄 chat_events.py
             📄 chat_interface.py
             📄 chat_stream.py
             📄 chat_utils.py
+        📁 custom_widgets/
+            📄 bubble.py
+            📄 hover_button.py
+            📄 hover_sidebar_button.py
+            📄 image_hover_button.py
+            📄 sidebar_conversations.py
+            📄 __init__.py
     📁 Test_IA/
+        📄 eval_mistral.py
         📄 protocole_test_IA.tx
         📄 questions_IA.txt
+        📄 rapport_evaluation_mistra1l.txt
+        📄 rapport_evaluation_mistral.txt
+        📄 rapport_test_memoire_mistral.txt
+        📄 test_conversations_manager.py
+        📄 test_memoire_mistral.py
