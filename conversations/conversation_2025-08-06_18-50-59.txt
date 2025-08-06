@@ -1,0 +1,7 @@
+# Nouvelle conversation – 2025-08-06_18-50-59
+
+[18:50:59] USER: Quelle est la capitale de l'Espagne
+
+[18:51:02] ASSISTANT:  La capitale de l'Espagne est Madrid.
+
+[18:51:23] USER: tu préfère le noir ou le bleu

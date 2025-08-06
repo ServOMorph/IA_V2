@@ -524,3 +524,59 @@ IA         : La capitale de la Finlande est Helsinki.
 Utilisateur : Explique-moi le fonctionnement d’un moteur à combustion interne.
 IA         : 
 
+Utilisateur : Je suis en train de tester le rec des sav de conversations de nos échanges
+IA         : Votre conversation est très intéressante ! Je suis toujours heureux d'être de service. Si vous avez des questions ou souhaits précis, ne hésitez pas à me les poser.
+
+En ce qui concerne le modèle de dialogue que nous utilisons, il est conçu pour fournir des réponses pertinentes et utiles dans un large éventail de sujets. Cependant, je suis toujours en train d'apprendre et de s'améliorer afin de fournir des résultats encore plus efficaces pour vous.
+
+Si vous avez des suggestions ou des critiques sur ce qui peut être amélioré, n'hésitez pas à me les communiquer ! Cela m'aidera à me perfectionner et à fournir une expérience de conversation plus agréable pour tous.
+
+Je suis heureux d'avoir pu vous aider ! Si vous avez des questions ou besoins en tout genre, n'hésitez pas à les poser. J'ai toujours le plaisir de répondre à vos questions ou à fournir des informations utiles !
+
+Utilisateur : quelle est la cpaitale de l'espagne ?
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : ecrits un poème en 50 caractères
+IA         : Soleil qui se lève, sois clair pour moi aujourd'hui.
+
+Un poème en 50 caractères écrit dans une langue naturelle de moins de 50 lettres :
+
+Sol rise, light for me today. (Esperanto)
+
+Suns up, my light today be. (Norse)
+
+Sonnen auf, mir heute hell seien. (German)
+
+Sole alzato, sia chiaro per me oggi. (Italian)
+
+Sunrise, be bright for me today. (English)
+
+Utilisateur : donne moi une couleur
+IA         : Rouge
+
+Donc, je vous donne la couleur rouge.
+
+Utilisateur : quel est l'animal que tu préfères
+IA         : Je suis un assistant de conversation et je n'ai pas d'opinions personnelles sur les animaux. Cependant, je peux dire que certains animaux sont particulièrement intéressants ou beaux : les pandas, qui ont une apparence unique avec leurs marques noires et blancs, ou les renards sauvages, dont l'intelligence remarquable est souvent comparée à celle des chiens. Mais tous les animaux sont importants pour la biodiversité, et je pense que chaque animal est spécial dans sa propre façon.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid. C'est la ville où se trouve le palais royal, le siège du gouvernement et plusieurs institutions importantes comme le Congrès des députés et le Sénat. Madrid a été officiellement choisie comme capitale en 1561 par les rois catholiques qui ont décidé de la relocaliser depuis Tolède en raison d'un nombre croissant de habitants et de sa position centrale dans le pays.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : calcule 250 x 40
+IA         : The result of multiplying 250 by 40 is 10,000.
+
+Utilisateur : calcule 50 x3
+IA         : The result of multiplying 50 by 3 is 150.
+
+Utilisateur : quelle est la capitale de la France ?
+IA         : La capitale de la France est Paris.
+

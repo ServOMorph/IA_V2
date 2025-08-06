@@ -1,3 +1,4 @@
+# ... (imports et setup inchangés)
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
@@ -15,11 +16,13 @@ from config import (
     INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS
 )
 
-from interface.widgets import HoverButton, ImageHoverButton, Bubble
+from interface.widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
 from interface.events import EventManager
 from interface.chat.chat_events import ChatEventsMixin
 from interface.chat.chat_stream import ChatStreamMixin
 from interface.chat.chat_utils import ChatUtilsMixin
+
+from conversations.conversation_manager import create_new_conversation, append_message, read_conversation
 
 Window.clearcolor = BACKGROUND_COLOR
 
@@ -27,6 +30,8 @@ Window.clearcolor = BACKGROUND_COLOR
 class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixin):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        self.conversation_filepath = None
 
         background = Image(
             source="Assets/Logo_SerenIATech.png",
@@ -37,7 +42,12 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         )
         self.add_widget(background)
 
-        main_layout = BoxLayout(orientation='vertical', size_hint=(1, 1), padding=0, spacing=0)
+        global_layout = BoxLayout(orientation='horizontal', size_hint=(1, 1))
+
+        sidebar = SidebarConversations(on_select_callback=self.load_conversation)
+        global_layout.add_widget(sidebar)
+
+        main_layout = BoxLayout(orientation='vertical', size_hint=(0.75, 1), padding=0, spacing=0)
 
         self.scroll = ScrollView(size_hint=(1, SCROLLVIEW_SIZE_HINT_Y))
         self.chat_layout = BoxLayout(orientation='vertical', size_hint_y=None, padding=10, spacing=10)
@@ -119,7 +129,8 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         main_layout.add_widget(input_layout)
         main_layout.add_widget(quit_layout)
 
-        self.add_widget(main_layout)
+        global_layout.add_widget(main_layout)
+        self.add_widget(global_layout)
 
         self.fleche_bas = ImageHoverButton(
             source="Assets/fleche_bas.png",
@@ -140,10 +151,37 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
 
         self.setup_event_bindings()
 
+    def clear_chat(self):
+        self.chat_layout.clear_widgets()
+
+    def load_conversation(self, filename):
+        chemin = f"conversations/{filename}"
+        contenu = read_conversation(chemin)
+
+        self.clear_chat()
+        self.conversation_filepath = chemin  # ✅ ACTIVER LA SAUVEGARDE SUR LE BON FICHIER
+
+        lignes = contenu.strip().split("\n")
+        for ligne in lignes:
+            if ligne.startswith("[") and "]" in ligne:
+                try:
+                    _, reste = ligne.split("]", 1)
+                    role, message = reste.strip().split(":", 1)
+                    role = role.strip().lower()
+                    message = message.strip()
+                    if role in ("user", "assistant"):
+                        is_user = role == "user"
+                        self.display_message(message, is_user)
+                except ValueError:
+                    continue
+
     def send_message(self, instance):
         user_input = self.input.text.strip()
         if user_input:
             self.input.text = ""
+            if self.conversation_filepath is None:
+                self.conversation_filepath = create_new_conversation()
+            append_message(self.conversation_filepath, "user", user_input)
             Clock.schedule_once(lambda dt: self.lancer_generation(user_input))
 
     def display_message(self, text, is_user):

@@ -5,6 +5,8 @@ from ollama_api import query_ollama_stream
 from historique import enregistrer_echange
 import threading
 
+# ✅ Ajout pour sauvegarde des conversations
+from conversations.conversation_manager import append_message
 
 class ChatStreamMixin:
     def lancer_generation(self, prompt):
@@ -37,7 +39,14 @@ class ChatStreamMixin:
 
         Clock.schedule_once(lambda dt: self.prepare_stream_bubble())
         query_ollama_stream(prompt, on_token)
+
+        # ✅ À la fin du stream, on sauvegarde dans historique global (facultatif)
         enregistrer_echange(prompt, self.partial_response)
+
+        # ✅ Et on enregistre dans le fichier de conversation actif (si actif)
+        if self.conversation_filepath:
+            append_message(self.conversation_filepath, "assistant", self.partial_response)
+
         Clock.schedule_once(lambda dt: self.on_stream_end())
 
     def prepare_stream_bubble(self):
