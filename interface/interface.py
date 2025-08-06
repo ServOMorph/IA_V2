@@ -1,4 +1,5 @@
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.label import Label
@@ -7,6 +8,7 @@ from kivy.uix.image import Image
 from kivy.core.text import Label as CoreLabel
 from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
+from kivy.clock import Clock
 
 from config import (
     BACKGROUND_COLOR, TEXTINPUT_BACKGROUND_COLOR, TEXT_COLOR, HINT_TEXT_COLOR,
@@ -19,9 +21,20 @@ from .events import EventManager
 
 Window.clearcolor = BACKGROUND_COLOR
 
-class ChatInterface(BoxLayout):
+class ChatInterface(FloatLayout):
     def __init__(self, **kwargs):
-        super().__init__(orientation='vertical', **kwargs)
+        super().__init__(**kwargs)
+
+        background = Image(
+            source="Assets/Logo_SerenIATech.png",
+            allow_stretch=True,
+            keep_ratio=False,
+            size_hint=(1, 1),
+            pos_hint={"x": 0, "y": 0}
+        )
+        self.add_widget(background)
+
+        main_layout = BoxLayout(orientation='vertical', size_hint=(1, 1), padding=0, spacing=0)
 
         self.scroll = ScrollView(size_hint=(1, SCROLLVIEW_SIZE_HINT_Y))
         self.chat_layout = BoxLayout(orientation='vertical', size_hint_y=None, padding=10, spacing=10)
@@ -39,17 +52,19 @@ class ChatInterface(BoxLayout):
             size_hint_x=0.85
         )
 
-        send_button = ImageHoverButton(
+        self.send_container = BoxLayout(orientation='horizontal', spacing=5, size_hint=(None, None), size=(60, 40))
+
+        self.send_button = ImageHoverButton(
             source="Assets/Ico_Envoyer.png",
             size_hint=(None, None),
             size=(40, 40)
         )
-        send_button.bind(on_press=self.send_message)
+        self.send_button.bind(on_press=self.send_message)
+        self.send_container.add_widget(self.send_button)
 
         input_layout.add_widget(self.input)
-        input_layout.add_widget(send_button)
+        input_layout.add_widget(self.send_container)
 
-        # Label "Je réfléchis..." (invisible au démarrage)
         self.thinking_label = Label(
             text='',
             size_hint_y=None,
@@ -96,11 +111,24 @@ class ChatInterface(BoxLayout):
         quit_layout.add_widget(quit_button)
         quit_layout.add_widget(Widget())
 
-        # Construction finale
-        self.add_widget(self.scroll)
-        self.add_widget(self.thinking_label)  # ← maintenant au-dessus du champ
-        self.add_widget(input_layout)
-        self.add_widget(quit_layout)
+        main_layout.add_widget(self.scroll)
+        main_layout.add_widget(self.thinking_label)
+        main_layout.add_widget(input_layout)
+        main_layout.add_widget(quit_layout)
+
+        self.add_widget(main_layout)
+
+        self.fleche_bas = ImageHoverButton(
+            source="Assets/fleche_bas.png",
+            size_hint=(None, None),
+            size=(30, 30),
+            pos_hint={"right": 0.975, "y": 0.21},
+            opacity=0
+        )
+        self.fleche_bas.bind(on_press=self.scroll_to_bottom)
+        self.add_widget(self.fleche_bas)
+
+        self.chat_layout.bind(height=self.mettre_a_jour_fleche)
 
         self.last_prompt = ""
         self.event_manager = EventManager(self)
@@ -108,26 +136,69 @@ class ChatInterface(BoxLayout):
         if DEV_MODE:
             Window.bind(on_key_down=self.event_manager.handle_dev_shortcuts)
 
+    def mettre_a_jour_fleche(self, *args):
+        if self.chat_layout.height > self.scroll.height:
+            self.fleche_bas.opacity = 1
+        else:
+            self.fleche_bas.opacity = 0
+
+    def scroll_to_bottom(self, instance):
+        Clock.schedule_once(lambda dt: self.scroll.scroll_to(self.chat_layout))
+
     def send_message(self, instance):
         user_input = self.input.text.strip()
         if user_input:
             self.display_message(user_input, is_user=True)
             self.input.text = ""
             self.last_prompt = user_input
-
-            # Affiche "Je réfléchis..."
             self.thinking_label.text = "Je réfléchis..."
+
+            # Verrouillage du bouton Envoyer
+            self.send_button.disabled = True
+            self.send_button.source = "Assets/Ico_Envoyer_Verouiller.png"
+
+            self.confirmer_envoi()
 
             import threading
             threading.Thread(target=self.event_manager.query_and_display, args=(user_input,), daemon=True).start()
 
-    def copier_texte(self, texte):
+    def confirmer_envoi(self):
+        coche = Image(
+            source="Assets/coche.png",
+            size_hint=(None, None),
+            size=(20, 20)
+        )
+        self.send_container.add_widget(coche)
+
+        def retirer_coche(dt):
+            if coche in self.send_container.children:
+                self.send_container.remove_widget(coche)
+
+        Clock.schedule_once(retirer_coche, 1.5)
+
+    def copier_texte(self, texte, container):
         Clipboard.copy(texte)
 
+        coche = Image(
+            source="Assets/coche.png",
+            size_hint=(None, None),
+            size=(20, 20)
+        )
+        container.add_widget(coche)
+
+        def retirer_coche(dt):
+            if coche in container.children:
+                container.remove_widget(coche)
+
+        Clock.schedule_once(retirer_coche, 1.5)
+
     def display_message(self, text, is_user):
-        # Masque "Je réfléchis..." quand la réponse IA commence à s’afficher
         if not is_user:
             self.thinking_label.text = ""
+
+            # Réactivation du bouton Envoyer
+            self.send_button.disabled = False
+            self.send_button.source = "Assets/Ico_Envoyer.png"
 
         bubble = Bubble(text=text, is_user=is_user)
 
@@ -149,19 +220,23 @@ class ChatInterface(BoxLayout):
                 allow_stretch=True
             )
 
+            icon_container = BoxLayout(orientation='horizontal', spacing=5, size_hint=(None, None), size=(60, 25))
+
             icon_button = ImageHoverButton(
                 source="Assets/Ico_Copiercoller.png",
                 size_hint=(None, None),
                 size=(25, 25)
             )
-            icon_button.bind(on_press=lambda instance: self.copier_texte(text))
+            icon_button.bind(on_press=lambda instance: self.copier_texte(text, icon_container))
+
+            icon_container.add_widget(icon_button)
 
             message_row = BoxLayout(orientation='horizontal', size_hint_y=None, spacing=5)
             message_row.bind(minimum_height=message_row.setter('height'))
 
             message_row.add_widget(logo)
             message_row.add_widget(bubble)
-            message_row.add_widget(icon_button)
+            message_row.add_widget(icon_container)
 
             bubble_container.add_widget(message_row)
 
@@ -172,8 +247,8 @@ class ChatInterface(BoxLayout):
         if not is_user:
             enregistrer_echange(self.last_prompt, text)
 
-        from kivy.clock import Clock
         Clock.schedule_once(lambda dt: self.scroll.scroll_to(message_layout))
+        self.mettre_a_jour_fleche()
 
     def quit_app(self, instance):
         from kivy.app import App
