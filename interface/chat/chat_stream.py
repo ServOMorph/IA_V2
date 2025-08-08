@@ -1,6 +1,6 @@
 from kivy.clock import Clock
 from kivy.uix.image import Image
-from interface.custom_widgets import ImageHoverButton
+from ..custom_widgets import ImageHoverButton
 from ollama_api import query_ollama_stream
 from historique import enregistrer_echange
 import threading

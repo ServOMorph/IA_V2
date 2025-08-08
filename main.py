@@ -17,7 +17,7 @@ Config.set('graphics', 'left', str(WINDOW_LEFT))
 Config.set('graphics', 'top', str(WINDOW_TOP))
 
 from kivy.app import App
-from interface.chat.chat_interface import ChatInterface
+from interface import ChatInterface
 
 class OllamaKivyApp(App):
     def build(self):

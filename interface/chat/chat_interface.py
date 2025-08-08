@@ -17,11 +17,11 @@ from config import (
     BUBBLE_WIDTH_RATIO
 )
 
-from interface.custom_widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
-from interface.events import EventManager
-from interface.chat.chat_events import ChatEventsMixin
-from interface.chat.chat_stream import ChatStreamMixin
-from interface.chat.chat_utils import ChatUtilsMixin
+from ..custom_widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
+from ..core.events import EventManager
+from .chat_events import ChatEventsMixin
+from .chat_stream import ChatStreamMixin
+from .chat_utils import ChatUtilsMixin
 
 from conversations.conversation_manager import create_new_conversation, append_message, read_conversation
 

@@ -7,7 +7,7 @@ from kivy.graphics import Color, RoundedRectangle
 
 from config import FONT_SIZE
 from conversations.conversation_manager import list_conversations, read_conversation
-from interface.custom_widgets import HoverSidebarButton
+from .hover_sidebar_button import HoverSidebarButton
 
 
 class SidebarConversations(BoxLayout):

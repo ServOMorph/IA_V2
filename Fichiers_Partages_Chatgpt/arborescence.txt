@@ -16,27 +16,41 @@
         📄 Ico_Envoyer_Verouiller.png
         📄 Logo_IA.png
         📄 Logo_SerenIATech.png
+        📄 Logo_SerenIATech2.png
         📄 stop.png
     📁 conversations/
         📄 conversation_2025-08-06_18-44-34.txt
         📄 conversation_2025-08-06_18-46-51.txt
         📄 conversation_2025-08-06_18-50-59.txt
         📄 conversation_2025-08-06_18-57-11.txt
+        📄 conversation_2025-08-06_23-56-06.txt
+        📄 conversation_2025-08-06_23-59-50.txt
+        📄 conversation_2025-08-07_00-03-41.txt
+        📄 conversation_2025-08-07_00-24-51.txt
+        📄 conversation_2025-08-07_00-54-45.txt
+        📄 conversation_2025-08-07_01-00-12.txt
+        📄 conversation_2025-08-07_01-01-56.txt
+        📄 conversation_2025-08-07_01-11-27.txt
         📄 conversation_manager.py
     📁 Fichiers_Partages_Chatgpt/
         📄 arborescence.txt
+        📄 Meta_Syntheses_1.txt
         📄 README.md
-        📄 syntheses_chatgpt 1 - MS OK.txt
         📄 syntheses_chatgpt 2.txt
+    📁 IA/
+        📄 syntheses_chatgpt 1 - MS OK.txt
     📁 interface/
-        📄 events.py
-        📄 utils.py
         📄 __init__.py
         📁 chat/
             📄 chat_events.py
             📄 chat_interface.py
             📄 chat_stream.py
             📄 chat_utils.py
+            📄 __init__.py
+        📁 core/
+            📄 events.py
+            📄 utils.py
+            📄 __init__.py
         📁 custom_widgets/
             📄 bubble.py
             📄 hover_button.py

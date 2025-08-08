@@ -3,7 +3,7 @@ from kivy.graphics import Color, RoundedRectangle
 from kivy.core.window import Window
 
 from config import BORDER_RADIUS
-from interface.utils import lighten_color
+from interface.core.utils import lighten_color
 
 
 class HoverButton(Button):

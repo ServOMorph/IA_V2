@@ -752,3 +752,27 @@ Le fonctionnement d'un moteur à combustion interne se déroule en plusieurs ét
 
 Cette transformation d'énergie chimique en énergie mécanique permet à un moteur à combustion interne d'être utilisé dans une variété de applications et de produire des puissances allant de quelques centaines de watts à plusieurs milliers de chevaux.
 
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il occupe approximativement un tiers de la surface terrestre et s'étend sur près de 165 millions de kilomètres carrés.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'océan Pacifique. Il représente environ 31 % de la surface totale des océans et s'étend sur une longueur d'environ 16 000 km d'est en ouest, depuis l'Alaska jusqu'au nord-ouest de l'Australie.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il couvre une surface d'environ 165 millions de kilomètres carrés. Il s'étend de l'Arctique à l'Antarctique et comprend les mers de Chine orientale, du Japon, des Philippines, du Kara, du Timor, de Corail et du Bismarck.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan au monde est l'Océan Pacifique, qui s'étend sur une superficie de plus de 165 millions de kilomètres carrés. Il occupe plus d'un tiers de la surface de la Terre et est bordé par l'Amérique du Nord, l'Amérique du Sud, l'Asie et l'Océanie.
+
+Utilisateur : Quel est le plus grand océan du monde ?
+IA         : Le plus grand océan du monde est l'Océan Pacifique. Il occupe près de la moitié de la surface de la Terre et s'étend sur environ 165,2 millions de kilomètres carrés.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : La capitale de l'Espagne est Madrid.
+
