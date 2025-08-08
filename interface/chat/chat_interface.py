@@ -14,7 +14,7 @@ from config import (
     BUTTON_SEND_COLOR, FONT_SIZE, BORDER_RADIUS, SCROLLVIEW_SIZE_HINT_Y,
     INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS,
     # >>> ajouté pour le calcul de largeur maximum des bulles
-    BUBBLE_WIDTH_RATIO
+    BUBBLE_WIDTH_RATIO, 
 )
 
 from ..custom_widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
@@ -66,13 +66,19 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             size_hint_x=0.85
         )
 
-        self.send_container = BoxLayout(orientation='horizontal', spacing=5, size_hint=(None, None), size=(60, 40))
+        self.send_container = BoxLayout(
+            orientation='horizontal',
+            spacing=5,
+            size_hint=(None, None),
+            size=(100, 100)  # Agrandi proportionnellement
+        )
 
         self.send_button = ImageHoverButton(
             source="Assets/Ico_Envoyer.png",
             size_hint=(None, None),
-            size=(40, 40)
+            size=(50, 50)  # Taille augmentée de 1,5×
         )
+        
         self.send_button.bind(on_press=self.send_message)
         self.send_container.add_widget(self.send_button)
 

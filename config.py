@@ -57,3 +57,5 @@ ICON_MORE_PATH = "assets/icons/more_vert.png"
 ICON_EDIT_PATH = "assets/icons/edit.png"
 ICON_DELETE_PATH = "assets/icons/delete.png"
 ICON_CHAT_PATH = "assets/icons/chat.png"
+
+

@@ -1,7 +1,0 @@
-# Nouvelle conversation – 2025-08-06_18-46-51
-
-[18:46:51] USER: choisi une couleur
-
-[19:00:38] USER: quelle est la capitale de la France ?
-
-[19:00:41] ASSISTANT:  La capitale de la France est Paris.

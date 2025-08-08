@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "updated_at": "2025-08-08 22:07:21",
+  "items": [
+    {
+      "id": "2025-08-08_21-54-03",
+      "title": "Nouvelle conversation – 2025-08-08_21-54-03",
+      "file": "conversation_2025-08-08_21-54-03.txt",
+      "meta": "conversation_2025-08-08_21-54-03.json",
+      "created_at": "2025-08-08 21:54:03",
+      "updated_at": "2025-08-08 21:54:56",
+      "message_count": 6,
+      "tags": []
+    },
+    {
+      "id": "2025-08-08_21-56-26",
+      "title": "Nouvelle conversation – 2025-08-08_21-56-26",
+      "file": "conversation_2025-08-08_21-56-26.txt",
+      "meta": "conversation_2025-08-08_21-56-26.json",
+      "created_at": "2025-08-08 21:56:26",
+      "updated_at": "2025-08-08 21:56:26",
+      "message_count": 1,
+      "tags": []
+    },
+    {
+      "id": "2025-08-08_22-03-33",
+      "title": "Nouvelle conversation – 2025-08-08_22-03-33",
+      "file": "conversation_2025-08-08_22-03-33.txt",
+      "meta": "conversation_2025-08-08_22-03-33.json",
+      "created_at": "2025-08-08 22:03:33",
+      "updated_at": "2025-08-08 22:07:21",
+      "message_count": 8,
+      "tags": []
+    }
+  ]
+}

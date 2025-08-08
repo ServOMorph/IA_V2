@@ -21,7 +21,7 @@ from .conversation_row import HoverRow
 
 
 class SidebarConversations(BoxLayout):
-    """Conteneur principal de la barre latérale des conversations."""
+    """Conteneur principal de la barre latérale des conversations (sélection exclusive)."""
     def __init__(self, on_select_callback=None, **kwargs):
         super().__init__(**kwargs)
         self.orientation = "vertical"
@@ -29,6 +29,10 @@ class SidebarConversations(BoxLayout):
         self.padding = 8
         self.spacing = 6
         self.on_select_callback = on_select_callback
+
+        # Suivi des lignes pour gérer la sélection exclusive
+        self._rows_by_filename: dict[str, HoverRow] = {}
+        self._current_selected: HoverRow | None = None
 
         with self.canvas.before:
             Color(0.1, 0.1, 0.1, 1)
@@ -40,6 +44,8 @@ class SidebarConversations(BoxLayout):
     def build_list(self):
         """Reconstruit la liste des conversations."""
         self.clear_widgets()
+        self._rows_by_filename.clear()
+        self._current_selected = None  # la sélection sera réappliquée si besoin
 
         title = Label(
             text="[b]Conversations[/b]",
@@ -70,6 +76,7 @@ class SidebarConversations(BoxLayout):
                 max_lines=1,
                 color=(1, 1, 1, 1),
             )
+            # IMPORTANT : lier la sélection à la ligne (et non au GridLayout directement)
             btn.bind(on_press=lambda instance, name=filename: self.select_conversation(name))
 
             row = HoverRow(
@@ -81,6 +88,8 @@ class SidebarConversations(BoxLayout):
             )
             row.rename_callback = self.rename_conversation
             row.delete_callback = self.delete_conversation
+
+            self._rows_by_filename[filename] = row
             layout.add_widget(row)
 
         scroll.add_widget(layout)
@@ -107,10 +116,27 @@ class SidebarConversations(BoxLayout):
             pass
         return filename
 
+    # ---------- Sélection exclusive ----------
+    def _apply_selection(self, filename: str):
+        """Active la sélection sur la ligne du filename et désélectionne l'ancienne."""
+        # Désélectionner l'ancienne si différente
+        if self._current_selected and (self._current_selected.filename != filename):
+            self._current_selected.set_selected(False)
+            self._current_selected = None
+
+        # Sélectionner la nouvelle si présente
+        new_row = self._rows_by_filename.get(filename)
+        if new_row:
+            new_row.set_selected(True)
+            self._current_selected = new_row
+
     def select_conversation(self, filename):
+        """Handler appelé au clic sur une conversation."""
+        self._apply_selection(filename)
         if self.on_select_callback:
             self.on_select_callback(filename)
 
+    # ---------- Renommer / Supprimer (et rafraîchir la liste) ----------
     def rename_conversation(self, filename):
         base_name = filename[:-4] if filename.lower().endswith(".txt") else filename
         content = BoxLayout(orientation="vertical", spacing=10, padding=10)
@@ -135,7 +161,9 @@ class SidebarConversations(BoxLayout):
             success, msg = rename_conversation_file(filename, new_name)
             if success:
                 popup.dismiss()
+                # Rebuild et réappliquer la sélection sur le nouveau nom
                 self.build_list()
+                self._apply_selection(new_name)
             else:
                 popup.title = f"Erreur : {msg}"
 
@@ -160,6 +188,9 @@ class SidebarConversations(BoxLayout):
             success, msg = delete_conversation_file(filename)
             if success:
                 popup.dismiss()
+                # Si on supprime la conversation sélectionnée, on nettoie la sélection
+                if self._current_selected and self._current_selected.filename == filename:
+                    self._current_selected = None
                 self.build_list()
             else:
                 popup.title = f"Erreur : {msg}"

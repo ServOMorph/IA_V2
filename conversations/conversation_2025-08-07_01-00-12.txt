@@ -1,9 +1,0 @@
-# Nouvelle conversation – 2025-08-07_01-00-12
-
-[01:00:12] USER: Capitale de l'Italies ?
-
-[01:00:19] ASSISTANT:  Rome est la capitale de l'Italie. La ville, située sur le Tibe, est reconnue pour ses nombreux sites historiques et culturels remarquables, dont les ruines de la Ville antique, le Colisée, le Forum romain, la basilique Saint-Pierre et la Piazza Navona. Rome est également le siège du gouvernement italien et de l'Assemblée nationale italienne, ainsi que des principaux ministères et institutions de l'État.
-
-[01:09:44] USER: capitla du japn ?
-
-[01:09:51] ASSISTANT:  The capital of Japan is Tokyo. However, the official name of the city is "Tōkyō-to" in Japanese. It was named Edo until it was renamed to Tōkyō (東京) during the Meiji Restoration in 1868. The city serves as both a cultural and economic center for Japan and is one of the most populous metropolitan areas in the world.
