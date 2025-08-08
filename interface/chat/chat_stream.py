@@ -4,8 +4,22 @@ from ..custom_widgets import ImageHoverButton
 from ollama_api import query_ollama_stream
 from historique import enregistrer_echange
 import threading
+import os
 
-from conversations.conversation_manager import append_message
+from conversations.conversation_manager import append_message, read_conversation
+
+# Charger le message système depuis le fichier partagé avec le mode console
+PROMPT_FILE = os.path.join(
+    os.path.dirname(__file__),
+    "..", "..", "Test_IA", "Console_Interactif", "system_prompt.txt"
+)
+PROMPT_FILE = os.path.abspath(PROMPT_FILE)
+
+if not os.path.exists(PROMPT_FILE):
+    raise FileNotFoundError(f"[ERREUR] Fichier system_prompt.txt introuvable : {PROMPT_FILE}")
+
+with open(PROMPT_FILE, "r", encoding="utf-8") as f:
+    SYSTEM_MESSAGE = f.read().strip()
 
 class ChatStreamMixin:
     def lancer_generation(self, prompt):
@@ -32,8 +46,40 @@ class ChatStreamMixin:
         except Exception as e:
             print(f"[ERREUR lancer_generation] {e}", flush=True)
 
+    def _build_message_history(self, new_user_message):
+        """
+        Construit la liste 'messages' pour Ollama :
+        - message system en premier
+        - tout l'historique existant (user/assistant)
+        - nouveau message utilisateur
+        """
+        messages = [{"role": "system", "content": SYSTEM_MESSAGE}]
+
+        if self.conversation_filepath and os.path.exists(self.conversation_filepath):
+            contenu = read_conversation(self.conversation_filepath)
+            lignes = contenu.strip().split("\n")
+            for ligne in lignes:
+                if ligne.startswith("[") and "]" in ligne:
+                    try:
+                        _, reste = ligne.split("]", 1)
+                        role, message = reste.strip().split(":", 1)
+                        role = role.strip().lower()
+                        message = message.strip()
+                        if role in ("user", "assistant"):
+                            messages.append({"role": role, "content": message})
+                    except ValueError:
+                        continue
+
+        # Ajouter le nouveau message utilisateur
+        messages.append({"role": "user", "content": new_user_message})
+
+        return messages
+
     def start_streaming_response(self, prompt):
         self.partial_response = ""
+
+        # Construire l'historique complet
+        messages = self._build_message_history(prompt)
 
         def on_token(token):
             if self.stop_stream:
@@ -42,7 +88,7 @@ class ChatStreamMixin:
             Clock.schedule_once(lambda dt: self.update_bubble_text(self.partial_response))
 
         Clock.schedule_once(lambda dt: self.prepare_stream_bubble())
-        query_ollama_stream(prompt, on_token)
+        query_ollama_stream(messages, on_token)
 
         enregistrer_echange(prompt, self.partial_response)
 

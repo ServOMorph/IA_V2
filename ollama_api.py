@@ -2,13 +2,19 @@ import requests
 import sys
 from config import OLLAMA_URL, OLLAMA_MODEL
 
-def query_ollama(prompt):
-    """Version classique, réponse complète"""
+def query_ollama(prompt_or_messages):
+    """
+    Version classique, réponse complète.
+    Accepte soit un prompt simple (str), soit une liste de messages formatés.
+    """
+    if isinstance(prompt_or_messages, str):
+        messages = [{"role": "user", "content": prompt_or_messages}]
+    else:
+        messages = prompt_or_messages
+
     payload = {
         "model": OLLAMA_MODEL,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
+        "messages": messages,
         "stream": False
     }
 
@@ -22,13 +28,19 @@ def query_ollama(prompt):
         print(f"[Erreur API Ollama] {str(e)}", file=sys.stderr, flush=True)
         return "[Erreur de connexion à Ollama]"
 
-def query_ollama_stream(prompt, on_token_callback):
-    """Version streaming : appelle on_token_callback(token) à chaque token reçu"""
+def query_ollama_stream(prompt_or_messages, on_token_callback):
+    """
+    Version streaming : appelle on_token_callback(token) à chaque token reçu.
+    Accepte soit un prompt simple (str), soit une liste de messages formatés.
+    """
+    if isinstance(prompt_or_messages, str):
+        messages = [{"role": "user", "content": prompt_or_messages}]
+    else:
+        messages = prompt_or_messages
+
     payload = {
         "model": OLLAMA_MODEL,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
+        "messages": messages,
         "stream": True
     }
 

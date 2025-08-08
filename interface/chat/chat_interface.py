@@ -35,7 +35,7 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         self.conversation_filepath = None
 
         background = Image(
-            source="Assets/Logo_SerenIATech.png",
+            source="Assets/Qui je suis .png",
             allow_stretch=True,
             keep_ratio=False,
             size_hint=(1, 1),

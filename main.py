@@ -19,10 +19,10 @@ Config.set('graphics', 'top', str(WINDOW_TOP))
 from kivy.app import App
 from interface import ChatInterface
 
-class OllamaKivyApp(App):
+class ServOMorph_IAApp(App):
     def build(self):
         return ChatInterface()
 
 if __name__ == '__main__':
     print("Lancement de l'application", flush=True)
-    OllamaKivyApp().run()
+    ServOMorph_IAApp().run()
