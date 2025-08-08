@@ -33,6 +33,7 @@
         📄 conversation_2025-08-07_01-01-56.txt
         📄 conversation_2025-08-07_01-11-27.txt
         📄 conversation_2025-08-08_11-30-48.txt
+        📄 conversation_2025-08-08_12-13-50.txt
         📄 conversation_manager.py
     📁 Fichiers_Partages_Chatgpt/
         📄 arborescence.txt
@@ -58,11 +59,9 @@
             📄 hover_button.py
             📄 hover_sidebar_button.py
             📄 image_hover_button.py
-            📄 sidebar_conversations.py
             📄 __init__.py
             📁 sidebar/
                 📄 conversation_row.py
-                📄 data_provider.py
                 📄 icon_button.py
                 📄 sidebar_conversations.py
                 📄 __init__.py

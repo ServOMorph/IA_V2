@@ -4,19 +4,24 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
 from kivy.metrics import dp
 from kivy.graphics import Color, RoundedRectangle
+from kivy.uix.textinput import TextInput
+from kivy.uix.popup import Popup
+from kivy.uix.button import Button
+from kivy.clock import Clock
 
 from config import FONT_SIZE
-from conversations.conversation_manager import list_conversations, read_conversation
+from conversations.conversation_manager import (
+    list_conversations,
+    read_conversation,
+    rename_conversation_file,
+    delete_conversation_file
+)
 from ..hover_sidebar_button import HoverSidebarButton
 from .conversation_row import HoverRow
 
 
 class SidebarConversations(BoxLayout):
-    """
-    Conteneur principal de la barre latérale des conversations.
-    - Titre
-    - Liste scrollable de HoverRow
-    """
+    """Conteneur principal de la barre latérale des conversations."""
     def __init__(self, on_select_callback=None, **kwargs):
         super().__init__(**kwargs)
         self.orientation = "vertical"
@@ -30,6 +35,11 @@ class SidebarConversations(BoxLayout):
             self.bg_rect = RoundedRectangle(radius=[0], pos=self.pos, size=self.size)
 
         self.bind(pos=self.update_bg, size=self.update_bg)
+        self.build_list()
+
+    def build_list(self):
+        """Reconstruit la liste des conversations."""
+        self.clear_widgets()
 
         title = Label(
             text="[b]Conversations[/b]",
@@ -49,8 +59,6 @@ class SidebarConversations(BoxLayout):
 
         for filename in list_conversations():
             label = self.extract_preview(filename)
-            label = f"{label} …"
-
             btn = HoverSidebarButton(
                 text=label,
                 size_hint=(1, 1),
@@ -71,6 +79,8 @@ class SidebarConversations(BoxLayout):
                 size_hint=(1, None),
                 height=32
             )
+            row.rename_callback = self.rename_conversation
+            row.delete_callback = self.delete_conversation
             layout.add_widget(row)
 
         scroll.add_widget(layout)
@@ -82,7 +92,7 @@ class SidebarConversations(BoxLayout):
 
     def extract_preview(self, filename):
         try:
-            contenu = read_conversation(f"conversations/{filename}")
+            contenu = read_conversation(f"{filename}")
             lignes = contenu.strip().split("\n")
             for ligne in lignes:
                 if "]" in ligne and "USER:" in ligne.upper():
@@ -100,3 +110,60 @@ class SidebarConversations(BoxLayout):
     def select_conversation(self, filename):
         if self.on_select_callback:
             self.on_select_callback(filename)
+
+    def rename_conversation(self, filename):
+        base_name = filename[:-4] if filename.lower().endswith(".txt") else filename
+        content = BoxLayout(orientation="vertical", spacing=10, padding=10)
+        input_name = TextInput(text=base_name, multiline=False)
+        content.add_widget(input_name)
+
+        def focus_and_select(_popup):
+            input_name.focus = True
+            input_name.select_all()
+        btn_layout = BoxLayout(size_hint_y=None, height=dp(40), spacing=10)
+        btn_ok = Button(text="Valider")
+        btn_cancel = Button(text="Annuler")
+        btn_layout.add_widget(btn_ok)
+        btn_layout.add_widget(btn_cancel)
+        content.add_widget(btn_layout)
+
+        popup = Popup(title="Renommer la conversation", content=content, size_hint=(0.5, 0.3))
+        popup.bind(on_open=focus_and_select)
+
+        def valider(_):
+            new_name = input_name.text.strip() + ".txt"
+            success, msg = rename_conversation_file(filename, new_name)
+            if success:
+                popup.dismiss()
+                self.build_list()
+            else:
+                popup.title = f"Erreur : {msg}"
+
+        btn_ok.bind(on_release=valider)
+        btn_cancel.bind(on_release=lambda _: popup.dismiss())
+        popup.open()
+
+    def delete_conversation(self, filename):
+        content = BoxLayout(orientation="vertical", spacing=10, padding=10)
+        content.add_widget(Label(text=f"Supprimer la conversation '{filename}' ?", halign="center"))
+
+        btn_layout = BoxLayout(size_hint_y=None, height=dp(40), spacing=10)
+        btn_yes = Button(text="Oui")
+        btn_no = Button(text="Non")
+        btn_layout.add_widget(btn_yes)
+        btn_layout.add_widget(btn_no)
+        content.add_widget(btn_layout)
+
+        popup = Popup(title="Confirmation", content=content, size_hint=(0.5, 0.3))
+
+        def confirmer(_):
+            success, msg = delete_conversation_file(filename)
+            if success:
+                popup.dismiss()
+                self.build_list()
+            else:
+                popup.title = f"Erreur : {msg}"
+
+        btn_yes.bind(on_release=confirmer)
+        btn_no.bind(on_release=lambda _: popup.dismiss())
+        popup.open()
