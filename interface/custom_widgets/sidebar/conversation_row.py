@@ -1,144 +1,102 @@
-from typing import Callable, Optional
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
+from kivy.metrics import dp
+from kivy.core.window import Window
+from kivy.clock import Clock
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
-from kivy.core.window import Window
-from kivy.properties import StringProperty, ObjectProperty
-from kivy.metrics import dp
-from kivy.graphics import Color, RoundedRectangle
 
-from config import (
-    FONT_SIZE,
-    SIDEBAR_ROW_HEIGHT,
-    SIDEBAR_ICON_SIZE,
-    SIDEBAR_ICON_PADDING,
-    MENU_ACTIONS,
-    ICON_MORE_PATH,
-)
+from ..hover_sidebar_button import HoverSidebarButton
 from .icon_button import IconButton
 
 
-class ConversationRow(BoxLayout):
+class HoverRow(BoxLayout):
     """
-    Ligne d'une conversation :
-    - titre + preview (Label)
-    - bouton menu (IconButton) → DropDown avec MENU_ACTIONS
-    Gestion du hover (fond léger), cf. Doc §5 et §11.
+    Ligne horizontale : [ HoverSidebarButton (texte) | IconButton (ico_modifier) ]
+    - L’icône est masquée par défaut et s’affiche au survol de la ligne.
+    - Un clic sur l’icône ouvre un DropDown (petit menu déroulant) à proximité.
+
+    Le survol est géré via Window.mouse_pos + collide_point (fiable dans une ScrollView).
     """
-
-    title = StringProperty("")
-    preview = StringProperty("")
-    filename = StringProperty("")
-    on_select = ObjectProperty(None, allownone=True)
-    on_rename = ObjectProperty(None, allownone=True)
-    on_delete = ObjectProperty(None, allownone=True)
-
-    def __init__(self, **kwargs):
+    def __init__(self, filename: str, btn: HoverSidebarButton, icon_source: str, **kwargs):
         super().__init__(**kwargs)
         self.orientation = "horizontal"
-        self.size_hint_y = None
-        self.height = dp(SIDEBAR_ROW_HEIGHT)
-        self.padding = (dp(10), 0, dp(6), 0)
-        self.spacing = dp(8)
+        self.size_hint = (1, None)
+        self.height = 32
+        self.spacing = 6
 
-        with self.canvas.before:
-            self._bg_color = Color(rgba=(1, 1, 1, 0))
-            self._bg_rect = RoundedRectangle(radius=[dp(10)])
+        self.filename = filename
+        self.btn = btn
 
-        # Contenu texte
-        text_lbl = Label(
-            text=self._compose_text(self.title, self.preview),
-            markup=True,
-            halign="left",
-            valign="middle",
-            font_size=FONT_SIZE,
-            text_size=(0, None),
-            size_hint_x=1,
+        # Icône cliquable (masquée tant que non survolée)
+        self.icon = IconButton(
+            source=icon_source,
+            size_hint=(None, 1),
+            width=20,
+            opacity=0
         )
-        self._text_lbl = text_lbl
 
-        # Bouton "..."
-        menu_btn = IconButton(
-            source=ICON_MORE_PATH,
-            size_hint=(None, None),
-            size=(dp(SIDEBAR_ICON_SIZE[0]), dp(SIDEBAR_ICON_SIZE[1])),
-            padding_x=dp(SIDEBAR_ICON_PADDING[0]),
-            padding_y=dp(SIDEBAR_ICON_PADDING[1]),
-        )
-        menu_btn.bind(on_release=lambda *_: self._open_menu(menu_btn))
-        self._menu_btn = menu_btn
+        # Menu déroulant (DropDown)
+        self.menu = self._build_dropdown()
 
-        self.add_widget(text_lbl)
-        self.add_widget(menu_btn)
+        # Clic sur l’icône -> ouverture/fermeture du menu
+        self.icon.bind(on_release=self._toggle_menu)
 
+        # Assemblage
+        self.add_widget(self.btn)
+        self.add_widget(self.icon)
+
+        # Abonnement global au mouvement de souris
         Window.bind(mouse_pos=self._on_mouse_pos)
-        self.bind(pos=self._update_bg, size=self._update_bg, title=self._refresh_text, preview=self._refresh_text)
+        Clock.schedule_once(self._prime_hover, 0)
 
-    def on_kv_post(self, *_):
-        self._update_bg()
+    # ----- DropDown -----
+    def _build_dropdown(self) -> DropDown:
+        dd = DropDown(auto_dismiss=True, max_height=dp(150))
+        for action in ("Renommer", "Supprimer"):
+            item = Button(
+                text=action,
+                size_hint_y=None,
+                height=dp(32),
+                font_size=12,
+                halign="left",
+                valign="middle"
+            )
+            item.bind(size=lambda w, *_: setattr(w, "text_size", (w.width - dp(10), None)))
+            item.bind(on_release=lambda w, a=action: self._on_menu_action(a))
+            dd.add_widget(item)
+        return dd
 
-    def on_parent(self, *_):
-        # Clean le bind si la ligne disparaît (Doc §4 & §2)
+    def _toggle_menu(self, *_):
+        if self.menu.attach_to is self.icon:
+            try:
+                self.menu.dismiss()
+            except Exception:
+                pass
+        else:
+            try:
+                self.menu.open(self.icon)
+            except Exception as e:
+                print(f"[Sidebar] Erreur ouverture menu pour '{self.filename}': {e}")
+
+    def _on_menu_action(self, action: str):
+        print(f"[Sidebar] Action '{action}' sur conversation: {self.filename}")
+        try:
+            self.menu.dismiss()
+        except Exception:
+            pass
+
+    # ----- Hover -----
+    def _prime_hover(self, *_):
+        self._on_mouse_pos(Window, Window.mouse_pos)
+
+    def _on_mouse_pos(self, _window, pos):
+        local_x, local_y = self.to_widget(*pos)
+        inside = self.collide_point(local_x, local_y)
+        self.icon.opacity = 1 if inside else 0
+
+    def on_parent(self, *args):
         if self.parent is None:
             try:
                 Window.unbind(mouse_pos=self._on_mouse_pos)
             except Exception:
                 pass
-
-    # ---- Hover / fond ----
-    def _update_bg(self, *_):
-        self._bg_rect.pos = self.pos
-        self._bg_rect.size = self.size
-
-    def _on_mouse_pos(self, _window, pos):
-        if not self.get_root_window():
-            return
-        hovered = self.collide_point(*self.to_widget(*pos))
-        self._bg_color.rgba = (1, 1, 1, 0.06) if hovered else (1, 1, 1, 0)
-
-    # ---- Texte ----
-    def _compose_text(self, title: str, preview: str) -> str:
-        # Titre en gras + preview gris
-        safe_title = title.replace("[", "\\[").replace("]", "\\]")
-        safe_prev = preview.replace("[", "\\[").replace("]", "\\]")
-        return f"[b]{safe_title}[/b]  [color=#8e8e93]{safe_prev}[/color]"
-
-    def _refresh_text(self, *_):
-        self._text_lbl.text = self._compose_text(self.title, self.preview)
-
-    # ---- Menu actions ----
-    def _open_menu(self, anchor_widget):
-        dd = DropDown(auto_width=False, width=dp(180))
-        for action in MENU_ACTIONS:
-            btn = Button(text=action, size_hint_y=None, height=dp(36))
-            btn.bind(on_release=lambda b, a=action: self._on_menu_select(a, dd))
-            dd.add_widget(btn)
-        dd.open(anchor_widget)
-
-    def _on_menu_select(self, action: str, dd: DropDown):
-        try:
-            dd.dismiss()
-        except Exception:
-            pass
-
-        if action == MENU_ACTIONS[0]:  # Renommer
-            if callable(self.on_rename):
-                self.on_rename(self.filename)
-            else:
-                print(f"[RENOMMER] {self.filename}")
-        elif action == MENU_ACTIONS[1]:  # Supprimer
-            if callable(self.on_delete):
-                self.on_delete(self.filename)
-            else:
-                print(f"[SUPPRIMER] {self.filename}")
-
-    # ---- Sélection ligne ----
-    def on_touch_down(self, touch):
-        if self.collide_point(*touch.pos):
-            # Si clic hors menu, on sélectionne
-            if not self._menu_btn.collide_point(*self._menu_btn.to_widget(*touch.pos)):
-                if callable(self.on_select):
-                    self.on_select(self.filename)
-                return True
-        return super().on_touch_down(touch)

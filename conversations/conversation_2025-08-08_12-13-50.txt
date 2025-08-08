@@ -1,0 +1,5 @@
+# Nouvelle conversation – 2025-08-08_12-13-50
+
+[12:13:50] USER: quelle est la capitale de la France
+
+[12:13:54] ASSISTANT:  La capitale de la France est Paris.

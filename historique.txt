@@ -776,3 +776,17 @@ IA         : La capitale de l'Espagne est Madrid.
 Utilisateur : Quelle est la capitale de l'Espagne
 IA         : La capitale de l'Espagne est Madrid.
 
+Utilisateur : traduit : hover_sidebar_button
+IA         : traduire : bouton de barre latérale sur vol
+
+Il s'agit d'un terme technique dans le domaine du développement informatique. Le "hover sidebar button" est un bouton situé dans une barre latérale qui réagit lorsque la souris passe au-dessus de lui, en général il change de couleur ou affiche des informations supplémentaires.
+
+Utilisateur : traduit : image_hover_button
+IA         : Traduction de l'expression anglaise "image_hover_button" en français serait "bouton d'image au survol". Cela désigne un bouton qui modifie son état ou sa présentation lorsqu'il est placé au-dessus d'une image.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : Madrid est la capitale de l'Espagne.
+
+Utilisateur : quelle est la capitale de la France
+IA         : La capitale de la France est Paris.
+

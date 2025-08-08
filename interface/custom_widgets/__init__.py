@@ -11,12 +11,12 @@ from .bubble import Bubble
 from .hover_button import HoverButton
 from .image_hover_button import ImageHoverButton
 from .hover_sidebar_button import HoverSidebarButton
-from .sidebar_conversations import SidebarConversations
+from interface.custom_widgets.sidebar import SidebarConversations
 
 __all__ = [
     "Bubble",
     "HoverButton",
     "ImageHoverButton",
     "HoverSidebarButton",
-    "SidebarConversations",
+    
 ]
