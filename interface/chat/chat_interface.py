@@ -12,7 +12,9 @@ from kivy.clock import Clock
 from config import (
     BACKGROUND_COLOR, TEXTINPUT_BACKGROUND_COLOR, TEXT_COLOR, HINT_TEXT_COLOR,
     BUTTON_SEND_COLOR, FONT_SIZE, BORDER_RADIUS, SCROLLVIEW_SIZE_HINT_Y,
-    INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS
+    INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS,
+    # >>> ajouté pour le calcul de largeur maximum des bulles
+    BUBBLE_WIDTH_RATIO
 )
 
 from interface.custom_widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
@@ -150,6 +152,36 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
 
         self.setup_event_bindings()
 
+    # --- Helper pour ajuster la largeur de la bulle selon l'espace RÉEL de la ligne
+    def adjust_bubble_width_in_row(self, bubble, row_widget, reserved_widgets):
+        """
+        Ajuste bubble.text_size pour ne jamais déborder :
+        - tient compte des largeurs réelles des widgets 'reserved' (logo, icône copier, etc.)
+        - respecte un cap global via BUBBLE_WIDTH_RATIO
+        """
+        def _apply(*_):
+            # Somme des largeurs réservées (ex: logo + icône)
+            reserved = sum(w.width for w in reserved_widgets)
+            # Espacements internes de la ligne (entre logo|bulle|icône)
+            # len(children)-1 = nb d'intervalles ; Kivy garde 'children' inversé, mais le nombre convient
+            spacing = row_widget.spacing * max(0, len(row_widget.children) - 1)
+            # Petite marge interne pour éviter le collage au bord
+            margin = 10
+
+            # Largeur max disponible dans la ligne
+            available = max(50, row_widget.width - reserved - spacing - margin)
+
+            # Cap par rapport à la fenêtre/config (sécurité responsive)
+            cap = Window.width * BUBBLE_WIDTH_RATIO
+            max_width = min(available, cap)
+
+            bubble.size_hint_x = None
+            bubble.text_size = (max_width, None)
+
+        # Recalcule quand la ligne change de taille et au prochain frame
+        row_widget.bind(width=_apply)
+        Clock.schedule_once(_apply, 0)
+
     def clear_chat(self):
         self.chat_layout.clear_widgets()
 
@@ -195,6 +227,15 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         if is_user:
             bubble_container.add_widget(bubble)
             bubble_container.add_widget(Widget())
+
+            # Pour l'utilisateur, on s'assure au moins du cap global (la bulle ne “collera” pas aux bords)
+            def _apply_user(*_):
+                cap = Window.width * BUBBLE_WIDTH_RATIO
+                bubble.size_hint_x = None
+                bubble.text_size = (min(self.scroll.width * BUBBLE_WIDTH_RATIO, cap), None)
+            self.scroll.bind(width=_apply_user)
+            Clock.schedule_once(_apply_user, 0)
+
         else:
             logo = Image(source="Assets/Logo_IA.png", size_hint=(None, None), size=(40, 40), allow_stretch=True)
             icon_container = BoxLayout(orientation='horizontal', spacing=5, size_hint=(None, None), size=(60, 25))
@@ -212,6 +253,13 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             message_row.add_widget(bubble)
             message_row.add_widget(icon_container)
             bubble_container.add_widget(message_row)
+
+            # >>> Ajuste la largeur de la bulle en fonction de l'espace RÉEL disponible dans la ligne
+            self.adjust_bubble_width_in_row(
+                bubble=bubble,
+                row_widget=message_row,
+                reserved_widgets=[logo, icon_container]
+            )
 
         message_layout.add_widget(bubble_container)
         self.chat_layout.add_widget(message_layout)

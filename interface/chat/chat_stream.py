@@ -14,9 +14,12 @@ class ChatStreamMixin:
             self.last_prompt = prompt
             self.thinking_label.text = "Je réfléchis..."
 
-            # ✅ Cacher le bouton Envoyer
-            self.send_button.opacity = 0
+            # ✅ Masquer le bouton Envoyer
+            self.send_container.opacity = 0
             self.send_button.disabled = True
+
+            # ✅ Réinitialiser le contenu attendu
+            self.response_complete = None
 
             self.stop_stream = False
             Clock.schedule_once(lambda dt: self.show_stop_button())
@@ -46,10 +49,7 @@ class ChatStreamMixin:
         if self.conversation_filepath:
             append_message(self.conversation_filepath, "assistant", self.partial_response)
 
-        # ✅ Mémoriser la réponse complète à afficher
-        self.response_complete = self.partial_response
-
-        Clock.schedule_once(lambda dt: self.on_stream_end())
+        Clock.schedule_once(lambda dt: self.on_stream_end_final())
 
     def prepare_stream_bubble(self):
         self.current_bubble = self.display_message("", is_user=False)
@@ -58,16 +58,21 @@ class ChatStreamMixin:
         if hasattr(self, "current_bubble"):
             self.current_bubble.text = text
 
-            # ✅ Réactiver le bouton seulement quand tout est affiché
-            if hasattr(self, "response_complete") and text == self.response_complete:
-                self.send_button.opacity = 1
-                self.send_button.disabled = False
-                self.hide_stop_button()
+    def on_stream_end_final(self):
+        self.response_complete = self.partial_response
+        self.on_stream_end()
+
+        # ✅ Réaffichage contrôlé après un léger délai
+        Clock.schedule_once(lambda dt: self.reafficher_bouton_envoyer(), 0.2)
+
+    def reafficher_bouton_envoyer(self):
+        self.send_container.opacity = 1
+        self.send_button.disabled = False
+        self.hide_stop_button()
 
     def on_stream_end(self):
         self.thinking_label.text = ""
-        # ❌ Ne pas réactiver ici le bouton
-        # ✅ La réactivation est faite dans update_bubble_text() uniquement
+        # ✅ Réactivation différée dans reafficher_bouton_envoyer()
 
     def show_stop_button(self):
         if self.stop_button is not None:

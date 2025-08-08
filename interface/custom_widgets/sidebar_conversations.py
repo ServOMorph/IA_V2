@@ -3,10 +3,10 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
 from kivy.metrics import dp
+from kivy.graphics import Color, RoundedRectangle
 
 from config import FONT_SIZE
 from conversations.conversation_manager import list_conversations, read_conversation
-
 from interface.custom_widgets import HoverSidebarButton
 
 
@@ -18,6 +18,12 @@ class SidebarConversations(BoxLayout):
         self.padding = 8
         self.spacing = 6
         self.on_select_callback = on_select_callback
+
+        with self.canvas.before:
+            Color(0.1, 0.1, 0.1, 1)  # fond sombre (modifiable)
+            self.bg_rect = RoundedRectangle(radius=[0], pos=self.pos, size=self.size)
+
+        self.bind(pos=self.update_bg, size=self.update_bg)
 
         title = Label(
             text="[b]Conversations[/b]",
@@ -54,6 +60,10 @@ class SidebarConversations(BoxLayout):
 
         scroll.add_widget(layout)
         self.add_widget(scroll)
+
+    def update_bg(self, *args):
+        self.bg_rect.pos = self.pos
+        self.bg_rect.size = self.size
 
     def extract_preview(self, filename):
         try:

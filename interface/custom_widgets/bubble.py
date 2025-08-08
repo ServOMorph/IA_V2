@@ -21,7 +21,18 @@ class Bubble(Label):
         self.padding = BUBBLE_PADDING
         self.is_user = is_user
         self.size_hint = (None, None)
+
+        # Largeur max de la bulle en fonction de la taille de la fenêtre
         self.text_size = (Window.width * BUBBLE_WIDTH_RATIO, None)
+
+        # Ajuster automatiquement la largeur si la fenêtre est redimensionnée
+        Window.bind(
+            on_resize=lambda *a: setattr(
+                self, 'text_size', (Window.width * BUBBLE_WIDTH_RATIO, None)
+            )
+        )
+
+        # Ajuster la taille du label à la texture
         self.bind(texture_size=self.setter('size'))
 
         Clock.schedule_once(self.init_background)

@@ -3,10 +3,10 @@ OLLAMA_URL = "http://localhost:11434/api/chat"
 OLLAMA_MODEL = "mistral"
 
 # Configuration fenêtre
-WINDOW_WIDTH = 700
-WINDOW_HEIGHT = 700
-WINDOW_LEFT = 100
-WINDOW_TOP = 200
+WINDOW_WIDTH = 960
+WINDOW_HEIGHT = 1000
+WINDOW_LEFT = 0
+WINDOW_TOP = 30
 
 # Couleurs de l'interface inspirées de Mistral AI Chat (ajustées)
 BACKGROUND_COLOR = (0.09, 0.09, 0.11, 1)

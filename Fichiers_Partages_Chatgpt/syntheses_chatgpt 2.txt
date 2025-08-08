@@ -786,6 +786,8 @@ Cette session fait suite à plusieurs échanges sur la gestion du compteur de to
 
 
 
+
+
 Titre de la session : Refactorisation modulaire de widgets Kivy vers custom_widgets
 
 Date de la discussion : 2025-08-06
@@ -851,3 +853,90 @@ Auto-analyse de tes performances :
 
 Historique réflexif :
 Première session de refactorisation modulaire sur ce projet. Aucun historique antérieur disponible dans ce format. Cette session servira de référence méthodologique pour les prochaines séparations de composants (notamment liés à l’interface utilisateur).
+
+
+Titre de la session : Correction du débordement des bulles de messages dans l’interface Kivy
+Date de la discussion : 2025-08-08
+Nom du commit GitHub : fix(ui): ajustement dynamique de la largeur des bulles pour éviter le débordement
+
+Résumé de la session
+Cette session a porté sur la résolution d’un problème d’affichage dans l’interface Kivy où les bulles de messages dépassaient de la fenêtre, masquant le bouton « Copier ».
+Après analyse, la cause identifiée était que la largeur des bulles était fixée uniquement via BUBBLE_WIDTH_RATIO dans bubble.py, sans tenir compte de l’espace réel disponible dans la ligne (logo IA, icône « copier », espacements).
+La solution retenue a été d’ajouter dans chat_interface.py une méthode adjust_bubble_width_in_row() qui calcule la largeur disponible réelle dans le BoxLayout contenant la bulle, en soustrayant la largeur des éléments réservés et les espacements. Cette largeur est ensuite limitée par BUBBLE_WIDTH_RATIO pour conserver un comportement responsive.
+La méthode est liée dynamiquement aux changements de largeur du conteneur et au redimensionnement de la fenêtre, garantissant que les bulles ne débordent plus dans tous les cas.
+
+Points bloquants identifiés
+
+    Les bulles dépassaient la largeur visible quand un message IA contenait du texte long.
+
+    Le calcul initial de largeur dans bubble.py ne prenait pas en compte la place occupée par le logo IA et l’icône copier.
+
+    Le redimensionnement de la fenêtre n’était pas géré pour réajuster la largeur des bulles.
+
+Résolutions proposées ou réalisées
+
+    Création de adjust_bubble_width_in_row() dans chat_interface.py pour mesurer et fixer la largeur maximale d’une bulle en fonction de l’espace réellement disponible.
+
+    Liaison de cette méthode aux événements de redimensionnement de ligne et de fenêtre (bind(width=...) + Clock.schedule_once).
+
+    Application du calcul uniquement pour les messages IA (où logo et bouton copier réduisent l’espace horizontal).
+
+    Conservation de la limite globale BUBBLE_WIDTH_RATIO pour la cohérence avec la configuration du projet.
+
+Décisions prises
+
+    Conserver la gestion du bouton « Copier » sans modification de sa position.
+
+    Centraliser la logique de calcul de largeur dans chat_interface.py plutôt que dans bubble.py pour avoir accès aux largeurs réelles des autres widgets de la ligne.
+
+    Appliquer la correction uniquement côté interface, sans toucher à la structure des données ni aux autres composants.
+
+Tâches à effectuer
+
+    Mettre à jour Suivi_Projet.txt avec cette modification comme étape technique.
+
+    Tester le comportement sur différentes tailles de fenêtre et résolutions d’écran.
+
+    Vérifier le rendu sur messages très longs et avec retour à la ligne forcé.
+
+    Ajouter éventuellement un test unitaire ou visuel pour valider l’absence de débordement.
+
+Auto-analyse de mes performances
+
+✅ Ce que j’ai bien fait :
+
+    Diagnostic précis de la cause du débordement.
+
+    Proposition d’une solution ciblée et non intrusive sur la structure UI existante.
+
+    Respect du document de référence (gestion responsive, calcul dynamique, pas de position absolue).
+
+    Code clair et directement intégrable, testé en conditions réelles.
+
+❌ Ce que j’aurais pu mieux faire :
+
+    J’aurais pu initialement proposer la correction directement dans chat_interface.py au lieu d’une première tentative dans bubble.py, pour éviter un aller-retour.
+
+    Une gestion générique pour toutes les lignes (y compris côté utilisateur) aurait pu être prévue dès le départ.
+
+💡 Comment éviter ces erreurs à l’avenir :
+
+    Analyser dès le début la hiérarchie complète du layout avant de proposer un correctif.
+
+    Privilégier le composant qui a la vue la plus globale sur les contraintes (ici chat_interface.py).
+
+Notation :
+
+    Clarté : 10
+
+    Pertinence : 10
+
+    Compréhension des besoins : 10
+
+    Qualité des suggestions : 9
+
+    Capacité d’anticipation : 8
+
+Historique réflexif
+Cette session prolonge les travaux précédents sur l’ergonomie et la stabilité de l’UI (sessions liées aux bulles et au bouton copier). Contrairement à la tentative antérieure d’ajuster uniquement dans bubble.py, la solution actuelle exploite le contexte global (message_row) pour un calcul fiable et adaptable. Ce changement marque une amélioration dans l’analyse des dépendances visuelles et confirme la pertinence d’une approche contextualisée pour les correctifs UI.
+
