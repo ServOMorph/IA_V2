@@ -74,3 +74,6 @@
         📄 rapport_test_memoire_mistral.txt
         📄 test_conversations_manager.py
         📄 test_memoire_mistral.py
+
+
+

@@ -198,19 +198,36 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         self.clear_chat()
         self.conversation_filepath = chemin
 
-        lignes = contenu.strip().split("\n")
-        for ligne in lignes:
+        current_role = None
+        current_lines = []
+
+        for ligne in contenu.splitlines():
             if ligne.startswith("[") and "]" in ligne:
+                # Sauvegarder le bloc précédent si existant
+                if current_role and current_lines:
+                    is_user = current_role.lower() == "user"
+                    self.display_message("\n".join(current_lines).strip(), is_user)
+                    current_lines.clear()
+
+                # Extraire rôle + début du message
                 try:
                     _, reste = ligne.split("]", 1)
                     role, message = reste.strip().split(":", 1)
-                    role = role.strip().lower()
-                    message = message.strip()
-                    if role in ("user", "assistant"):
-                        is_user = role == "user"
-                        self.display_message(message, is_user)
+                    current_role = role.strip()
+                    current_lines.append(message.strip())
                 except ValueError:
-                    continue
+                    # Ligne mal formée → on la met brute dans le bloc courant
+                    if current_role:
+                        current_lines.append(ligne.strip())
+            else:
+                # Ligne de continuation du même message
+                if current_role:
+                    current_lines.append(ligne)
+
+        # Dernier bloc
+        if current_role and current_lines:
+            is_user = current_role.lower() == "user"
+            self.display_message("\n".join(current_lines).strip(), is_user)
 
     def send_message(self, instance):
         user_input = self.input.text.strip()
