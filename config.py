@@ -39,3 +39,21 @@ DEV_SHORTCUTS = {
     "f3": ("Msg moyen", "Quel est le plus grand océan du monde ?"),
     "f4": ("Msg long", "Explique-moi le fonctionnement d’un moteur à combustion interne.")
 }
+
+# =========================
+# 🎛️ Sidebar / Conversations
+# (Doc §12 : centraliser les constantes modifiables)
+# =========================
+SIDEBAR_ROW_HEIGHT = 42           # hauteur d'une ligne (px)
+SIDEBAR_ICON_SIZE = (20, 20)      # taille icône menu "..."
+SIDEBAR_ICON_PADDING = (6, 6)     # padding autour de l'icône
+SIDEBAR_PREVIEW_MAXLEN = 80       # longueur max du preview (avec ellipsis)
+
+# libellés menu contextuel
+MENU_ACTIONS = ("Renommer", "Supprimer")
+
+# chemins d'icônes (ajuste selon ton arborescence)
+ICON_MORE_PATH = "assets/icons/more_vert.png"
+ICON_EDIT_PATH = "assets/icons/edit.png"
+ICON_DELETE_PATH = "assets/icons/delete.png"
+ICON_CHAT_PATH = "assets/icons/chat.png"
