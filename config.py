@@ -64,3 +64,19 @@ ICON_MORE_PATH = "assets/icons/more_vert.png"
 ICON_EDIT_PATH = "assets/icons/edit.png"
 ICON_DELETE_PATH = "assets/icons/delete.png"
 ICON_CHAT_PATH = "assets/icons/chat.png"
+
+# Icône bouton "plus" à gauche de la zone de saisie
+ICON_PLUS_PATH = "Assets/plus.png"
+
+# =========================
+# 📎 Docs de référence par conversation
+# =========================
+# Registre des pièces jointes par conversation (Doc §12 : centralisation)
+ATTACHED_DOCS_REGISTRY = "conversations/sav_conversations/attached_docs.json"
+
+# Enrobage envoyé au modèle pour contextualiser les docs
+REFERENCE_DOCS_HEADER = "[DOCS_PARTAGES_DE_LA_CONVERSATION]"
+REFERENCE_DOCS_FOOTER = "[/DOCS_PARTAGES_DE_LA_CONVERSATION]"
+
+# Taille maximale lue par doc (sécurité simple)
+REFERENCE_DOC_MAX_BYTES = 2_000_000  # ~2MB

@@ -9,12 +9,17 @@ from kivy.core.text import Label as CoreLabel
 from kivy.core.window import Window
 from kivy.clock import Clock
 
+import os
+
 from config import (
     BACKGROUND_COLOR, TEXTINPUT_BACKGROUND_COLOR, TEXT_COLOR, HINT_TEXT_COLOR,
     BUTTON_SEND_COLOR, FONT_SIZE, BORDER_RADIUS, SCROLLVIEW_SIZE_HINT_Y,
     INPUT_SIZE_HINT_Y, BUTTONS_SIZE_HINT_Y, DEV_MODE, DEV_SHORTCUTS,
-    # >>> ajouté pour le calcul de largeur maximum des bulles
-    BUBBLE_WIDTH_RATIO, 
+    # >>> calcul de largeur maximum des bulles
+    BUBBLE_WIDTH_RATIO,
+    # >>> bouton plus et contexte docs
+    ICON_PLUS_PATH,
+    REFERENCE_DOCS_HEADER, REFERENCE_DOCS_FOOTER,
 )
 
 from ..custom_widgets import HoverButton, ImageHoverButton, Bubble, SidebarConversations
@@ -23,7 +28,10 @@ from .chat_events import ChatEventsMixin
 from .chat_stream import ChatStreamMixin
 from .chat_utils import ChatUtilsMixin
 
-from conversations.conversation_manager import create_new_conversation, append_message, read_conversation
+from conversations.conversation_manager import (
+    create_new_conversation, append_message, read_conversation,
+    add_reference_doc, get_reference_docs
+)
 
 Window.clearcolor = BACKGROUND_COLOR
 
@@ -33,6 +41,8 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         super().__init__(**kwargs)
 
         self.conversation_filepath = None
+        self._reference_docs_paths = []
+        self._reference_docs_text = ""  # concat des contenus courants
 
         background = Image(
             source="Assets/Qui je suis .png",
@@ -46,7 +56,7 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         global_layout = BoxLayout(orientation='horizontal', size_hint=(1, 1))
 
         sidebar = SidebarConversations(on_select_callback=self.load_conversation)
-        self.sidebar = sidebar  # <<< ajouté pour pouvoir mettre à jour la sidebar
+        self.sidebar = sidebar
         global_layout.add_widget(sidebar)
 
         main_layout = BoxLayout(orientation='vertical', size_hint=(0.75, 1), padding=0, spacing=0)
@@ -56,7 +66,17 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         self.chat_layout.bind(minimum_height=self.chat_layout.setter('height'))
         self.scroll.add_widget(self.chat_layout)
 
+        # ----- Zone de saisie + bouton plus (gauche) + bouton envoyer (droite)
         input_layout = BoxLayout(size_hint_y=INPUT_SIZE_HINT_Y, padding=10, spacing=10)
+
+        # Bouton plus à gauche
+        self.plus_button = ImageHoverButton(
+            source=ICON_PLUS_PATH,
+            size_hint=(None, None),
+            size=(30, 30)
+        )
+        self.plus_button.bind(on_press=self.on_plus_button_click)
+        input_layout.add_widget(self.plus_button)
 
         self.input = TextInput(
             hint_text='Votre message...', multiline=True,
@@ -64,7 +84,7 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             foreground_color=TEXT_COLOR,
             cursor_color=TEXT_COLOR,
             hint_text_color=HINT_TEXT_COLOR,
-            size_hint_x=0.85
+            size_hint_x=0.8  # ajusté pour tenir compte du bouton plus
         )
 
         self.send_container = BoxLayout(
@@ -79,12 +99,12 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             size_hint=(None, None),
             size=(50, 50)
         )
-        
         self.send_button.bind(on_press=self.send_message)
         self.send_container.add_widget(self.send_button)
 
         input_layout.add_widget(self.input)
         input_layout.add_widget(self.send_container)
+        # ----- fin zone de saisie
 
         self.thinking_label = Label(
             text='',
@@ -159,6 +179,94 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
 
         self.setup_event_bindings()
 
+    # ---------- Gestion du bouton plus : ouverture du sélecteur natif Windows ----------
+    def on_plus_button_click(self, instance):
+        # S'assure qu'une conversation existe pour lier le doc
+        if self.conversation_filepath is None:
+            self.conversation_filepath = create_new_conversation()
+            if hasattr(self, "sidebar"):
+                try:
+                    self.sidebar.build_list()
+                    filename = os.path.basename(self.conversation_filepath)
+                    if hasattr(self.sidebar, "_apply_selection"):
+                        self.sidebar._apply_selection(filename)
+                except Exception:
+                    import traceback; traceback.print_exc()
+
+        # Fenêtre de dialogue native Windows via Tkinter
+        try:
+            import tkinter as tk
+            from tkinter import filedialog
+            root = tk.Tk()
+            root.withdraw()
+            # force au premier plan
+            try:
+                root.wm_attributes("-topmost", True)
+            except Exception:
+                pass
+            file_path = filedialog.askopenfilename(
+                title="Sélectionner un document .txt",
+                filetypes=[("Fichiers texte", "*.txt")]
+            )
+            try:
+                root.destroy()
+            except Exception:
+                pass
+
+            if file_path:
+                try:
+                    add_reference_doc(self.conversation_filepath, file_path)
+                    # Recharge la liste + contenu en mémoire
+                    self._load_reference_docs_for_current_conversation()
+                    # Feedback visuel minimal (bulle système)
+                    self.display_message(f"Document lié : {os.path.basename(file_path)}", is_user=False)
+                except Exception:
+                    import traceback; traceback.print_exc()
+
+        except Exception:
+            # Si Tkinter indisponible, on affiche un message d’information dans le chat
+            self.display_message(
+                "Impossible d’ouvrir la boîte de dialogue Windows (Tkinter indisponible).",
+                is_user=False
+            )
+
+    # ---------- Utilitaires docs : (re)charge pour la conv courante ----------
+    def _load_reference_docs_for_current_conversation(self):
+        self._reference_docs_paths = []
+        self._reference_docs_text = ""
+        if not self.conversation_filepath:
+            return
+        try:
+            paths = get_reference_docs(self.conversation_filepath)
+            self._reference_docs_paths = paths or []
+            chunks = []
+            for p in self._reference_docs_paths:
+                try:
+                    # relit le fichier (comportement voulu à chaque ouverture)
+                    with open(p, "r", encoding="utf-8", errors="ignore") as f:
+                        data = f.read()
+                        chunks.append(data)
+                except Exception:
+                    # si le fichier n'existe plus, on ignore silencieusement
+                    pass
+            if chunks:
+                self._reference_docs_text = "\n\n".join(chunks)
+            else:
+                self._reference_docs_text = ""
+        except Exception:
+            import traceback; traceback.print_exc()
+
+    # ---------- Construit le prompt utilisateur enrichi des docs attachés ----------
+    def _build_prompt_with_docs(self, user_input: str) -> str:
+        if self._reference_docs_text.strip():
+            return (
+                f"{REFERENCE_DOCS_HEADER}\n"
+                f"{self._reference_docs_text}\n"
+                f"{REFERENCE_DOCS_FOOTER}\n\n"
+                f"{user_input}"
+            )
+        return user_input
+
     def adjust_bubble_width_in_row(self, bubble, row_widget, reserved_widgets):
         def _apply(*_):
             reserved = sum(w.width for w in reserved_widgets)
@@ -182,6 +290,9 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
 
         self.clear_chat()
         self.conversation_filepath = chemin
+
+        # recharge les docs de référence liés à cette conversation
+        self._load_reference_docs_for_current_conversation()
 
         current_role = None
         current_lines = []
@@ -214,18 +325,22 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             self.input.text = ""
             if self.conversation_filepath is None:
                 self.conversation_filepath = create_new_conversation()
-                # >>> Rafraîchir la sidebar et sélectionner la nouvelle conversation
+                # Rafraîchir la sidebar et sélectionner la nouvelle conversation
                 if hasattr(self, "sidebar"):
                     try:
                         self.sidebar.build_list()
-                        import os
                         filename = os.path.basename(self.conversation_filepath)
                         if hasattr(self.sidebar, "_apply_selection"):
                             self.sidebar._apply_selection(filename)
                     except Exception:
                         import traceback; traceback.print_exc()
+
+            # On enregistre le message utilisateur "pur" dans le .txt
             append_message(self.conversation_filepath, "user", user_input)
-            Clock.schedule_once(lambda dt: self.lancer_generation(user_input))
+
+            # On envoie à l'IA une version enrichie avec les docs liés
+            enriched = self._build_prompt_with_docs(user_input)
+            Clock.schedule_once(lambda dt: self.lancer_generation(enriched))
 
     def display_message(self, text, is_user):
         bubble = Bubble(text=text, is_user=is_user)
