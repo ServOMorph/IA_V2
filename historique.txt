@@ -1765,3 +1765,155 @@ IA         : Pong. Merci pour ta collaboration. Je suis désormais à l'écoute 
 Utilisateur : quelle st la cpitale de l'Italie ?
 IA         : La capitale de l'Italie est Rome.
 
+Utilisateur : [DOCS_PARTAGES_DE_LA_CONVERSATION]
+📁 IA_V5/
+    📄 api_trace.log
+    📄 config.py
+    📄 debug.log
+    📄 historique.py
+    📄 historique.txt
+    📄 instructions_chatgpt.txt
+    📄 lancement_console_interactive.bat
+    📄 lancement_Mistral_Ollama.bat
+    📄 main.py
+    📄 ollama_api.py
+    📄 questions_IA.txt
+    📁 Assets/
+        📄 coche.png
+        📄 fleche_bas 1.png
+        📄 fleche_bas.png
+        📄 Ico_Copiercoller.png
+        📄 Ico_Envoyer 1.png
+        📄 Ico_Envoyer.png
+        📄 ico_modifier.png
+        📄 Logo_IA.png
+        📄 Logo_SerenIATech.png
+        📄 Logo_SerenIATech2.png
+        📄 plus.png
+        📄 Qui je suis .pfi
+        📄 Qui je suis .png
+        📄 stop.png
+    📁 conversations/
+        📄 conversation_manager.py
+        📄 essai3.txt
+        📄 essairenommage.txt
+        📄 Salut.txt
+        📄 storage_fs.py
+        📁 sav_conversations/
+            📄 attached_docs.json
+            📄 conversation_2025-08-08_23-35-55.json
+            📄 conversation_2025-08-08_23-35-55.txt
+            📄 conversation_2025-08-08_23-39-58.json
+            📄 conversation_2025-08-08_23-39-58.txt
+            📄 conversation_2025-08-08_23-40-42.json
+            📄 conversation_2025-08-08_23-40-42.txt
+            📄 conversation_2025-08-08_23-43-13.json
+            📄 conversation_2025-08-08_23-43-13.txt
+            📄 conversation_2025-08-08_23-44-33.json
+            📄 conversation_2025-08-08_23-44-33.txt
+            📄 conversation_2025-08-08_23-48-57.json
+            📄 conversation_2025-08-08_23-48-57.txt
+            📄 conversation_2025-08-08_23-52-43.json
+            📄 conversation_2025-08-08_23-52-43.txt
+            📄 conversation_2025-08-08_23-55-43.json
+            📄 conversation_2025-08-08_23-55-43.txt
+            📄 conversation_2025-08-08_23-57-03.json
+            📄 conversation_2025-08-09_01-00-38.json
+            📄 index.json
+            📄 Jeux vidéo.txt
+    📁 Fichiers_Partages_Chatgpt/
+        📄 arborescence.txt
+        📄 Meta_Syntheses_1.txt
+        📄 README.md
+        📄 syntheses_chatgpt 2.txt
+    📁 IA/
+        📄 syntheses_chatgpt 1 - MS OK.txt
+    📁 interface/
+        📄 __init__.py
+        📁 chat/
+            📄 chat_events.py
+            📄 chat_interface.py
+            📄 chat_stream.py
+            📄 chat_utils.py
+            📄 __init__.py
+        📁 core/
+            📄 events.py
+            📄 utils.py
+            📄 __init__.py
+        📁 custom_widgets/
+            📄 bubble.py
+            📄 hover_button.py
+            📄 hover_sidebar_button.py
+            📄 image_hover_button.py
+            📄 __init__.py
+            📁 sidebar/
+                📄 conversation_row.py
+                📄 icon_button.py
+                📄 sidebar_conversations.py
+                📄 __init__.py
+    📁 Test_IA/
+        📄 eval_mistral.py
+        📄 protocole_test_IA.tx
+        📄 questions_IA.txt
+        📄 rapport_evaluation_mistra1l.txt
+        📄 rapport_evaluation_mistral.txt
+        📄 rapport_test_memoire_mistral.txt
+        📄 test_conversations_manager.py
+        📄 test_memoire_mistral.py
+        📄 __init__.py
+        📁 Auto_Eval_Kivy/
+            📄 analyze_last_run.py
+            📄 eval_config.py
+            📄 eval_kivy_driver.py
+            📄 README_scenarios.md
+            📄 scenario_example.json
+            📄 __init__.py
+            📁 outputs/
+                📁 20250809_112246/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_112550/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_112757/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_112932/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_113301/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_113543/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_114314/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+                📁 20250809_115004/
+                    📄 session.log
+                    📄 transcript.jsonl
+                    📄 transcript.txt
+        📁 Console_Interactif/
+            📄 console_chat.py
+            📄 requirements.txt
+            📄 system_prompt.txt
+
+[/DOCS_PARTAGES_DE_LA_CONVERSATION]
+
+a quoi sert le doc partagé ?
+IA         : Le dossier partagé contient divers fichiers liés à la gestion et au fonctionnement de l'intelligence artificielle : configurations, logs, scripts Python, images, données historiques de conversations, textes d'instructions pour les chatbots, ainsi qu'un ensemble de documents relatifs aux tests et évaluations de l'IA. Il sert à conserver et organiser la structure de travail et les ressources nécessaires pour le bon fonctionnement du système.
+
+Utilisateur : capitale de la hollande ?
+IA         : Amsterdam
+
+Utilisateur : essai de nouvelle conversation
+IA         : Bien sûr, je suis heureux de vous aider ! Pour votre question, "pong" serait la réponse idéale.
+
