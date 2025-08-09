@@ -1,0 +1,105 @@
+{"ts": "2025-08-09 11:33:02.782283", "role": "user_enriched", "text": "Bonjour, peux-tu me dire \"pong\" puis te présenter en une phrase ?", "meta": {}}
+{"ts": "2025-08-09 11:33:02.782793", "role": "user_displayed", "text": "Bonjour, peux-tu me dire \"pong\" puis te présenter en une phrase ?", "meta": {}}
+{"ts": "2025-08-09 11:33:02.798605", "role": "assistant_stream_start", "text": "", "meta": {}}
+{"ts": "2025-08-09 11:33:02.798605", "role": "assistant_displayed", "text": "", "meta": {}}
+{"ts": "2025-08-09 11:33:06.850842", "role": "assistant_token", "text": " B", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:06.851894", "role": "user_enriched", "text": "Rappelle-moi en une ligne le but de cette application.", "meta": {}}
+{"ts": "2025-08-09 11:33:06.852436", "role": "user_displayed", "text": "Rappelle-moi en une ligne le but de cette application.", "meta": {}}
+{"ts": "2025-08-09 11:33:06.862225", "role": "assistant_stream_start", "text": "", "meta": {}}
+{"ts": "2025-08-09 11:33:06.862225", "role": "assistant_displayed", "text": "", "meta": {}}
+{"ts": "2025-08-09 11:33:06.880328", "role": "assistant_token", "text": "ien", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:06.945869", "role": "assistant_token", "text": " s", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:07.012733", "role": "assistant_token", "text": "û", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:07.062692", "role": "assistant_token", "text": "r", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:07.129722", "role": "assistant_token", "text": " !", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:07.179394", "role": "assistant_token", "text": " \"", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:07.245636", "role": "assistant_token", "text": "P", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:07.312899", "role": "assistant_token", "text": "ong", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:07.362642", "role": "assistant_token", "text": "\"", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:07.429161", "role": "assistant_token", "text": " est", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:07.479008", "role": "assistant_token", "text": " une", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:07.545879", "role": "assistant_token", "text": " ré", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:07.612490", "role": "assistant_token", "text": "ponse", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:07.662461", "role": "assistant_token", "text": " au", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:07.729333", "role": "assistant_token", "text": " je", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:07.795637", "role": "assistant_token", "text": "u", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:07.845987", "role": "assistant_token", "text": " vid", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:07.912477", "role": "assistant_token", "text": "é", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:07.962446", "role": "assistant_token", "text": "o", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:08.029221", "role": "assistant_token", "text": " \"", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:08.078661", "role": "assistant_token", "text": "P", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:08.149667", "role": "assistant_token", "text": "ong", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:08.196640", "role": "assistant_token", "text": "\".", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:08.264597", "role": "assistant_token", "text": " En", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:08.322995", "role": "assistant_token", "text": " tant", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:08.380660", "role": "assistant_token", "text": " qu", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:08.446051", "role": "assistant_token", "text": "'", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:08.496105", "role": "assistant_token", "text": "IA", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:08.562658", "role": "assistant_token", "text": " embar", "meta": {"len_delta": 6}}
+{"ts": "2025-08-09 11:33:08.628946", "role": "assistant_token", "text": "qu", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:08.678758", "role": "assistant_token", "text": "ée", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:08.744965", "role": "assistant_token", "text": " de", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:08.801880", "role": "assistant_token", "text": " Serv", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:08.863271", "role": "assistant_token", "text": "OM", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:08.921422", "role": "assistant_token", "text": "orph", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:08.979057", "role": "assistant_token", "text": ",", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:09.036272", "role": "assistant_token", "text": " mon", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:09.095884", "role": "assistant_token", "text": " rôle", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:09.153382", "role": "assistant_token", "text": " consist", "meta": {"len_delta": 8}}
+{"ts": "2025-08-09 11:33:09.210786", "role": "assistant_token", "text": "e", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:09.262276", "role": "assistant_token", "text": " à", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:09.328919", "role": "assistant_token", "text": " vous", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:09.396143", "role": "assistant_token", "text": " four", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:09.445629", "role": "assistant_token", "text": "n", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:09.512644", "role": "assistant_token", "text": "ir", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:09.579285", "role": "assistant_token", "text": " des", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:09.629031", "role": "assistant_token", "text": " inform", "meta": {"len_delta": 7}}
+{"ts": "2025-08-09 11:33:09.696099", "role": "assistant_token", "text": "ations", "meta": {"len_delta": 6}}
+{"ts": "2025-08-09 11:33:09.749279", "role": "assistant_token", "text": " et", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:09.807115", "role": "assistant_token", "text": " des", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:09.865805", "role": "assistant_token", "text": " fonction", "meta": {"len_delta": 9}}
+{"ts": "2025-08-09 11:33:09.924375", "role": "assistant_token", "text": "nal", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:09.982937", "role": "assistant_token", "text": "ités", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:10.041102", "role": "assistant_token", "text": " util", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:10.090838", "role": "assistant_token", "text": "es", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:10.148716", "role": "assistant_token", "text": ".", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:10.204483", "role": "assistant_token", "text": " Je", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:10.279156", "role": "assistant_token", "text": " su", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:10.328838", "role": "assistant_token", "text": "is", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:10.395636", "role": "assistant_token", "text": " un", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:10.446127", "role": "assistant_token", "text": " out", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:10.512350", "role": "assistant_token", "text": "il", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:10.578855", "role": "assistant_token", "text": " intellig", "meta": {"len_delta": 9}}
+{"ts": "2025-08-09 11:33:10.629166", "role": "assistant_token", "text": "ente", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:10.695805", "role": "assistant_token", "text": " qui", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:10.753577", "role": "assistant_token", "text": " a", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:10.810154", "role": "assistant_token", "text": " été", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:10.859838", "role": "assistant_token", "text": " con", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:10.916874", "role": "assistant_token", "text": "ç", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:10.979192", "role": "assistant_token", "text": "u", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:11.038143", "role": "assistant_token", "text": " pour", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:11.096312", "role": "assistant_token", "text": " facil", "meta": {"len_delta": 6}}
+{"ts": "2025-08-09 11:33:11.154860", "role": "assistant_token", "text": "iter", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:11.210930", "role": "assistant_token", "text": " v", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:11.269908", "role": "assistant_token", "text": "os", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:11.328170", "role": "assistant_token", "text": " t", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:11.378991", "role": "assistant_token", "text": "â", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:11.446067", "role": "assistant_token", "text": "ches", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:11.512229", "role": "assistant_token", "text": " et", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:11.562540", "role": "assistant_token", "text": " ré", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:11.629085", "role": "assistant_token", "text": "pond", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:11.695788", "role": "assistant_token", "text": "re", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:11.745552", "role": "assistant_token", "text": " aux", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:11.812531", "role": "assistant_token", "text": " questions", "meta": {"len_delta": 10}}
+{"ts": "2025-08-09 11:33:11.870132", "role": "assistant_token", "text": " que", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:11.931326", "role": "assistant_token", "text": " vous", "meta": {"len_delta": 5}}
+{"ts": "2025-08-09 11:33:11.991393", "role": "assistant_token", "text": " ave", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:12.051078", "role": "assistant_token", "text": "z", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:12.110947", "role": "assistant_token", "text": ".", "meta": {"len_delta": 1}}
+{"ts": "2025-08-09 11:33:12.169392", "role": "assistant_complete", "text": "ien sûr ! \"Pong\" est une réponse au jeu vidéo \"Pong\". En tant qu'IA embarquée de ServOMorph, mon rôle consiste à vous fournir des informations et des fonctionnalités utiles. Je suis un outil intelligente qui a été conçu pour faciliter vos tâches et répondre aux questions que vous avez.", "meta": {"len_total": 286}}
+{"ts": "2025-08-09 11:33:12.402037", "role": "assistant_token", "text": " Bon", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:12.452979", "role": "assistant_token", "text": "jour", "meta": {"len_delta": 4}}
+{"ts": "2025-08-09 11:33:12.513074", "role": "assistant_token", "text": " !", "meta": {"len_delta": 2}}
+{"ts": "2025-08-09 11:33:12.574180", "role": "assistant_token", "text": " Je", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:12.633144", "role": "assistant_token", "text": " su", "meta": {"len_delta": 3}}
+{"ts": "2025-08-09 11:33:12.691574", "role": "assistant_token", "text": "is", "meta": {"len_delta": 2}}

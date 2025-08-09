@@ -1,0 +1,2 @@
+[2025-08-09 11:27:58.678732] USER: Bonjour, peux-tu me dire "pong" puis te présenter en une phrase ?
+[2025-08-09 11:28:00.250927] USER: Rappelle-moi en une ligne le but de cette application.

@@ -1,0 +1,10 @@
+[2025-08-09 11:33:01.733461] Driver démarré. | meta={"out_dir": "C:\\Users\\raph6\\Documents\\ServOMorph\\IA_V5\\Test_IA\\Auto_Eval_Kivy\\outputs\\20250809_113301"}
+[2025-08-09 11:33:02.641808] Scénario chargé. | meta={"steps": 6, "path": "C:\\Users\\raph6\\Documents\\ServOMorph\\IA_V5\\Test_IA\\Auto_Eval_Kivy\\scenario_example.json"}
+[2025-08-09 11:33:02.641808] Lancement de l’application Kivy... | meta={}
+[2025-08-09 11:33:02.689759] Hooks installés. | meta={"hooks": ["send_message", "display_message", "lancer_generation", "prepare_stream_bubble", "update_bubble_text", "on_stream_end_final"]}
+[2025-08-09 11:33:02.689759] Scénario planifié. | meta={}
+[2025-08-09 11:33:02.703020] Étape send_user exécutée. | meta={"text_len": 65}
+[2025-08-09 11:33:06.814694] Étape send_user exécutée. | meta={"text_len": 54}
+[2025-08-09 11:33:07.362642] expect_reply OK | meta={"regex": "pong|présent|application", "elapsed_ms": 4672.358}
+[2025-08-09 11:33:12.716571] App.stop() demandé par scénario. | meta={}
+[2025-08-09 11:33:12.716571] Application Kivy terminée. | meta={}

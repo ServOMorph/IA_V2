@@ -1,107 +1,32 @@
-2025-08-09 10:46:52 [OUTGOING] POST http://localhost:11434/api/chat (stream=True)
-2025-08-09 10:46:52 [PAYLOAD] {
-2025-08-09 10:46:52 [PAYLOAD]   "model": "mistral",
-2025-08-09 10:46:52 [PAYLOAD]   "messages": [
-2025-08-09 10:46:52 [PAYLOAD]     {
-2025-08-09 10:46:52 [PAYLOAD]       "role": "system",
-2025-08-09 10:46:52 [PAYLOAD]       "content": "Dans cette conversation, réponds toujours de façon très concise,\nsans aucun commentaire ni phrase inutile. Réponds uniquement à la question.\nExemple : 'De quelle couleur sont généralement les bananes ?' → 'Jaune ou verte'."
-2025-08-09 10:46:52 [PAYLOAD]     },
-2025-08-09 10:46:52 [PAYLOAD]     {
-2025-08-09 10:46:52 [PAYLOAD]       "role": "user",
-2025-08-09 10:46:52 [PAYLOAD]       "content": "ecris une synthèse du doc partagé  en 10 mots"
-2025-08-09 10:46:52 [PAYLOAD]     },
-2025-08-09 10:46:52 [PAYLOAD]     {
-2025-08-09 10:46:52 [PAYLOAD]       "role": "user",
-2025-08-09 10:46:52 [PAYLOAD]       "content": "[DOCS_PARTAGES_DE_LA_CONVERSATION]\nMéta-Synthèse des sessions : \n\n\n\n## 🧭 Objectif du document\n\nCe document agit comme une **mémoire structurée** du projet IA\\_V2, en lien avec les sessions menées avec ChatGPT. Il a pour fonction de :\n\n* Maintenir une **continuité dans le raisonnement** technique.\n* Éviter les **reprises redondantes** ou les erreurs déjà corrigées.\n* Guider l’évolution du projet en assurant **cohérence, traçabilité et réutilisabilité**.\n* Offrir à ChatGPT un **référentiel contextuel** lui permettant d’ajuster ses suggestions en fonction de l’historique du projet.\n\n## 📅 Chronologie synthétique des sessions\n\n| Date       | Titre                                                       | Étape | Mot-clé principal      |\n| ---------- | ----------------------------------------------------------- | ----- | ---------------------- |\n| 2025-08-06 | Création d’une interface Kivy pour interagir avec Ollama    | 1     | Interface de base      |\n| 2025-08-06 | Refonte de l'affichage et des logs de l'application Kivy IA | 6     | Style chat + log       |\n| 2025-08-06 | Refonte visuelle des composants interactifs                 | 7     | HoverButton            |\n| 2025-08-06 | Intégration d’un mode développeur avec raccourcis clavier   | 10    | Dev Mode               |\n| 2025-08-06 | Amélioration visuelle de l’interface (bulles, contraste)    | 9     | UI esthétique          |\n| 2025-08-06 | Analyse et enrichissement de la documentation du projet     | -     | README & structure.md  |\n| 2025-08-06 | Ajout d’instructions de lancement dans le README            | -     | README – Lancement     |\n| 2025-08-06 | Affichage adaptatif des réponses longues                    | -     | Bubble width           |\n| 2025-08-06 | Refonte modulaire de l’interface et séparation des fichiers | 2     | Architecture modulaire |\n| 2025-08-06 | Refactorisation des constantes dans config.py               | -     | config.py centralisé   |\n| 2025-08-06 | Mise en place du protocole de benchmark                     | 8     | Test IA local          |\n\n## 🔍 Enseignements clés (hiérarchisés)\n\n### 🛠 Résolution de bugs et stabilité (threading, affichage, crash)\n\n* Thread secondaire interdit : correction via `Clock.schedule_once`.\n* Protection via `try/except` autour de mises à jour UI.\n* Correction du bug de crash sur prompt multiligne.\n\n**Compétences mobilisées :** threading Python, gestion d’événements Kivy.\n\n### 🎨 Design visuel & UI (UX cohérente et personnalisée)\n\n* Thème sombre, bulles différenciées, alignement selon le rôle.\n* Classe `HoverButton` pour style unifié et effet de survol.\n* Utilisation de `RoundedRectangle`, `canvas.before`, `padding`, `texture_size`.\n\n**Compétences mobilisées :** Kivy Layout, style dynamique, refactoring UI.\n\n### 🧱 Architecture & modularité du code\n\n* Découpage en `main.py`, `interface.py`, `ollama_api.py`, `config.py`.\n* Centralisation des constantes dans `config.py` (dimensions, couleurs, DEV\\_MODE).\n* Utilisation d’un historique (`historique.py`) et log (`debug.log`).\n\n**Compétences mobilisées :** modularisation, maintenabilité, logging Python.\n\n### 🧪 Protocoles de test & benchmark IA\n\n* Création de `protocole_test_IA.txt` et `questions_IA.txt`.\n* Organisation par typologie de prompt, traçabilité des tests.\n\n**Compétences mobilisées :** conception de test, évaluation qualitative IA.\n\n### 🧾 Documentation et conformité des livrables\n\n* README complet, instructions claires de lancement.\n* Fichier `structure.md` mis à jour à chaque étape.\n* Suivi chronologique dans `Suivi_Projet.txt`.\n\n**Compétences mobilisées :** documentation projet, Git, gestion de versions.\n\n## 📂 Évolution de la structure du projet\n\n### Arborescence actuelle\n\n```\nIA_V2/\n├── main.py\n├── interface.py\n├── ollama_api.py\n├── config.py\n├── historique.py\n├── lancement_Mistral_Ollama.bat\n├── questions_IA.txt\n├── protocole_test_IA.txt\n├── structure.md\n├── Suivi_Projet.txt\n├── README.md\n└── debug.log\n```\n\n### Fiches fichiers\n\n* `main.py` : point d’entrée de l’application. Appelle l’interface.\n* `interface.py` : UI Kivy (bulles, champs, boutons, survol, dev mode).\n* `ollama_api.py` : gestion des appels à Ollama (requêtes HTTP).\n* `config.py` : paramètres globaux (dimensions, couleurs, dev mode).\n* `historique.py` : enregistrement des prompts/réponses dans `historique.txt`.\n* `lancement_Mistral_Ollama.bat` : script pour lancer Ollama localement.\n* `questions_IA.txt` : prompts de test (simples, moyens, piégeux).\n* `protocole_test_IA.txt` : plan de test structuré.\n* `structure.md` : documentation de l’arborescence projet.\n* `Suivi_Projet.txt` : journal d’évolution détaillé par étapes.\n* `README.md` : présentation projet, installation, usage.\n* `debug.log` : journalisation des événements pendant l’exécution.\n\n## 🧠 Règles d’interaction avec ChatGPT\n\n### Règles imposées\n\n* Ne jamais tronquer les fichiers partagés.\n* Afficher les fichiers complets, prêts à copier-coller.\n* Toujours demander validation explicite avant modification.\n* Exclure tout usage de Canvas (outil de dessin) sauf demande explicite.\n* Centraliser les constantes dans `config.py`.\n* Respect strict des formats Markdown et du style Git.\n\n### Exemples concrets\n\n* ✅ « Voici le fichier complet `interface.py`, prêt à copier »\n* ❌ « Voici une version abrégée… »\n* ✅ « Souhaitez-vous que j’intègre cette section dans le README ? »\n* ❌ Modification implicite sans approbation.\n\n## 🚧 Limitations connues & points de vigilance\n\n### Interface Kivy\n\n* Problème récurrent de mise à jour UI depuis thread secondaire → contourner avec `Clock.schedule_once()`.\n* UI non réactive au redimensionnement → prévoir `Window.bind(on_resize)` si besoin.\n* Gestion du wrapping de texte sensible à `text_size`, `size_hint`, `padding`.\n\n### Logs et console\n\n* Les logs Kivy doivent être bloqués AVANT import.\n* Redirection `sys.stdout` insuffisante sans flush.\n* Logs trop verbeux → utiliser `debug = True/False` dans `config.py` (à prévoir).\n\n### Clavier & UX\n\n* L’Entrée ne doit pas envoyer un message (saisie multiligne).\n* Dev Mode : affichage des raccourcis sans message complet.\n* Raccourcis mal configurés → F2/F3/F4 doivent correspondre à leur label.\n\n## 📈 Recommandations pour la suite\n\n### À implémenter\n\n* Système de sélection de modèle (Mistral, LLaMA, etc.).\n* Export des échanges (PDF, JSON).\n* Ajout d’un bouton “Effacer historique”.\n* Fichier `requirements.txt`.\n* Automatisation du test via `test_performance.py`.\n\n### À améliorer\n\n* Modularité des composants UI : créer des widgets réutilisables.\n* Gestion dynamique du redimensionnement fenêtre.\n* Externalisation des raccourcis DEV dans un fichier JSON.\n* Ajout de tests unitaires de base.\n\n### Continuité projet\n\n* Versionner chaque étape du projet (ex : V1 stable, V2 benchmarkée).\n* Tenir `Suivi_Projet.txt` et `structure.md` à jour après chaque modification.\n* Utiliser cette mémoire comme base de brief en début de session avec ChatGPT.\n\n## 🧾 Annexes\n\n* Voir fichier source `syntheses_chatgpt.txt` pour l’historique réflexif complet.\n* Fichiers supports mentionnés : `README.md`, `structure.md`, `Suivi_Projet.txt`.\n* Les évaluations détaillées par session sont intégrées dans chaque synthèse correspondante.\n\n[/DOCS_PARTAGES_DE_LA_CONVERSATION]\n\necris une synthèse du doc partagé  en 10 mots"
-2025-08-09 10:46:52 [PAYLOAD]     }
-2025-08-09 10:46:52 [PAYLOAD]   ],
-2025-08-09 10:46:52 [PAYLOAD]   "stream": true
-2025-08-09 10:46:52 [PAYLOAD] }
-2025-08-09 10:46:58 [HTTP] status=200 (stream)
-2025-08-09 10:46:58 [TOKEN]  Document
-2025-08-09 10:46:58 [TOKEN]  de
-2025-08-09 10:46:58 [TOKEN]  ré
-2025-08-09 10:46:58 [TOKEN] fé
-2025-08-09 10:46:58 [TOKEN] rence
-2025-08-09 10:46:59 [TOKEN]  pour
-2025-08-09 10:46:59 [TOKEN]  le
-2025-08-09 10:46:59 [TOKEN]  projet
-2025-08-09 10:46:59 [TOKEN]  I
-2025-08-09 10:46:59 [TOKEN] A
-2025-08-09 10:46:59 [TOKEN] \_
-2025-08-09 10:46:59 [TOKEN] V
-2025-08-09 10:46:59 [TOKEN] 2
-2025-08-09 10:46:59 [TOKEN] ,
-2025-08-09 10:46:59 [TOKEN]  four
-2025-08-09 10:46:59 [TOKEN] n
-2025-08-09 10:46:59 [TOKEN] issant
-2025-08-09 10:46:59 [TOKEN]  un
-2025-08-09 10:46:59 [TOKEN]  histor
-2025-08-09 10:46:59 [TOKEN] ique
-2025-08-09 10:46:59 [TOKEN]  des
-2025-08-09 10:47:00 [TOKEN]  sessions
-2025-08-09 10:47:00 [TOKEN]  avec
-2025-08-09 10:47:00 [TOKEN]  Chat
-2025-08-09 10:47:00 [TOKEN] G
-2025-08-09 10:47:00 [TOKEN] PT
-2025-08-09 10:47:00 [TOKEN] .
-2025-08-09 10:47:00 [TOKEN]  M
-2025-08-09 10:47:00 [TOKEN] aint
-2025-08-09 10:47:00 [TOKEN] ient
-2025-08-09 10:47:00 [TOKEN]  la
-2025-08-09 10:47:00 [TOKEN]  continu
-2025-08-09 10:47:00 [TOKEN] ité
-2025-08-09 10:47:00 [TOKEN]  technique
-2025-08-09 10:47:00 [TOKEN] ,
-2025-08-09 10:47:00 [TOKEN]  év
-2025-08-09 10:47:01 [TOKEN] ite
-2025-08-09 10:47:01 [TOKEN]  les
-2025-08-09 10:47:01 [TOKEN]  erre
-2025-08-09 10:47:01 [TOKEN] urs
-2025-08-09 10:47:01 [TOKEN]  et
-2025-08-09 10:47:01 [TOKEN]  red
-2025-08-09 10:47:01 [TOKEN] ond
-2025-08-09 10:47:01 [TOKEN] ances
-2025-08-09 10:47:01 [TOKEN] ,
-2025-08-09 10:47:01 [TOKEN]  guide
-2025-08-09 10:47:01 [TOKEN]  l
-2025-08-09 10:47:01 [TOKEN] '
-2025-08-09 10:47:01 [TOKEN] év
-2025-08-09 10:47:01 [TOKEN] olution
-2025-08-09 10:47:01 [TOKEN]  du
-2025-08-09 10:47:01 [TOKEN]  projet
-2025-08-09 10:47:02 [TOKEN] .
-2025-08-09 10:47:02 [TOKEN]  Cont
-2025-08-09 10:47:02 [TOKEN] ient
-2025-08-09 10:47:02 [TOKEN]  une
-2025-08-09 10:47:02 [TOKEN]  chron
-2025-08-09 10:47:02 [TOKEN] ologie
-2025-08-09 10:47:02 [TOKEN]  dé
-2025-08-09 10:47:02 [TOKEN] ta
-2025-08-09 10:47:02 [TOKEN] ill
-2025-08-09 10:47:02 [TOKEN] ée
-2025-08-09 10:47:02 [TOKEN]  des
-2025-08-09 10:47:02 [TOKEN]  sessions
-2025-08-09 10:47:02 [TOKEN] ,
-2025-08-09 10:47:02 [TOKEN]  des
-2025-08-09 10:47:02 [TOKEN]  en
-2025-08-09 10:47:03 [TOKEN] se
-2025-08-09 10:47:03 [TOKEN] ign
-2025-08-09 10:47:03 [TOKEN] ements
-2025-08-09 10:47:03 [TOKEN]  cl
-2025-08-09 10:47:03 [TOKEN] és
-2025-08-09 10:47:03 [TOKEN]  hi
-2025-08-09 10:47:03 [TOKEN] ér
-2025-08-09 10:47:03 [TOKEN] arch
-2025-08-09 10:47:03 [TOKEN] is
-2025-08-09 10:47:03 [TOKEN] és
-2025-08-09 10:47:03 [TOKEN]  et
-2025-08-09 10:47:03 [TOKEN]  des
-2025-08-09 10:47:03 [TOKEN]  recomm
-2025-08-09 10:47:03 [TOKEN] and
-2025-08-09 10:47:03 [TOKEN] ations
-2025-08-09 10:47:04 [TOKEN]  pour
-2025-08-09 10:47:04 [TOKEN]  la
-2025-08-09 10:47:04 [TOKEN]  suite
-2025-08-09 10:47:04 [TOKEN] .
-2025-08-09 10:47:04 [ASSISTANT_COMPLETE]  Document de référence pour le projet IA\_V2, fournissant un historique des sessions avec ChatGPT. Maintient la continuité technique, évite les erreurs et redondances, guide l'évolution du projet. Contient une chronologie détaillée des sessions, des enseignements clés hiérarchisés et des recommandations pour la suite.
+2025-08-09 11:55:39 [OUTGOING] POST http://localhost:11434/api/chat (stream=True)
+2025-08-09 11:55:39 [PAYLOAD] {
+2025-08-09 11:55:39 [PAYLOAD]   "model": "mistral",
+2025-08-09 11:55:39 [PAYLOAD]   "messages": [
+2025-08-09 11:55:39 [PAYLOAD]     {
+2025-08-09 11:55:39 [PAYLOAD]       "role": "system",
+2025-08-09 11:55:39 [PAYLOAD]       "content": "Tu es l’IA embarquée de ServOMorph. Réponds brièvement, en français, de façon utile et neutre.\nSi on te dit \"pong\", réponds \"pong\"."
+2025-08-09 11:55:39 [PAYLOAD]     },
+2025-08-09 11:55:39 [PAYLOAD]     {
+2025-08-09 11:55:39 [PAYLOAD]       "role": "user",
+2025-08-09 11:55:39 [PAYLOAD]       "content": "quelle st la cpitale de l'Italie ?"
+2025-08-09 11:55:39 [PAYLOAD]     },
+2025-08-09 11:55:39 [PAYLOAD]     {
+2025-08-09 11:55:39 [PAYLOAD]       "role": "user",
+2025-08-09 11:55:39 [PAYLOAD]       "content": "quelle st la cpitale de l'Italie ?"
+2025-08-09 11:55:39 [PAYLOAD]     }
+2025-08-09 11:55:39 [PAYLOAD]   ],
+2025-08-09 11:55:39 [PAYLOAD]   "stream": true
+2025-08-09 11:55:39 [PAYLOAD] }
+2025-08-09 11:55:42 [HTTP] status=200 (stream)
+2025-08-09 11:55:42 [TOKEN]  La
+2025-08-09 11:55:42 [TOKEN]  capit
+2025-08-09 11:55:42 [TOKEN] ale
+2025-08-09 11:55:42 [TOKEN]  de
+2025-08-09 11:55:42 [TOKEN]  l
+2025-08-09 11:55:42 [TOKEN] '
+2025-08-09 11:55:42 [TOKEN] It
+2025-08-09 11:55:42 [TOKEN] alie
+2025-08-09 11:55:42 [TOKEN]  est
+2025-08-09 11:55:42 [TOKEN]  Rome
+2025-08-09 11:55:42 [TOKEN] .
+2025-08-09 11:55:42 [ASSISTANT_COMPLETE]  La capitale de l'Italie est Rome.

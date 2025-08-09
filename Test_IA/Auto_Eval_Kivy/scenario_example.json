@@ -1,0 +1,37 @@
+[
+  { "action": "send_user", "text": "Bonjour, peux-tu dire \"pong\" puis te présenter en une phrase ?" },
+  { "action": "expect_reply", "regex": "pong|présent", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Quelle est la capitale de la France, de l'Italie et du Japon ?" },
+  { "action": "expect_reply", "regex": "Paris|Rome|Tokyo", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Calcule 235 * 47 et donne uniquement le résultat." },
+  { "action": "expect_reply", "regex": "\\b11045\\b", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Donne-moi trois synonymes du mot 'intelligent'." },
+  { "action": "expect_reply", "regex": "sage|brillant|astucieux|intelligent", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Mémorise que mon pseudo est Raph et que j'aime le café." },
+  { "action": "expect_reply", "regex": "mémoire|retenu", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Peux-tu me rappeler mon pseudo et ma boisson préférée ?" },
+  { "action": "expect_reply", "regex": "Raph|café", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Écris un haïku sur le thème de la mer." },
+  { "action": "expect_reply", "regex": "\\n", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Traduis cette phrase en anglais : 'Le chat dort sur le canapé'." },
+  { "action": "expect_reply", "regex": "cat|sleep", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Donne-moi la liste des cinq premiers nombres premiers." },
+  { "action": "expect_reply", "regex": "2|3|5|7|11", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Explique en deux phrases ce qu'est l'énergie solaire." },
+  { "action": "expect_reply", "regex": "soleil|panneaux", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Résume la phrase suivante : 'La pluie tombait sans discontinuer sur la ville grise et endormie.'." },
+  { "action": "expect_reply", "regex": "pluie|ville", "timeout_ms": 15000 },
+
+  { "action": "send_user", "text": "Merci, tu peux t'arrêter maintenant." },
+  { "action": "stop" }
+]
