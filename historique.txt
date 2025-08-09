@@ -1480,3 +1480,27 @@ IA         : Madrid
 Utilisateur : nouvelle conveersation
 IA         : 'Quel est le langage utilisé pour programmer un ordinateur ?' -> 'Langages de programmation informatique'
 
+Utilisateur : quelle est la capitale du Maroc ?
+IA         : Rabat
+
+Utilisateur : quelle est la capitale de la Pologne ?
+IA         : Varsovie
+
+Utilisateur : Quelle est la capitale du Mali ?
+IA         : Bamako
+
+Utilisateur : Quelle es la capitale de la Tunisie ?
+IA         : Tunis
+
+Utilisateur : c'est dans quel continent ?
+IA         : Afrique
+
+Utilisateur : quelle est la capitale de la létonie ?
+IA         : Riga
+
+Utilisateur : c'est dans quel continent ?
+IA         : Europe
+
+Utilisateur : a combine c'est de kms de moscou ?
+IA         : 932 km (selon la route la plus courte)
+

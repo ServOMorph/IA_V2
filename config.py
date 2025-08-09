@@ -2,6 +2,13 @@
 OLLAMA_URL = "http://localhost:11434/api/chat"
 OLLAMA_MODEL = "mistral"
 
+# =========================
+# 🔎 Debug / Journalisation (Doc §2, §12)
+# =========================
+# Active l'écriture des échanges API dans un fichier dédié
+DEBUG_API = True
+API_TRACE_FILE = "api_trace.log"  # Fichier dédié aux messages envoyés/réponses API
+
 # Configuration fenêtre
 WINDOW_WIDTH = 960
 WINDOW_HEIGHT = 1000
@@ -57,5 +64,3 @@ ICON_MORE_PATH = "assets/icons/more_vert.png"
 ICON_EDIT_PATH = "assets/icons/edit.png"
 ICON_DELETE_PATH = "assets/icons/delete.png"
 ICON_CHAT_PATH = "assets/icons/chat.png"
-
-

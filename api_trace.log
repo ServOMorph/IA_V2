@@ -1,0 +1,105 @@
+2025-08-09 09:35:20 [OUTGOING] POST http://localhost:11434/api/chat (stream=True)
+2025-08-09 09:35:20 [PAYLOAD] {
+2025-08-09 09:35:20 [PAYLOAD]   "model": "mistral",
+2025-08-09 09:35:20 [PAYLOAD]   "messages": [
+2025-08-09 09:35:20 [PAYLOAD]     {
+2025-08-09 09:35:20 [PAYLOAD]       "role": "system",
+2025-08-09 09:35:20 [PAYLOAD]       "content": "Dans cette conversation, réponds toujours de façon très concise,\nsans aucun commentaire ni phrase inutile. Réponds uniquement à la question.\nExemple : 'De quelle couleur sont généralement les bananes ?' → 'Jaune ou verte'."
+2025-08-09 09:35:20 [PAYLOAD]     },
+2025-08-09 09:35:20 [PAYLOAD]     {
+2025-08-09 09:35:20 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:20 [PAYLOAD]       "content": "quelle est la capitale de la létonie ?"
+2025-08-09 09:35:20 [PAYLOAD]     },
+2025-08-09 09:35:20 [PAYLOAD]     {
+2025-08-09 09:35:20 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:20 [PAYLOAD]       "content": "quelle est la capitale de la létonie ?"
+2025-08-09 09:35:20 [PAYLOAD]     }
+2025-08-09 09:35:20 [PAYLOAD]   ],
+2025-08-09 09:35:20 [PAYLOAD]   "stream": true
+2025-08-09 09:35:20 [PAYLOAD] }
+2025-08-09 09:35:23 [HTTP] status=200 (stream)
+2025-08-09 09:35:23 [TOKEN]  R
+2025-08-09 09:35:23 [TOKEN] iga
+2025-08-09 09:35:23 [ASSISTANT_COMPLETE]  Riga
+2025-08-09 09:35:32 [OUTGOING] POST http://localhost:11434/api/chat (stream=True)
+2025-08-09 09:35:32 [PAYLOAD] {
+2025-08-09 09:35:32 [PAYLOAD]   "model": "mistral",
+2025-08-09 09:35:32 [PAYLOAD]   "messages": [
+2025-08-09 09:35:32 [PAYLOAD]     {
+2025-08-09 09:35:32 [PAYLOAD]       "role": "system",
+2025-08-09 09:35:32 [PAYLOAD]       "content": "Dans cette conversation, réponds toujours de façon très concise,\nsans aucun commentaire ni phrase inutile. Réponds uniquement à la question.\nExemple : 'De quelle couleur sont généralement les bananes ?' → 'Jaune ou verte'."
+2025-08-09 09:35:32 [PAYLOAD]     },
+2025-08-09 09:35:32 [PAYLOAD]     {
+2025-08-09 09:35:32 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:32 [PAYLOAD]       "content": "quelle est la capitale de la létonie ?"
+2025-08-09 09:35:32 [PAYLOAD]     },
+2025-08-09 09:35:32 [PAYLOAD]     {
+2025-08-09 09:35:32 [PAYLOAD]       "role": "assistant",
+2025-08-09 09:35:32 [PAYLOAD]       "content": "Riga"
+2025-08-09 09:35:32 [PAYLOAD]     },
+2025-08-09 09:35:32 [PAYLOAD]     {
+2025-08-09 09:35:32 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:32 [PAYLOAD]       "content": "c'est dans quel continent ?"
+2025-08-09 09:35:32 [PAYLOAD]     },
+2025-08-09 09:35:32 [PAYLOAD]     {
+2025-08-09 09:35:32 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:32 [PAYLOAD]       "content": "c'est dans quel continent ?"
+2025-08-09 09:35:32 [PAYLOAD]     }
+2025-08-09 09:35:32 [PAYLOAD]   ],
+2025-08-09 09:35:32 [PAYLOAD]   "stream": true
+2025-08-09 09:35:32 [PAYLOAD] }
+2025-08-09 09:35:34 [HTTP] status=200 (stream)
+2025-08-09 09:35:34 [TOKEN]  Europe
+2025-08-09 09:35:34 [ASSISTANT_COMPLETE]  Europe
+2025-08-09 09:35:56 [OUTGOING] POST http://localhost:11434/api/chat (stream=True)
+2025-08-09 09:35:56 [PAYLOAD] {
+2025-08-09 09:35:56 [PAYLOAD]   "model": "mistral",
+2025-08-09 09:35:56 [PAYLOAD]   "messages": [
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "system",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "Dans cette conversation, réponds toujours de façon très concise,\nsans aucun commentaire ni phrase inutile. Réponds uniquement à la question.\nExemple : 'De quelle couleur sont généralement les bananes ?' → 'Jaune ou verte'."
+2025-08-09 09:35:56 [PAYLOAD]     },
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "quelle est la capitale de la létonie ?"
+2025-08-09 09:35:56 [PAYLOAD]     },
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "assistant",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "Riga"
+2025-08-09 09:35:56 [PAYLOAD]     },
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "c'est dans quel continent ?"
+2025-08-09 09:35:56 [PAYLOAD]     },
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "assistant",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "Europe"
+2025-08-09 09:35:56 [PAYLOAD]     },
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "a combine c'est de kms de moscou ?"
+2025-08-09 09:35:56 [PAYLOAD]     },
+2025-08-09 09:35:56 [PAYLOAD]     {
+2025-08-09 09:35:56 [PAYLOAD]       "role": "user",
+2025-08-09 09:35:56 [PAYLOAD]       "content": "a combine c'est de kms de moscou ?"
+2025-08-09 09:35:56 [PAYLOAD]     }
+2025-08-09 09:35:56 [PAYLOAD]   ],
+2025-08-09 09:35:56 [PAYLOAD]   "stream": true
+2025-08-09 09:35:56 [PAYLOAD] }
+2025-08-09 09:35:59 [HTTP] status=200 (stream)
+2025-08-09 09:35:59 [TOKEN]  
+2025-08-09 09:35:59 [TOKEN] 9
+2025-08-09 09:35:59 [TOKEN] 3
+2025-08-09 09:35:59 [TOKEN] 2
+2025-08-09 09:35:59 [TOKEN]  km
+2025-08-09 09:35:59 [TOKEN]  (
+2025-08-09 09:35:59 [TOKEN] sel
+2025-08-09 09:35:59 [TOKEN] on
+2025-08-09 09:35:59 [TOKEN]  la
+2025-08-09 09:35:59 [TOKEN]  route
+2025-08-09 09:35:59 [TOKEN]  la
+2025-08-09 09:35:59 [TOKEN]  plus
+2025-08-09 09:35:59 [TOKEN]  cour
+2025-08-09 09:36:00 [TOKEN] te
+2025-08-09 09:36:00 [TOKEN] )
+2025-08-09 09:36:00 [ASSISTANT_COMPLETE]  932 km (selon la route la plus courte)
