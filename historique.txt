@@ -1917,3 +1917,6 @@ IA         : Amsterdam
 Utilisateur : essai de nouvelle conversation
 IA         : Bien sûr, je suis heureux de vous aider ! Pour votre question, "pong" serait la réponse idéale.
 
+Utilisateur : capitale de la Hongrie ?
+IA         : Budapest
+

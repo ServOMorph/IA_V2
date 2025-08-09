@@ -44,7 +44,8 @@ DEV_MODE = True
 DEV_SHORTCUTS = {
     "f2": ("Msg court", "Quelle est la capitale de l'Espagne"),
     "f3": ("Msg moyen", "Quel est le plus grand océan du monde ?"),
-    "f4": ("Msg long", "Explique-moi le fonctionnement d’un moteur à combustion interne.")
+    "f4": ("Msg long", "Explique-moi le fonctionnement d’un moteur à combustion interne."),
+    "f5": ("Suppr. Conv.", None)  # 🆕 Raccourci pour suppression globale
 }
 
 # =========================

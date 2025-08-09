@@ -109,6 +109,27 @@ def delete_conversation(conv_id: str) -> None:
         del reg[conv_id]
         _save_registry(reg)
 
+# ===============================
+# 🆕 Suppression globale
+# ===============================
+def delete_all_conversations() -> None:
+    """
+    Supprime toutes les conversations et nettoie l'index + registre docs.
+    """
+    # Liste tous les conv_id existants
+    items = list_conversations_index()
+    for item in items:
+        conv_id = item.get("id")
+        if conv_id:
+            delete_conversation(conv_id)
+
+    # Nettoyage supplémentaire : index.json vide
+    idx = {"version": store.INDEX_VERSION, "updated_at": store.now_iso(), "items": []}
+    store.save_index(idx)
+
+    # Purge du registre attached_docs.json
+    _save_registry({})
+
 def retitle_from_first_user_line(conv_id: str) -> Optional[str]:
     """Utilitaire: titre = première ligne après un bloc USER, si trouvée."""
     return store.retitle_from_first_user_line(conv_id)
