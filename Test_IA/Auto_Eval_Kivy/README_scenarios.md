@@ -12,7 +12,7 @@ Un scénario est un fichier JSON qui décrit pas à pas :
 📂 Emplacement par défaut
 ──────────────────────────────
 Le scénario principal est ici :
-IA_V5\Test_IA\Auto_Eval_Kivy\scenario_example.json
+IA_V2\Test_IA\Auto_Eval_Kivy\scenario_example.json
 
 Mais tu peux créer d'autres scénarios dans un dossier "scenarios/" si tu veux les séparer.
 
@@ -102,7 +102,7 @@ Pour un autre scénario, modifier DEFAULT_SCENARIO_PATH dans eval_config.py.
 📊 Analyse après exécution
 ──────────────────────────────
 Les résultats sont dans :
-IA_V5\Test_IA\Auto_Eval_Kivy\outputs\YYYYMMDD_HHMMSS\
+IA_V2\Test_IA\Auto_Eval_Kivy\outputs\YYYYMMDD_HHMMSS\
 - transcript.txt : conversation lisible.
 - transcript.jsonl : conversation + métadonnées.
 - session.log : logs techniques et erreurs.

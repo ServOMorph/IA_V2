@@ -1,8 +1,0 @@
-
-[2025-08-08 23:40:42] USER: Je travaille sur un projet qui s'appelle ServOMorph IA.
-
-[2025-08-08 23:40:46] ASSISTANT:  Artificielle, Intelligence, Apprentissage, Morphologie, Robotique
-
-[2025-08-08 23:41:12] USER: C'est une IA locale.
-
-[2025-08-08 23:41:14] ASSISTANT:  Local AI system.

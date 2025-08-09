@@ -1766,7 +1766,7 @@ Utilisateur : quelle st la cpitale de l'Italie ?
 IA         : La capitale de l'Italie est Rome.
 
 Utilisateur : [DOCS_PARTAGES_DE_LA_CONVERSATION]
-📁 IA_V5/
+📁 IA_V2/
     📄 api_trace.log
     📄 config.py
     📄 debug.log
@@ -1919,4 +1919,191 @@ IA         : Bien sûr, je suis heureux de vous aider ! Pour votre question, "po
 
 Utilisateur : capitale de la Hongrie ?
 IA         : Budapest
+
+Utilisateur : je suis avec ma fille Marie. ecris lui un poème de 4 lignes
+IA         : Je suis heureux d'être avec toi, Marie.
+Nos moments sont précieux et ne doivent jamais s'évanouir.
+Notre lien est fort et s'épanouit à chaque instant.
+Je t'aime, ma fille chérie.
+
+Utilisateur : [DOCS_PARTAGES_DE_LA_CONVERSATION]
+Méta-Synthèse des sessions : 
+
+
+
+## 🧭 Objectif du document
+
+Ce document agit comme une **mémoire structurée** du projet IA\_V2, en lien avec les sessions menées avec ChatGPT. Il a pour fonction de :
+
+* Maintenir une **continuité dans le raisonnement** technique.
+* Éviter les **reprises redondantes** ou les erreurs déjà corrigées.
+* Guider l’évolution du projet en assurant **cohérence, traçabilité et réutilisabilité**.
+* Offrir à ChatGPT un **référentiel contextuel** lui permettant d’ajuster ses suggestions en fonction de l’historique du projet.
+
+## 📅 Chronologie synthétique des sessions
+
+| Date       | Titre                                                       | Étape | Mot-clé principal      |
+| ---------- | ----------------------------------------------------------- | ----- | ---------------------- |
+| 2025-08-06 | Création d’une interface Kivy pour interagir avec Ollama    | 1     | Interface de base      |
+| 2025-08-06 | Refonte de l'affichage et des logs de l'application Kivy IA | 6     | Style chat + log       |
+| 2025-08-06 | Refonte visuelle des composants interactifs                 | 7     | HoverButton            |
+| 2025-08-06 | Intégration d’un mode développeur avec raccourcis clavier   | 10    | Dev Mode               |
+| 2025-08-06 | Amélioration visuelle de l’interface (bulles, contraste)    | 9     | UI esthétique          |
+| 2025-08-06 | Analyse et enrichissement de la documentation du projet     | -     | README & structure.md  |
+| 2025-08-06 | Ajout d’instructions de lancement dans le README            | -     | README – Lancement     |
+| 2025-08-06 | Affichage adaptatif des réponses longues                    | -     | Bubble width           |
+| 2025-08-06 | Refonte modulaire de l’interface et séparation des fichiers | 2     | Architecture modulaire |
+| 2025-08-06 | Refactorisation des constantes dans config.py               | -     | config.py centralisé   |
+| 2025-08-06 | Mise en place du protocole de benchmark                     | 8     | Test IA local          |
+
+## 🔍 Enseignements clés (hiérarchisés)
+
+### 🛠 Résolution de bugs et stabilité (threading, affichage, crash)
+
+* Thread secondaire interdit : correction via `Clock.schedule_once`.
+* Protection via `try/except` autour de mises à jour UI.
+* Correction du bug de crash sur prompt multiligne.
+
+**Compétences mobilisées :** threading Python, gestion d’événements Kivy.
+
+### 🎨 Design visuel & UI (UX cohérente et personnalisée)
+
+* Thème sombre, bulles différenciées, alignement selon le rôle.
+* Classe `HoverButton` pour style unifié et effet de survol.
+* Utilisation de `RoundedRectangle`, `canvas.before`, `padding`, `texture_size`.
+
+**Compétences mobilisées :** Kivy Layout, style dynamique, refactoring UI.
+
+### 🧱 Architecture & modularité du code
+
+* Découpage en `main.py`, `interface.py`, `ollama_api.py`, `config.py`.
+* Centralisation des constantes dans `config.py` (dimensions, couleurs, DEV\_MODE).
+* Utilisation d’un historique (`historique.py`) et log (`debug.log`).
+
+**Compétences mobilisées :** modularisation, maintenabilité, logging Python.
+
+### 🧪 Protocoles de test & benchmark IA
+
+* Création de `protocole_test_IA.txt` et `questions_IA.txt`.
+* Organisation par typologie de prompt, traçabilité des tests.
+
+**Compétences mobilisées :** conception de test, évaluation qualitative IA.
+
+### 🧾 Documentation et conformité des livrables
+
+* README complet, instructions claires de lancement.
+* Fichier `structure.md` mis à jour à chaque étape.
+* Suivi chronologique dans `Suivi_Projet.txt`.
+
+**Compétences mobilisées :** documentation projet, Git, gestion de versions.
+
+## 📂 Évolution de la structure du projet
+
+### Arborescence actuelle
+
+```
+IA_V2/
+├── main.py
+├── interface.py
+├── ollama_api.py
+├── config.py
+├── historique.py
+├── lancement_Mistral_Ollama.bat
+├── questions_IA.txt
+├── protocole_test_IA.txt
+├── structure.md
+├── Suivi_Projet.txt
+├── README.md
+└── debug.log
+```
+
+### Fiches fichiers
+
+* `main.py` : point d’entrée de l’application. Appelle l’interface.
+* `interface.py` : UI Kivy (bulles, champs, boutons, survol, dev mode).
+* `ollama_api.py` : gestion des appels à Ollama (requêtes HTTP).
+* `config.py` : paramètres globaux (dimensions, couleurs, dev mode).
+* `historique.py` : enregistrement des prompts/réponses dans `historique.txt`.
+* `lancement_Mistral_Ollama.bat` : script pour lancer Ollama localement.
+* `questions_IA.txt` : prompts de test (simples, moyens, piégeux).
+* `protocole_test_IA.txt` : plan de test structuré.
+* `structure.md` : documentation de l’arborescence projet.
+* `Suivi_Projet.txt` : journal d’évolution détaillé par étapes.
+* `README.md` : présentation projet, installation, usage.
+* `debug.log` : journalisation des événements pendant l’exécution.
+
+## 🧠 Règles d’interaction avec ChatGPT
+
+### Règles imposées
+
+* Ne jamais tronquer les fichiers partagés.
+* Afficher les fichiers complets, prêts à copier-coller.
+* Toujours demander validation explicite avant modification.
+* Exclure tout usage de Canvas (outil de dessin) sauf demande explicite.
+* Centraliser les constantes dans `config.py`.
+* Respect strict des formats Markdown et du style Git.
+
+### Exemples concrets
+
+* ✅ « Voici le fichier complet `interface.py`, prêt à copier »
+* ❌ « Voici une version abrégée… »
+* ✅ « Souhaitez-vous que j’intègre cette section dans le README ? »
+* ❌ Modification implicite sans approbation.
+
+## 🚧 Limitations connues & points de vigilance
+
+### Interface Kivy
+
+* Problème récurrent de mise à jour UI depuis thread secondaire → contourner avec `Clock.schedule_once()`.
+* UI non réactive au redimensionnement → prévoir `Window.bind(on_resize)` si besoin.
+* Gestion du wrapping de texte sensible à `text_size`, `size_hint`, `padding`.
+
+### Logs et console
+
+* Les logs Kivy doivent être bloqués AVANT import.
+* Redirection `sys.stdout` insuffisante sans flush.
+* Logs trop verbeux → utiliser `debug = True/False` dans `config.py` (à prévoir).
+
+### Clavier & UX
+
+* L’Entrée ne doit pas envoyer un message (saisie multiligne).
+* Dev Mode : affichage des raccourcis sans message complet.
+* Raccourcis mal configurés → F2/F3/F4 doivent correspondre à leur label.
+
+## 📈 Recommandations pour la suite
+
+### À implémenter
+
+* Système de sélection de modèle (Mistral, LLaMA, etc.).
+* Export des échanges (PDF, JSON).
+* Ajout d’un bouton “Effacer historique”.
+* Fichier `requirements.txt`.
+* Automatisation du test via `test_performance.py`.
+
+### À améliorer
+
+* Modularité des composants UI : créer des widgets réutilisables.
+* Gestion dynamique du redimensionnement fenêtre.
+* Externalisation des raccourcis DEV dans un fichier JSON.
+* Ajout de tests unitaires de base.
+
+### Continuité projet
+
+* Versionner chaque étape du projet (ex : V1 stable, V2 benchmarkée).
+* Tenir `Suivi_Projet.txt` et `structure.md` à jour après chaque modification.
+* Utiliser cette mémoire comme base de brief en début de session avec ChatGPT.
+
+## 🧾 Annexes
+
+* Voir fichier source `syntheses_chatgpt.txt` pour l’historique réflexif complet.
+* Fichiers supports mentionnés : `README.md`, `structure.md`, `Suivi_Projet.txt`.
+* Les évaluations détaillées par session sont intégrées dans chaque synthèse correspondante.
+
+[/DOCS_PARTAGES_DE_LA_CONVERSATION]
+
+donne moi une règle imposés dans les intéractions avec ChatGpt
+IA         : Il ne doit être jamais demandé à ChatGPT de tronquer des fichiers ou d'effectuer des modifications sans demander une validation explicite avant. Tout utilisateur du projet doit être informé qu'il n'utilise pas le canvas sauf demande explicite et que toutes les constantes doivent être centralisées dans `config.py`. Les formats Markdown et du style Git doivent également être respectés strictement.
+
+Utilisateur : capitale de la Serbie
+IA         : Belgrade
 

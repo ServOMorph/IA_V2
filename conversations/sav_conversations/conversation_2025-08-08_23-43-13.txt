@@ -1,4 +1,0 @@
-
-[2025-08-08 23:43:13] USER: Je travaille sur un projet qui s'appelle ServOMorph IA.
-
-[2025-08-08 23:43:16] ASSISTANT:  Artificial Intelligence Transformation Project

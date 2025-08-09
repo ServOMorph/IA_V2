@@ -1,4 +1,4 @@
-📁 IA_V5/
+📁 IA_V2/
     📄 api_trace.log
     📄 config.py
     📄 debug.log
@@ -10,6 +10,7 @@
     📄 main.py
     📄 ollama_api.py
     📄 questions_IA.txt
+    📄 __init__.py
     📁 Assets/
         📄 coche.png
         📄 fleche_bas 1.png
@@ -27,32 +28,10 @@
         📄 stop.png
     📁 conversations/
         📄 conversation_manager.py
-        📄 essai3.txt
-        📄 essairenommage.txt
-        📄 Salut.txt
         📄 storage_fs.py
+        📄 __init__.py
         📁 sav_conversations/
-            📄 attached_docs.json
-            📄 conversation_2025-08-08_23-35-55.json
-            📄 conversation_2025-08-08_23-35-55.txt
-            📄 conversation_2025-08-08_23-39-58.json
-            📄 conversation_2025-08-08_23-39-58.txt
-            📄 conversation_2025-08-08_23-40-42.json
-            📄 conversation_2025-08-08_23-40-42.txt
-            📄 conversation_2025-08-08_23-43-13.json
-            📄 conversation_2025-08-08_23-43-13.txt
-            📄 conversation_2025-08-08_23-44-33.json
-            📄 conversation_2025-08-08_23-44-33.txt
-            📄 conversation_2025-08-08_23-48-57.json
-            📄 conversation_2025-08-08_23-48-57.txt
-            📄 conversation_2025-08-08_23-52-43.json
-            📄 conversation_2025-08-08_23-52-43.txt
-            📄 conversation_2025-08-08_23-55-43.json
-            📄 conversation_2025-08-08_23-55-43.txt
-            📄 conversation_2025-08-08_23-57-03.json
-            📄 conversation_2025-08-09_01-00-38.json
             📄 index.json
-            📄 Jeux vidéo.txt
     📁 Fichiers_Partages_Chatgpt/
         📄 arborescence.txt
         📄 Meta_Syntheses_1.txt
@@ -90,8 +69,13 @@
         📄 rapport_evaluation_mistra1l.txt
         📄 rapport_evaluation_mistral.txt
         📄 rapport_test_memoire_mistral.txt
+        📄 README_Test_IA.txt
+        📄 repair_conversations_index.py
         📄 test_conversations_manager.py
         📄 test_memoire_mistral.py
+        📄 test_rename_conversations.py
+        📄 test_rename_meta_fix.py
+        📄 test_sav_end_to_end.py
         📄 __init__.py
         📁 Auto_Eval_Kivy/
             📄 analyze_last_run.py

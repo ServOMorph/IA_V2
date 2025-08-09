@@ -121,6 +121,25 @@ def conv_id_from_filename(filename: str) -> Optional[str]:
 
 
 def file_path(conv_id: str) -> str:
+    """
+    Retourne le chemin complet du fichier .txt pour une conversation donnée.
+    Corrigé : lit le nom réel dans l'index ou les métadonnées si dispo,
+    pour supporter les renommages physiques.
+    """
+    ensure_dir()
+
+    # 1. Essayer depuis l'index
+    idx = load_index()
+    item = find_in_index(idx, conv_id)
+    if item and "file" in item:
+        return os.path.join(CONVERSATION_DIR, item["file"])
+
+    # 2. Sinon, essayer depuis les métadonnées
+    meta = read_meta(conv_id)
+    if meta and "file" in meta:
+        return os.path.join(CONVERSATION_DIR, meta["file"])
+
+    # 3. Fallback : reconstruire à partir du conv_id (cas ancien)
     return os.path.join(CONVERSATION_DIR, f"{CONV_PREFIX}_{conv_id}{CONV_EXT}")
 
 

@@ -1,8 +1,0 @@
-
-[2025-08-08 23:39:58] USER: Je travaille sur un projet qui s'appelle ServOMorph IA.
-
-[2025-08-08 23:40:02] ASSISTANT:  Agent learning, neural networks, morphology, object manipulation, user interface.
-
-[2025-08-08 23:40:11] USER: C'est une IA locale.
-
-[2025-08-08 23:40:14] ASSISTANT:  Local agent AI.
