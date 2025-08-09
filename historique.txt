@@ -1470,3 +1470,13 @@ IA         : Game\_Design :
 * Musique : techno électronique
 * Plateforme mobile, PC et console (PS4/5)
 
+Utilisateur : nouvelle conversation
+IA         : Quel est le nom de l'équipe qui a remporté la Coupe du monde de football en 2018 ?
+France.
+
+Utilisateur : Quelle est la capitale de l'Espagne
+IA         : Madrid
+
+Utilisateur : nouvelle conveersation
+IA         : 'Quel est le langage utilisé pour programmer un ordinateur ?' -> 'Langages de programmation informatique'
+

@@ -46,6 +46,7 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         global_layout = BoxLayout(orientation='horizontal', size_hint=(1, 1))
 
         sidebar = SidebarConversations(on_select_callback=self.load_conversation)
+        self.sidebar = sidebar  # <<< ajouté pour pouvoir mettre à jour la sidebar
         global_layout.add_widget(sidebar)
 
         main_layout = BoxLayout(orientation='vertical', size_hint=(0.75, 1), padding=0, spacing=0)
@@ -70,13 +71,13 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             orientation='horizontal',
             spacing=5,
             size_hint=(None, None),
-            size=(100, 100)  # Agrandi proportionnellement
+            size=(100, 100)
         )
 
         self.send_button = ImageHoverButton(
             source="Assets/Ico_Envoyer.png",
             size_hint=(None, None),
-            size=(50, 50)  # Taille augmentée de 1,5×
+            size=(50, 50)
         )
         
         self.send_button.bind(on_press=self.send_message)
@@ -158,33 +159,17 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
 
         self.setup_event_bindings()
 
-    # --- Helper pour ajuster la largeur de la bulle selon l'espace RÉEL de la ligne
     def adjust_bubble_width_in_row(self, bubble, row_widget, reserved_widgets):
-        """
-        Ajuste bubble.text_size pour ne jamais déborder :
-        - tient compte des largeurs réelles des widgets 'reserved' (logo, icône copier, etc.)
-        - respecte un cap global via BUBBLE_WIDTH_RATIO
-        """
         def _apply(*_):
-            # Somme des largeurs réservées (ex: logo + icône)
             reserved = sum(w.width for w in reserved_widgets)
-            # Espacements internes de la ligne (entre logo|bulle|icône)
-            # len(children)-1 = nb d'intervalles ; Kivy garde 'children' inversé, mais le nombre convient
             spacing = row_widget.spacing * max(0, len(row_widget.children) - 1)
-            # Petite marge interne pour éviter le collage au bord
             margin = 10
-
-            # Largeur max disponible dans la ligne
             available = max(50, row_widget.width - reserved - spacing - margin)
-
-            # Cap par rapport à la fenêtre/config (sécurité responsive)
             cap = Window.width * BUBBLE_WIDTH_RATIO
             max_width = min(available, cap)
-
             bubble.size_hint_x = None
             bubble.text_size = (max_width, None)
 
-        # Recalcule quand la ligne change de taille et au prochain frame
         row_widget.bind(width=_apply)
         Clock.schedule_once(_apply, 0)
 
@@ -203,28 +188,22 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
 
         for ligne in contenu.splitlines():
             if ligne.startswith("[") and "]" in ligne:
-                # Sauvegarder le bloc précédent si existant
                 if current_role and current_lines:
                     is_user = current_role.lower() == "user"
                     self.display_message("\n".join(current_lines).strip(), is_user)
                     current_lines.clear()
-
-                # Extraire rôle + début du message
                 try:
                     _, reste = ligne.split("]", 1)
                     role, message = reste.strip().split(":", 1)
                     current_role = role.strip()
                     current_lines.append(message.strip())
                 except ValueError:
-                    # Ligne mal formée → on la met brute dans le bloc courant
                     if current_role:
                         current_lines.append(ligne.strip())
             else:
-                # Ligne de continuation du même message
                 if current_role:
                     current_lines.append(ligne)
 
-        # Dernier bloc
         if current_role and current_lines:
             is_user = current_role.lower() == "user"
             self.display_message("\n".join(current_lines).strip(), is_user)
@@ -235,6 +214,16 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             self.input.text = ""
             if self.conversation_filepath is None:
                 self.conversation_filepath = create_new_conversation()
+                # >>> Rafraîchir la sidebar et sélectionner la nouvelle conversation
+                if hasattr(self, "sidebar"):
+                    try:
+                        self.sidebar.build_list()
+                        import os
+                        filename = os.path.basename(self.conversation_filepath)
+                        if hasattr(self.sidebar, "_apply_selection"):
+                            self.sidebar._apply_selection(filename)
+                    except Exception:
+                        import traceback; traceback.print_exc()
             append_message(self.conversation_filepath, "user", user_input)
             Clock.schedule_once(lambda dt: self.lancer_generation(user_input))
 
@@ -250,15 +239,12 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
         if is_user:
             bubble_container.add_widget(bubble)
             bubble_container.add_widget(Widget())
-
-            # Pour l'utilisateur, on s'assure au moins du cap global (la bulle ne “collera” pas aux bords)
             def _apply_user(*_):
                 cap = Window.width * BUBBLE_WIDTH_RATIO
                 bubble.size_hint_x = None
                 bubble.text_size = (min(self.scroll.width * BUBBLE_WIDTH_RATIO, cap), None)
             self.scroll.bind(width=_apply_user)
             Clock.schedule_once(_apply_user, 0)
-
         else:
             logo = Image(source="Assets/Logo_IA.png", size_hint=(None, None), size=(40, 40), allow_stretch=True)
             icon_container = BoxLayout(orientation='horizontal', spacing=5, size_hint=(None, None), size=(60, 25))
@@ -277,7 +263,6 @@ class ChatInterface(FloatLayout, ChatEventsMixin, ChatStreamMixin, ChatUtilsMixi
             message_row.add_widget(icon_container)
             bubble_container.add_widget(message_row)
 
-            # >>> Ajuste la largeur de la bulle en fonction de l'espace RÉEL disponible dans la ligne
             self.adjust_bubble_width_in_row(
                 bubble=bubble,
                 row_widget=message_row,
